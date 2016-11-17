@@ -1,7 +1,6 @@
 package yaruliy.model;
-import yaruliy.model.IMDGObject;
 
-public class SimpleIMDGObject implements IMDGObject {
+public class SimpleIMDGObject{
     private long id;
     private String name;
     private String serName;
@@ -14,7 +13,6 @@ public class SimpleIMDGObject implements IMDGObject {
         this.objectDependency = DependencyInjector.getDependency();
     }
 
-    @Override
     public long getID() {
         return 0;
     }
