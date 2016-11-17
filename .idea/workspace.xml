@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/DataBase.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/DataBase.java" />
     </list>
     <ignored path="imdg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/src/yaruliy/db/DataBase.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
-              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1190#1191#0" expanded="true" />
@@ -735,7 +734,7 @@
       <workItem from="1479379816929" duration="39000" />
       <workItem from="1479380616150" duration="1006000" />
       <workItem from="1479386330861" duration="2242000" />
-      <workItem from="1479395348597" duration="2208000" />
+      <workItem from="1479395348597" duration="2214000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -765,11 +764,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479396260353</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="second commit">
+      <created>1479397787563</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1479397787563</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5689000" />
+    <option name="totallyTimeSpent" value="5695000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="143" y="145" width="1400" height="726" extended-state="0" />
@@ -1067,7 +1073,7 @@
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1190#1191#0" expanded="true" />
