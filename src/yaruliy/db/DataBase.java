@@ -11,7 +11,7 @@ public class DataBase {
     private short partitionCount;
     private short replicationCount;
     private ArrayList<Node> nodes;
-    private Properties properties = new Properties();
+    private Properties properties;
 
     public DataBase(){
         initProperties();
@@ -22,6 +22,7 @@ public class DataBase {
 
     private void initProperties() {
         InputStream input = null;
+        properties = new Properties();
         try {
             input = new FileInputStream("imdg.properties");
             this.properties.load(input);
