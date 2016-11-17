@@ -1,4 +1,4 @@
-package yaruliy.model;
+package yaruliy.data;
 
 public class SimpleIMDGObject{
     private long id;
