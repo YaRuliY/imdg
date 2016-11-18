@@ -1,18 +1,17 @@
 package yaruliy.db;
-import yaruliy.data.SimpleIMDGObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class DataBase {
+public class Region {
     private short partitionCount;
     private short replicationCount;
     private ArrayList<Node> nodes;
     private Properties properties;
 
-    public DataBase(){
+    public Region(){
         initProperties();
         this.partitionCount = Short.parseShort(properties.getProperty("partitionCount"));
         this.replicationCount = Short.parseShort(properties.getProperty("replicationCount"));
@@ -45,13 +44,5 @@ public class DataBase {
 
     public ArrayList<Node> getNodes() {
         return nodes;
-    }
-
-    public void addObject(String key, SimpleIMDGObject object){
-
-    }
-
-    public SimpleIMDGObject getObject(String key){
-        return null;
     }
 }

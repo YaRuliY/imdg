@@ -1,10 +1,12 @@
 package yaruliy.machine;
-import yaruliy.db.DataBase;
+import yaruliy.data.ObjectDependency;
+import yaruliy.data.SimpleIMDGObject;
 
 public class MainFrame {
     public static void main(String a[]){
-        DataBase dataBase = new DataBase();
-        System.out.println(dataBase.getPartitionCount());
-        System.out.println(dataBase.getReplicationCount());
+        SimpleIMDGObject object = new SimpleIMDGObject(1, "name", "sername", 5);
+        ObjectDependency od = object.getObjectDependency();
+        System.out.println("All Dependency:");
+        System.out.println(od.getAllDependency());
     }
 }
