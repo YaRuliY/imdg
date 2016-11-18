@@ -1,6 +1,5 @@
 package yaruliy.db;
 import yaruliy.data.SimpleIMDGObject;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,5 +49,9 @@ public class DataBase {
 
     public void addObject(String key, SimpleIMDGObject object){
 
+    }
+
+    public SimpleIMDGObject getObject(String key){
+        return null;
     }
 }
