@@ -1,11 +1,17 @@
 package yaruliy.db;
 import yaruliy.data.SimpleIMDGObject;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class Warehouse {
     private ArrayList<Region> regions;
+    private Properties properties;
 
     public Warehouse(){
+        initProperties();
         this.regions = new ArrayList<>();
     }
 
@@ -21,7 +27,19 @@ public class Warehouse {
         return regions;
     }
 
-    public void setRegions(ArrayList<Region> regions) {
-        this.regions = regions;
+    private void initProperties() {
+        InputStream input = null;
+        properties = new Properties();
+        try {
+            input = new FileInputStream("imdg.properties");
+            this.properties.load(input);
+        }
+        catch (IOException ex) { ex.printStackTrace(); }
+        finally {
+            if (input != null) {
+                try { input.close(); }
+                catch (IOException e) { e.printStackTrace(); }
+            }
+        }
     }
 }

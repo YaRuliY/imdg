@@ -1,22 +1,8 @@
 package yaruliy.db;
+import java.util.LinkedList;
 
-public class Node {
+class Node {
     private short partitionCount;
     private short replicationCount;
-
-    public short getPartitionCount() {
-        return partitionCount;
-    }
-
-    public void setPartitionCount(short partitionCount) {
-        this.partitionCount = partitionCount;
-    }
-
-    public short getReplicationCount() {
-        return replicationCount;
-    }
-
-    public void setReplicationCount(short replicationCount) {
-        this.replicationCount = replicationCount;
-    }
+    private LinkedList<Partition> partitions;
 }

@@ -6,20 +6,17 @@ public class ObjectDependency {
     private int dependencyCount;
     private String value;
 
-    public ObjectDependency(long id, int dependencyCount){
+    ObjectDependency(long id, int dependencyCount, String value){
         this.id = id;
         this.dependencyCount = dependencyCount;
+        this.value = value;
     }
 
-    public ObjectDependency getBaseObjectDependency() {
-        return baseObjectDependency;
-    }
-
-    public String getAllDependency(){
+    public String getAllDependencyInString(){
         StringBuilder sb = new StringBuilder();
         ObjectDependency ob = this.baseObjectDependency;
         for (int i = 0; i < dependencyCount; i++) {
-            sb.append(ob.getId()).append("\n");
+            sb.append(ob.getId()).append("\n").append(ob.getValue().length()).append("\n");
             ob = ob.getBaseObjectDependency();
         }
         return sb.toString();
@@ -44,5 +41,9 @@ public class ObjectDependency {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public ObjectDependency getBaseObjectDependency() {
+        return baseObjectDependency;
     }
 }
