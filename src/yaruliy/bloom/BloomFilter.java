@@ -29,8 +29,6 @@ public class BloomFilter {
         }
     }
 
-    public void clear() { bs.clear(); }
-
     public boolean mightContain(int value) {
         byte[] b = new byte[]{
                 (byte) (value >>> 24),
@@ -50,12 +48,5 @@ public class BloomFilter {
         return false;
     }
 
-
-    public static void main(String [] args) {
-        BloomFilter bf = new BloomFilter(1000, 10);
-        System.out.println("Query for 2000: " + bf.mightContain(2000));
-        System.out.println("Adding 2000");
-        bf.add(2000);
-        System.out.println("Query for 2000: " + bf.mightContain(2000));
-    }
+    public void clear() { bs.clear(); }
 }
