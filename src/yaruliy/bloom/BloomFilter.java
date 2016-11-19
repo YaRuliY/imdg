@@ -25,7 +25,7 @@ public class BloomFilter {
 
         for (int i=0; i<hashSeeds.length; ++i) {
             int h = MurMurHash.hash32(b, 4, hashSeeds[i]);
-            bs.set(Math.abs(h)%capacity, true);
+            bs.set(Math.abs(h) % capacity, true);
         }
     }
 
