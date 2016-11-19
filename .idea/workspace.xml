@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/data/Book.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/Book.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/data/User.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" afterPath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" />
     </list>
     <ignored path="imdg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,23 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IMDGObject.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -97,7 +80,6 @@
         <option value="$PROJECT_DIR$/src/yaruliy/model/ObjectDependency.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/DataBase.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/data/ObjectDependency.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/RegionOne.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
@@ -115,6 +97,7 @@
         <option value="$PROJECT_DIR$/src/yaruliy/bloom/MurMurHash.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
       </list>
     </option>
   </component>
@@ -824,7 +807,7 @@
       <workItem from="1479499756418" duration="284000" />
       <workItem from="1479500069098" duration="10172000" />
       <workItem from="1479552394374" duration="2323000" />
-      <workItem from="1479577068685" duration="8142000" />
+      <workItem from="1479577068685" duration="8213000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -889,11 +872,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479586941353</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="db structure">
+      <created>1479586998339</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1479586998339</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28049000" />
+    <option name="totallyTimeSpent" value="28120000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1210,26 +1200,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#209#210#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1364,20 +1334,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
           <folding />
         </state>
       </provider>

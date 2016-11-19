@@ -3,7 +3,7 @@ import yaruliy.data.IMDGObject;
 
 import java.util.LinkedList;
 
-public class Partition {
+class Partition {
     private Node owner;
     private LinkedList<IMDGObject> objects;
 
