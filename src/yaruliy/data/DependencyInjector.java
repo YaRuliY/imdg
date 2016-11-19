@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class DependencyInjector {
+    private DependencyInjector(){}
+
     static ObjectDependency getDependency(int nestingLevel) {
         ObjectDependency objectDependency = new ObjectDependency(9999, nestingLevel, "Father Dependency");
         ObjectDependency original = objectDependency;

@@ -1,5 +1,5 @@
 package yaruliy.db;
 
-public interface Region {
+interface Region {
 
 }

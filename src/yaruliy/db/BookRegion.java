@@ -1,5 +1,4 @@
 package yaruliy.db;
-
 import java.util.ArrayList;
 
 public class BookRegion implements Region{
