@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class BloomFilter {
     private final BitSet bs;
-    private final int [] hashSeeds;
+    private final int[] hashSeeds;
     private final int capacity;
 
     public BloomFilter(int capacity, int hashFunctions) {
@@ -31,9 +31,9 @@ public class BloomFilter {
 
     public boolean mightContain(int value) {
         byte[] b = new byte[]{
-                (byte) (value >>> 24),
-                (byte) (value >>> 16),
-                (byte) (value >>> 8),
+                (byte)(value >>> 24),
+                (byte)(value >>> 16),
+                (byte)(value >>> 8),
                 (byte) value
         };
 
