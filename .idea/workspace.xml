@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/yaruliy/db/RegionOne.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" afterPath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" />
     </list>
     <ignored path="imdg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -725,7 +722,7 @@
       <workItem from="1479499756418" duration="284000" />
       <workItem from="1479500069098" duration="10172000" />
       <workItem from="1479552394374" duration="2323000" />
-      <workItem from="1479577068685" duration="1661000" />
+      <workItem from="1479577068685" duration="1702000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -769,11 +766,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479397793984</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="db structure">
+      <created>1479578779320</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1479578779320</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21568000" />
+    <option name="totallyTimeSpent" value="21609000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -851,7 +855,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="second commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="second commit" />
+    <MESSAGE value="db structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="db structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
