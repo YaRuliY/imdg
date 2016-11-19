@@ -1,6 +1,6 @@
 package yaruliy.data;
 
-public class SimpleIMDGObject{
+public abstract class SimpleIMDGObject{
     private long id;
     private String name;
     private String serName;
