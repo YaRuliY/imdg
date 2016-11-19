@@ -1,12 +1,12 @@
 package yaruliy.data;
 
-public abstract class SimpleIMDGObject{
+public abstract class IMDGObject {
     private long id;
     private String name;
     private String serName;
     private ObjectDependency objectDependency;
 
-    SimpleIMDGObject(long id, String name, String serName, int dependencyCount){
+    IMDGObject(long id, String name, String serName, int dependencyCount){
         this.id = id;
         this.name = name;
         this.serName = serName;

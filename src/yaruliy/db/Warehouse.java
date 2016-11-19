@@ -1,5 +1,6 @@
 package yaruliy.db;
-import yaruliy.data.SimpleIMDGObject;
+import yaruliy.data.IMDGObject;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,11 +16,11 @@ public class Warehouse {
         this.regions = new ArrayList<>();
     }
 
-    public void addObject(String key, SimpleIMDGObject object){
+    public void addObject(String key, IMDGObject object){
 
     }
 
-    public SimpleIMDGObject getObject(String key){
+    public IMDGObject getObject(String key){
         return null;
     }
 

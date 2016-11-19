@@ -1,10 +1,11 @@
 package yaruliy.db;
-import yaruliy.data.SimpleIMDGObject;
+import yaruliy.data.IMDGObject;
+
 import java.util.LinkedList;
 
 public class Partition {
     private Node owner;
-    private LinkedList<SimpleIMDGObject> objects;
+    private LinkedList<IMDGObject> objects;
 
     public Partition(Node owner){
         this.owner = owner;

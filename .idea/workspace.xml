@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/BloomJoin.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/BloomJoin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/HashJoin.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/HashJoin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/bloom/BloomFilter.java" afterPath="$PROJECT_DIR$/src/yaruliy/bloom/BloomFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Region.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Region.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/data/Book.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/Book.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/data/User.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" afterPath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" />
     </list>
     <ignored path="imdg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,14 +43,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="89" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+            <state relative-caret-position="306">
+              <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMDGObject.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,7 +105,6 @@
         <option value="$PROJECT_DIR$/src/yaruliy/data/Book.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/UserRegion.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/BookRegion.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/data/DependencyInjector.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Region.java" />
@@ -104,6 +113,8 @@
         <option value="$PROJECT_DIR$/src/yaruliy/algorithm/BloomJoin.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/bloom/BloomFilter.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/bloom/MurMurHash.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" />
       </list>
     </option>
   </component>
@@ -813,7 +824,7 @@
       <workItem from="1479499756418" duration="284000" />
       <workItem from="1479500069098" duration="10172000" />
       <workItem from="1479552394374" duration="2323000" />
-      <workItem from="1479577068685" duration="8084000" />
+      <workItem from="1479577068685" duration="8142000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -871,11 +882,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479584784997</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="db structure">
+      <created>1479586941353</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1479586941353</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27991000" />
+    <option name="totallyTimeSpent" value="28049000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -896,6 +914,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19180088" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -906,7 +925,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1076,7 +1094,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java">
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
@@ -1106,7 +1124,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/model/IMDGObject.java" />
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java">
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1114,7 +1132,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/model/IMDGObject.java" />
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java">
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1144,7 +1162,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/model/IMDGObject.java" />
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java">
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
@@ -1198,8 +1216,8 @@
           <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1218,10 +1236,10 @@
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-            <element signature="e#551#552#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#609#610#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1246,14 +1264,6 @@
             <element signature="e#427#428#0" expanded="true" />
             <element signature="e#455#456#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/SimpleIMDGObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="61" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1356,11 +1366,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="89" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+        <state relative-caret-position="306">
+          <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
