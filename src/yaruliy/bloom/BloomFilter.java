@@ -11,7 +11,7 @@ public class BloomFilter {
         bs = new BitSet(capacity);
         Random r = new Random(System.currentTimeMillis());
         hashSeeds = new int[hashFunctions];
-        for (int i=0; i<hashFunctions; ++i) hashSeeds[i] = r.nextInt();
+        for (int i = 0; i < hashFunctions; ++i) hashSeeds[i] = r.nextInt();
         this.capacity = capacity;
     }
 
@@ -20,11 +20,11 @@ public class BloomFilter {
                 (byte)(value >>> 24),
                 (byte)(value >>> 16),
                 (byte)(value >>> 8),
-                (byte)value
+                (byte) value
         };
 
-        for (int i=0; i<hashSeeds.length; ++i) {
-            int h = MurMurHash.hash32(b, 4, hashSeeds[i]);
+        for (int hashSeed : hashSeeds) {
+            int h = MurMurHash.hash32(b, 4, hashSeed);
             bs.set(Math.abs(h) % capacity, true);
         }
     }
@@ -37,8 +37,8 @@ public class BloomFilter {
                 (byte) value
         };
 
-        for (int i = 0; i < hashSeeds.length; ++i) {
-            int h = MurMurHash.hash32(b, 4, hashSeeds[i]);
+        for (int hashSeed : hashSeeds) {
+            int h = MurMurHash.hash32(b, 4, hashSeed);
             return bs.get(Math.abs(h) % capacity);
         }
         return false;
