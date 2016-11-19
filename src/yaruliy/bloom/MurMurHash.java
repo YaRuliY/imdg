@@ -44,10 +44,6 @@ public final class MurMurHash{
         return hash32(bytes, bytes.length);
     }
 
-    public static int hash32(final String text, int from, int length) {
-        return hash32(text.substring( from, from+length));
-    }
-
     public static long hash64(final byte[] data, int length, int seed) {
         final long m = 0xc6a4a7935bd1e995L;
         final int r = 47;
@@ -96,9 +92,5 @@ public final class MurMurHash{
     public static long hash64(final String text) {
         final byte[] bytes = text.getBytes();
         return hash64(bytes, bytes.length);
-    }
-
-    public static long hash64(final String text, int from, int length) {
-        return hash64(text.substring( from, from+length));
     }
 }
