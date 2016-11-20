@@ -1,5 +1,6 @@
 package yaruliy.db;
 import yaruliy.algorithm.JoinAlgorithm;
+import yaruliy.algorithm.JoinCondition;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.custom.TemporaryRegion;
 import java.io.FileInputStream;
@@ -41,7 +42,7 @@ public class Warehouse {
         }
     }
 
-    public Region executeJOIN(Region left, Region right, JoinAlgorithm algorithm){
+    public Region executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){
         return new TemporaryRegion();
     }
 }
