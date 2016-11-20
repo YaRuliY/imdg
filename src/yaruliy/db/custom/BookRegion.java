@@ -3,6 +3,7 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.Node;
 import yaruliy.db.Region;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BookRegion implements Region {
     private short nodeCount = 5;
@@ -31,6 +32,11 @@ public class BookRegion implements Region {
                 return node;
             }
         }*/
-        return null;
+        return nodes.get(getNodeNumber());
+    }
+
+    private int getNodeNumber(){
+        int range = this.nodeCount + 1;
+        return new Random().nextInt(range);
     }
 }

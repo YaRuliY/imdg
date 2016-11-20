@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Node.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" />
     </list>
     <ignored path="imdg.iws" />
@@ -28,17 +27,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BookRegion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java">
+      <file leaf-file-name="Warehouse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+            <state relative-caret-position="561">
+              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <element signature="e#537#538#0" expanded="true" />
-                <element signature="e#598#599#0" expanded="true" />
-                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#720#721#0" expanded="true" />
+                <element signature="e#780#781#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookRegion.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#509#510#0" expanded="true" />
+                <element signature="e#562#563#0" expanded="true" />
+                <element signature="e#623#624#0" expanded="true" />
+                <element signature="e#673#674#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Partition.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Partition.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partition.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -134,12 +147,12 @@
         <option value="$PROJECT_DIR$/src/yaruliy/bloom/MurMurHash.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/util/Property.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/custom/UserRegion.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/util/Properties.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/util/WHProperties.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" />
       </list>
     </option>
   </component>
@@ -948,7 +961,7 @@
       <workItem from="1479577068685" duration="17936000" />
       <workItem from="1479640958286" duration="3101000" />
       <workItem from="1479652850790" duration="9733000" />
-      <workItem from="1479668424560" duration="5423000" />
+      <workItem from="1479668424560" duration="6637000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -1111,11 +1124,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479674188757</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="db structure">
+      <created>1479675117144</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1479675117144</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56100000" />
+    <option name="totallyTimeSpent" value="57314000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1532,18 +1552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#721#722#0" expanded="true" />
-            <element signature="e#781#782#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Region.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1566,26 +1574,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/util/WHProperties.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#331#332#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#417#418#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#514#515#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#780#781#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1604,18 +1626,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partition.java">
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        <state relative-caret-position="334">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#331#332#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+            <element signature="e#562#563#0" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#673#674#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -5,7 +5,6 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.custom.BookRegion;
 import yaruliy.db.custom.TemporaryRegion;
 import yaruliy.db.custom.UserRegion;
-
 import java.util.ArrayList;
 
 public class Warehouse {
@@ -30,10 +29,9 @@ public class Warehouse {
     }
 
     private Region getRegion(Class<Region> regionClass){
-        for (Region region : regions) {
+        for (Region region : regions)
             if (region.getClass().equals(regionClass))
                 return region;
-        }
         return null;
     }
 }
