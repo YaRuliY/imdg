@@ -13,6 +13,17 @@ public class BookRegion implements Region {
     public BookRegion(short partitionCount, short replicationCount){
         this.partitionCount = partitionCount;
         this.replicationCount = replicationCount;
+        this.nodes = new ArrayList<>();
+    }
+
+    @Override
+    public void addObject(String key, IMDGObject object) {
+
+    }
+
+    @Override
+    public IMDGObject getObject(String key) {
+        return null;
     }
 
     public short getPartitionCount() {
@@ -25,15 +36,5 @@ public class BookRegion implements Region {
 
     public ArrayList<Node> getNodes() {
         return nodes;
-    }
-
-    @Override
-    public void addObject(String key, IMDGObject object) {
-
-    }
-
-    @Override
-    public IMDGObject getObject(String key) {
-        return null;
     }
 }
