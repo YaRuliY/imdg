@@ -10,7 +10,11 @@ class Partitions {
         this.owner = owner;
     }
 
-    public void addObject(){
+    public void addObject(String key, IMDGObject object){
 
+    }
+
+    public Node getOwner() {
+        return owner;
     }
 }

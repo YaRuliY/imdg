@@ -51,7 +51,7 @@ public class Warehouse {
     }
 
     public TemporaryRegion executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){
-        return new TemporaryRegion();
+        return algorithm.executeJOIN(left, right, condition);
     }
 
     private Region getRegion(Class<Region> regionClass){

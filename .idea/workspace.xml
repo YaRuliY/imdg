@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Node.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Partitions.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Partitions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Partitions.java" />
     </list>
     <ignored path="imdg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +33,8 @@
       <file leaf-file-name="Warehouse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+            <state relative-caret-position="1003">
+              <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1206#1207#0" expanded="true" />
@@ -42,15 +44,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookRegion.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookRegion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+            <state relative-caret-position="153">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#572#573#0" expanded="true" />
-                <element signature="e#625#626#0" expanded="true" />
+                <element signature="e#571#572#0" expanded="true" />
+                <element signature="e#624#625#0" expanded="true" />
+                <element signature="e#685#686#0" expanded="true" />
+                <element signature="e#712#713#0" expanded="true" />
+                <element signature="e#752#753#0" expanded="true" />
+                <element signature="e#789#790#0" expanded="true" />
+                <element signature="e#831#832#0" expanded="true" />
+                <element signature="e#870#871#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Partitions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partitions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#203#204#0" expanded="true" />
+                <element signature="e#237#238#0" expanded="true" />
+                <element signature="e#333#334#0" expanded="true" />
+                <element signature="e#361#362#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,7 +136,6 @@
         <option value="$PROJECT_DIR$/src/yaruliy/db/UserRegion.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/bloom/BloomFilter.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/TemporaryRegion.java" />
         <option value="$PROJECT_DIR$/imdg.properties" />
         <option value="$PROJECT_DIR$/src/yaruliy/data/model/User.java" />
@@ -111,10 +144,11 @@
         <option value="$PROJECT_DIR$/src/yaruliy/db/Region.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/custom/TemporaryRegion.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/custom/UserRegion.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/Partitions.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
       </list>
     </option>
   </component>
@@ -152,6 +186,9 @@
             <id>CSS</id>
           </State>
           <State>
+            <id>Class structureJava</id>
+          </State>
+          <State>
             <id>Code maturity issuesJava</id>
           </State>
           <State>
@@ -167,10 +204,19 @@
             <id>Cucumber</id>
           </State>
           <State>
+            <id>Declaration redundancyJava</id>
+          </State>
+          <State>
             <id>Encapsulation issuesJava</id>
           </State>
           <State>
+            <id>Error handlingJava</id>
+          </State>
+          <State>
             <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>Groovy</id>
           </State>
           <State>
             <id>Hibernate Issues</id>
@@ -194,13 +240,22 @@
             <id>Memory issuesJava</id>
           </State>
           <State>
+            <id>Numeric issuesJava</id>
+          </State>
+          <State>
             <id>Performance issuesJava</id>
           </State>
           <State>
             <id>Plugin DevKit</id>
           </State>
           <State>
+            <id>Probable bugsGroovy</id>
+          </State>
+          <State>
             <id>Probable bugsJava</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
           </State>
           <State>
             <id>RESTful Web Service</id>
@@ -224,6 +279,11 @@
             <id>XMLSpring CoreSpring</id>
           </State>
         </expanded-state>
+        <selected-state>
+          <State>
+            <id>FieldCanBeLocal</id>
+          </State>
+        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -484,7 +544,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\Microsoft MPI\Bin\node.exe" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -922,7 +982,7 @@
       <workItem from="1479552394374" duration="2323000" />
       <workItem from="1479577068685" duration="17936000" />
       <workItem from="1479640958286" duration="3101000" />
-      <workItem from="1479652850790" duration="7949000" />
+      <workItem from="1479652850790" duration="9715000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -1064,11 +1124,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479659772567</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="db structure">
+      <created>1479663122928</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1479663122928</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48893000" />
+    <option name="totallyTimeSpent" value="50659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1408,14 +1475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imdg.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1500,14 +1559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Region.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/UserRegion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1550,10 +1601,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="96" selection-start-line="5" selection-start-column="96" selection-end-line="5" selection-end-column="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        <state relative-caret-position="1003">
+          <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1206#1207#0" expanded="true" />
@@ -1562,40 +1623,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Region.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partitions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+        <state relative-caret-position="289">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#203#204#0" expanded="true" />
             <element signature="e#237#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="e#382#383#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#333#334#0" expanded="true" />
+            <element signature="e#361#362#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+        <state relative-caret-position="153">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#625#626#0" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#624#625#0" expanded="true" />
+            <element signature="e#685#686#0" expanded="true" />
+            <element signature="e#712#713#0" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#831#832#0" expanded="true" />
+            <element signature="e#870#871#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

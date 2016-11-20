@@ -9,7 +9,6 @@ public class BookRegion implements Region {
     private short replicationCount;
     private ArrayList<Node> nodes;
 
-
     public BookRegion(short partitionCount, short replicationCount){
         this.partitionCount = partitionCount;
         this.replicationCount = replicationCount;
