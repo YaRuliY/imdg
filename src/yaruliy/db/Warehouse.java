@@ -5,25 +5,16 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.custom.BookRegion;
 import yaruliy.db.custom.TemporaryRegion;
 import yaruliy.db.custom.UserRegion;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import yaruliy.util.Properties;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class Warehouse {
     private ArrayList<Region> regions;
-    private Properties properties;
-    private short partitionCount;
-    private short replicationCount;
 
     public Warehouse(){
-        initProperties();
-        partitionCount = Short.parseShort(properties.getProperty("partitionCount"));
-        replicationCount = Short.parseShort(properties.getProperty("replicationCount"));
         this.regions = new ArrayList<>();
-        this.regions.add(new UserRegion(partitionCount, replicationCount));
-        this.regions.add(new BookRegion(partitionCount, replicationCount));
+        this.regions.add(new UserRegion());
+        this.regions.add(new BookRegion());
     }
 
     public void addObject(String key, IMDGObject object, Class<Region> regionClass){
@@ -32,22 +23,6 @@ public class Warehouse {
 
     public IMDGObject getObject(String key, Class<Region> regionClass){
         return getRegion(regionClass).getObject(key);
-    }
-
-    private void initProperties() {
-        InputStream input = null;
-        properties = new Properties();
-        try {
-            input = new FileInputStream("imdg.properties");
-            this.properties.load(input);
-        }
-        catch (IOException ex) { ex.printStackTrace(); }
-        finally {
-            if (input != null) {
-                try { input.close(); }
-                catch (IOException e) { e.printStackTrace(); }
-            }
-        }
     }
 
     public TemporaryRegion executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){

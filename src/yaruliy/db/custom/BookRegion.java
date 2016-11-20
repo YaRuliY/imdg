@@ -5,14 +5,14 @@ import yaruliy.db.Region;
 import java.util.ArrayList;
 
 public class BookRegion implements Region {
-    private short partitionCount;
-    private short replicationCount;
+    private short nodeCount = 5;
     private ArrayList<Node> nodes;
 
-    public BookRegion(short partitionCount, short replicationCount){
-        this.partitionCount = partitionCount;
-        this.replicationCount = replicationCount;
+    public BookRegion(){
         this.nodes = new ArrayList<>();
+        for (int i = 0; i < nodeCount; i++){
+            nodes.add(new Node());
+        }
     }
 
     @Override
@@ -25,20 +25,12 @@ public class BookRegion implements Region {
         return null;
     }
 
-    public short getPartitionCount() {
-        return partitionCount;
-    }
-
-    public short getReplicationCount() {
-        return replicationCount;
-    }
-
     private Node getSpareNode(){
-        for (Node node : nodes) {
+        /*for (Node node : nodes) {
             if (node.isAvailable()){
                 return node;
             }
-        }
+        }*/
         return null;
     }
 }
