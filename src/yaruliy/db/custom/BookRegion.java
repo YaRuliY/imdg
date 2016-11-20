@@ -22,7 +22,7 @@ public class BookRegion implements Region {
 
     @Override
     public IMDGObject getObject(String key) {
-        return null;
+        return nodes.get(0).getObject(key);
     }
 
     private Node getSpareNode(){

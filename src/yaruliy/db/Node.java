@@ -21,14 +21,17 @@ public class Node {
     }
 
     public void addObject(String key, IMDGObject object){
-        int index = MurMurHash.hash32(key.getBytes(), key.length()) / partitions.size();
-        partitions.get(index).addObject(key, object);
-        /*for (int i = 0; i < replicationCount; i++){
+        for (int i = 0; i < replicationCount; i++){
+            int index = MurMurHash.hash32(key.getBytes(), key.length()) / partitions.size();
             partitions.get(index).addObject(key, object);
-        }*/
+        }
     }
 
-    public int getId() {
+    public IMDGObject getObject(String key){
+        return partitions.get(0).getObject(key);
+    }
+
+    public int getID() {
         return id;
     }
 }

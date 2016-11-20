@@ -1,6 +1,5 @@
 package yaruliy.db;
 import yaruliy.data.IMDGObject;
-
 import java.util.HashMap;
 
 class Partition {
