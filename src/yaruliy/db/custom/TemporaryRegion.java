@@ -1,4 +1,5 @@
 package yaruliy.db.custom;
+import yaruliy.data.IMDGObject;
 import yaruliy.db.Node;
 import yaruliy.db.Region;
 import java.util.ArrayList;
@@ -25,7 +26,12 @@ public class TemporaryRegion implements Region {
     }
 
     @Override
-    public void addObject() {
+    public void addObject(String key, IMDGObject object) {
 
+    }
+
+    @Override
+    public IMDGObject getObject(String key) {
+        return null;
     }
 }

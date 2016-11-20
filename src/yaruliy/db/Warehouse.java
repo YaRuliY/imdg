@@ -14,23 +14,24 @@ import java.util.Properties;
 public class Warehouse {
     private ArrayList<Region> regions;
     private Properties properties;
+    private short partitionCount;
+    private short replicationCount;
 
     public Warehouse(){
         initProperties();
-        this.regions = new ArrayList<Region>();
-        this.regions.add(new UserRegion());
-        this.regions.add(new BookRegion());
+        partitionCount = Short.parseShort(properties.getProperty("partitionCount"));
+        replicationCount = Short.parseShort(properties.getProperty("replicationCount"));
+        this.regions = new ArrayList<>();
+        this.regions.add(new UserRegion(partitionCount, replicationCount));
+        this.regions.add(new BookRegion(partitionCount, replicationCount));
     }
 
     public void addObject(String key, IMDGObject object, Class<Region> regionClass){
-        regions.stream()
-                .filter(region -> region.getClass().equals(regionClass))
-                .forEach(region -> { region.addObject(key, object);
-        });
+        getRegion(regionClass).addObject(key, object);
     }
 
-    public IMDGObject getObject(String key){
-        return null;
+    public IMDGObject getObject(String key, Class<Region> regionClass){
+        return getRegion(regionClass).getObject(key);
     }
 
     private void initProperties() {
@@ -51,5 +52,13 @@ public class Warehouse {
 
     public TemporaryRegion executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){
         return new TemporaryRegion();
+    }
+
+    private Region getRegion(Class<Region> regionClass){
+        for (Region region : regions) {
+            if (region.getClass().equals(regionClass))
+                return region;
+        }
+        return null;
     }
 }
