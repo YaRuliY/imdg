@@ -23,4 +23,9 @@ public class TemporaryRegion implements Region {
     public ArrayList<Node> getNodes() {
         return nodes;
     }
+
+    @Override
+    public void addObject() {
+
+    }
 }

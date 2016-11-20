@@ -1,4 +1,5 @@
 package yaruliy.db.custom;
+import yaruliy.data.IMDGObject;
 import yaruliy.db.Node;
 import yaruliy.db.Region;
 import java.util.ArrayList;
@@ -22,5 +23,10 @@ public class UserRegion implements Region {
 
     public ArrayList<Node> getNodes() {
         return nodes;
+    }
+
+    @Override
+    public void addObject(String key, IMDGObject object) {
+
     }
 }
