@@ -5,7 +5,7 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.custom.BookRegion;
 import yaruliy.db.custom.TemporaryRegion;
 import yaruliy.db.custom.UserRegion;
-import yaruliy.util.Properties;
+
 import java.util.ArrayList;
 
 public class Warehouse {

@@ -3,7 +3,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Properties {
+public class WHProperties {
     private static java.util.Properties properties;
     private static int nodeCount = 0;
 

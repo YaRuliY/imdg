@@ -1,7 +1,7 @@
 package yaruliy.db;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
-import yaruliy.util.Properties;
+import yaruliy.util.WHProperties;
 import java.util.LinkedList;
 
 public class Node {
@@ -11,13 +11,13 @@ public class Node {
     private LinkedList<Partition> partitions;
 
     public Node(){
-        this.id = Properties.getNodeCount();
-        replicationCount = Short.parseShort(Properties.getProperty("replicationCount"));
-        partitionCount = Short.parseShort(Properties.getProperty("partitionCount"));
+        this.id = WHProperties.getNodeCount();
+        replicationCount = Short.parseShort(WHProperties.getProperty("replicationCount"));
+        partitionCount = Short.parseShort(WHProperties.getProperty("partitionCount"));
         partitions = new LinkedList<>();
         for (int i = 0; i < partitionCount; i++)
             partitions.add(new Partition(this));
-        Properties.increaseNodeCount();
+        WHProperties.increaseNodeCount();
     }
 
     public void addObject(String key, IMDGObject object){
