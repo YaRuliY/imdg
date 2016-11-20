@@ -1,6 +1,7 @@
 package yaruliy.db;
+import yaruliy.algorithm.JoinAlgorithm;
 import yaruliy.data.IMDGObject;
-
+import yaruliy.db.custom.TemporaryRegion;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +14,7 @@ public class Warehouse {
 
     public Warehouse(){
         initProperties();
-        this.regions = new ArrayList<>();
+        this.regions = new ArrayList<Region>();
     }
 
     public void addObject(String key, IMDGObject object){
@@ -22,10 +23,6 @@ public class Warehouse {
 
     public IMDGObject getObject(String key){
         return null;
-    }
-
-    public ArrayList<Region> getRegions() {
-        return regions;
     }
 
     private void initProperties() {
@@ -42,5 +39,9 @@ public class Warehouse {
                 catch (IOException e) { e.printStackTrace(); }
             }
         }
+    }
+
+    public Region executeJOIN(Region left, Region right, JoinAlgorithm algorithm){
+        return new TemporaryRegion();
     }
 }

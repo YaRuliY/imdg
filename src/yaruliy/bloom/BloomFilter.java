@@ -11,7 +11,8 @@ public class BloomFilter {
         bs = new BitSet(capacity);
         Random r = new Random(System.currentTimeMillis());
         hashSeeds = new int[hashFunctions];
-        for (int i = 0; i < hashFunctions; ++i) hashSeeds[i] = r.nextInt();
+        for (int i = 0; i < hashFunctions; ++i)
+            hashSeeds[i] = r.nextInt();
         this.capacity = capacity;
     }
 

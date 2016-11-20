@@ -1,13 +1,15 @@
-package yaruliy.db;
+package yaruliy.db.custom;
+import yaruliy.db.Node;
+import yaruliy.db.Region;
 import java.util.ArrayList;
 
-class UserRegion implements Region{
+public class BookRegion implements Region {
     private short partitionCount;
     private short replicationCount;
     private ArrayList<Node> nodes;
 
 
-    public UserRegion(){
+    public BookRegion(){
     }
 
     public short getPartitionCount() {

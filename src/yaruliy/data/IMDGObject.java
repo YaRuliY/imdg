@@ -6,7 +6,7 @@ public abstract class IMDGObject {
     private String serName;
     private ObjectDependency objectDependency;
 
-    IMDGObject(long id, String name, String serName, int dependencyCount){
+    public IMDGObject(long id, String name, String serName, int dependencyCount){
         this.id = id;
         this.name = name;
         this.serName = serName;
