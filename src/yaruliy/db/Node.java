@@ -1,13 +1,26 @@
 package yaruliy.db;
-import java.util.LinkedList;
+import yaruliy.data.IMDGObject;
 
 public class Node {
     private short partitionCount;
     private short replicationCount;
-    private short capacity = 0;
-    private LinkedList<Partition> partitions;
+    private short size = 0;
+    private Partitions partitions;
 
     public Node(){
-        partitions = new LinkedList<>();
+
+    }
+
+    public void addObject(String key, IMDGObject object){
+        partitions.addObject();
+        this.size++;
+    }
+
+    public short getCapacity(){
+        return (short) 10;
+    }
+
+    public boolean isAvailable(){
+        return this.size <= this.getCapacity();
     }
 }

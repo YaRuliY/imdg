@@ -18,7 +18,7 @@ public class BookRegion implements Region {
 
     @Override
     public void addObject(String key, IMDGObject object) {
-
+        getSpareNode().addObject(key, object);
     }
 
     @Override
@@ -34,7 +34,12 @@ public class BookRegion implements Region {
         return replicationCount;
     }
 
-    public ArrayList<Node> getNodes() {
-        return nodes;
+    private Node getSpareNode(){
+        for (Node node : nodes) {
+            if (node.isAvailable()){
+                return node;
+            }
+        }
+        return null;
     }
 }
