@@ -15,14 +15,10 @@ class Node {
     }
 
     public void addObject(String regionName, IMDGObject object){
-        //нода принемает обьект и имя региона
-        //достает нужную партицию(имя региона)
-        //и кладет в нее данные
-        //partHash.put(key, index);
         partitions.get(regionName).addObject(object);
     }
 
-    public IMDGObject getObject(String key){
-        return partitions.get(key).getObject(key);
+    public IMDGObject getObject(String regionName, String key){
+        return partitions.get(regionName).getObject(key);
     }
 }

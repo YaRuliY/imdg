@@ -24,18 +24,12 @@ public class Region {
     public void addObject(String key, IMDGObject object) {
         int hashCode = MurMurHash.hash32(key.getBytes(), key.length());
         int index = Math.abs(hashCode) % nodes.size();
-
         nodes.get(index).addObject(this.getClass().getName(), object);
     }
 
     public IMDGObject getObject(String key) {
         int hashCode = MurMurHash.hash32(key.getBytes(), key.length());
         int index = Math.abs(hashCode) % nodes.size();
-        return nodes.get(index).getObject(key);
-    }
-
-    private int getRandom(int size){
-        int range = size + 1;
-        return new Random().nextInt(range);
+        return nodes.get(index).getObject(this.getClass().getName(), key);
     }
 }
