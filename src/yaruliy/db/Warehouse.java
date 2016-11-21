@@ -16,11 +16,11 @@ public class Warehouse {
         this.regions.add(new BookRegion());
     }
 
-    public void addObject(String key, IMDGObject object, Class<Region> regionClass){
+    public void addObject(String key, IMDGObject object, Class regionClass){
         getRegion(regionClass).addObject(key, object);
     }
 
-    public IMDGObject getObject(String key, Class<Region> regionClass){
+    public IMDGObject getObject(String key, Class regionClass){
         return getRegion(regionClass).getObject(key);
     }
 
@@ -28,7 +28,7 @@ public class Warehouse {
         return algorithm.executeJOIN(left, right, condition);
     }
 
-    private Region getRegion(Class<Region> regionClass){
+    private Region getRegion(Class regionClass){
         for (Region region : regions)
             if (region.getClass().equals(regionClass))
                 return region;

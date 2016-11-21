@@ -1,19 +1,21 @@
 package yaruliy.machine;
-import yaruliy.bloom.BloomFilter;
-import yaruliy.util.Logger;
+import yaruliy.data.IMDGObject;
+import yaruliy.data.model.Book;
+import yaruliy.db.Warehouse;
+import yaruliy.db.custom.BookRegion;
 
 public class MainFrame {
     public static void main(String a[]){
-        BloomFilter bf = new BloomFilter(5000, 10);
+        /*BloomFilter bf = new BloomFilter(5000, 10);
 
         for (int i = 0; i < 100; i++){
             bf.add(i*100);
         }
 
-        /*Logger.log("BEGIN: ", false);
+        *//*Logger.log("BEGIN: ", false);
         for (int i = 0; i < 150; i++){
             Logger.log("Query for " + i * 100 + ": " + bf.mightContain(i * 100));
-        }*/
+        }*//*
 
         int count = 0;
         for (int i = 100; i < 150; i++){
@@ -21,6 +23,21 @@ public class MainFrame {
                 count++;
             }
         }
-        System.out.println("FALSE_POSITIVE count:" + count);
+        System.out.println("FALSE_POSITIVE count:" + count);*/
+
+        Warehouse warehouse = new Warehouse();
+        IMDGObject book1 = new Book(0, "name1", "sername2", 3);
+        IMDGObject book2 = new Book(0, "name2", "sername2", 3);
+        IMDGObject book3 = new Book(0, "name3", "sername3", 3);
+
+        warehouse.addObject("book1", book1, BookRegion.class);
+        warehouse.addObject("book2", book2, BookRegion.class);
+        warehouse.addObject("book3", book3, BookRegion.class);
+
+        System.out.println("---------GETobjects---------");
+
+        System.out.println(warehouse.getObject("book1", BookRegion.class).getName());
+        System.out.println(warehouse.getObject("book2", BookRegion.class).getName());
+        System.out.println(warehouse.getObject("book3", BookRegion.class).getName());
     }
 }
