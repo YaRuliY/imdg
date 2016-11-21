@@ -2,9 +2,6 @@ package yaruliy.db;
 import yaruliy.algorithm.JoinAlgorithm;
 import yaruliy.algorithm.JoinCondition;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.custom.BookRegion;
-import yaruliy.db.custom.TemporaryRegion;
-import yaruliy.db.custom.UserRegion;
 import java.util.ArrayList;
 
 public class Warehouse {
@@ -12,8 +9,7 @@ public class Warehouse {
 
     public Warehouse(){
         this.regions = new ArrayList<>();
-        this.regions.add(new UserRegion());
-        this.regions.add(new BookRegion());
+        this.regions.add(new Region());
     }
 
     public void addObject(String key, IMDGObject object, Class regionClass){
@@ -24,7 +20,7 @@ public class Warehouse {
         return getRegion(regionClass).getObject(key);
     }
 
-    public TemporaryRegion executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){
+    public Region executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){
         return algorithm.executeJOIN(left, right, condition);
     }
 

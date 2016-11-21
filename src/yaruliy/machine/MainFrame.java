@@ -1,8 +1,7 @@
 package yaruliy.machine;
 import yaruliy.data.IMDGObject;
-import yaruliy.data.model.Book;
+import yaruliy.db.Region;
 import yaruliy.db.Warehouse;
-import yaruliy.db.custom.BookRegion;
 
 public class MainFrame {
     public static void main(String a[]){
@@ -26,18 +25,18 @@ public class MainFrame {
         System.out.println("FALSE_POSITIVE count:" + count);*/
 
         Warehouse warehouse = new Warehouse();
-        IMDGObject book1 = new Book(0, "name1", "sername2", 3);
-        IMDGObject book2 = new Book(0, "name2", "sername2", 3);
-        IMDGObject book3 = new Book(0, "name3", "sername3", 3);
+        IMDGObject book1 = new IMDGObject(0, "name1", "sername2", 3);
+        IMDGObject book2 = new IMDGObject(0, "name2", "sername2", 3);
+        IMDGObject book3 = new IMDGObject(0, "name3", "sername3", 3);
 
-        warehouse.addObject("book1", book1, BookRegion.class);
-        warehouse.addObject("book2", book2, BookRegion.class);
-        warehouse.addObject("book3", book3, BookRegion.class);
+        warehouse.addObject("book1", book1, Region.class);
+        warehouse.addObject("book2", book2, Region.class);
+        warehouse.addObject("book3", book3, Region.class);
 
         System.out.println("---------GETobjects---------");
 
-        System.out.println(warehouse.getObject("book1", BookRegion.class).getName());
-        System.out.println(warehouse.getObject("book2", BookRegion.class).getName());
-        System.out.println(warehouse.getObject("book3", BookRegion.class).getName());
+        System.out.println(warehouse.getObject("book1", Region.class).getName());
+        System.out.println(warehouse.getObject("book2", Region.class).getName());
+        System.out.println(warehouse.getObject("book3", Region.class).getName());
     }
 }
