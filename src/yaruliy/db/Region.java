@@ -26,19 +26,6 @@ public class Region {
         int index = Math.abs(hashCode) % nodes.size();
 
         nodes.get(index).addObject(this.getClass().getName(), object);
-/*        ArrayList<Integer> mas = new ArrayList<>();
-        indexHash.put(key, mas);
-
-        for (int i = 0; i < replicationCount; i++){
-            int nodeIndex = getRandom(this.nodeCount - 1);
-            System.out.println("Random Node Index in BookRegion: " + nodeIndex);
-            if (!nodes.get(nodeIndex).contains(key)){
-                nodes.get(nodeIndex).addObject(key, object);
-            }
-            else System.out.println(key + " is already in node");
-            mas.add(nodeIndex);
-        }
-        indexHash.put(key, mas);*/
     }
 
     public IMDGObject getObject(String key) {
