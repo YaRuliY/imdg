@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7dd15ada-f625-4645-9309-d54c8f8a3b55" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/yaruliy/data/model/Book.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/yaruliy/data/model/User.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/yaruliy/db/custom/TemporaryRegion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/yaruliy/db/custom/UserRegion.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/BloomJoin.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/BloomJoin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/HashJoin.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/HashJoin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" afterPath="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" afterPath="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Node.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Region.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Region.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" afterPath="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" afterPath="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" />
     </list>
     <ignored path="imdg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,20 +28,7 @@
     <favorites_list name="imdg" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Region.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Region.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -100,17 +79,17 @@
         <option value="$PROJECT_DIR$/src/yaruliy/db/custom/UserRegion.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/util/Properties.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/util/WHProperties.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
         <option value="$PROJECT_DIR$/imdg.properties" />
         <option value="$PROJECT_DIR$/src/yaruliy/db/custom/BookRegion.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/algorithm/JoinAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/algorithm/HashJoin.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/algorithm/BloomJoin.java" />
-        <option value="$PROJECT_DIR$/src/yaruliy/db/Region.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/data/IMDGObject.java" />
         <option value="$PROJECT_DIR$/src/yaruliy/machine/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Warehouse.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Partition.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Region.java" />
+        <option value="$PROJECT_DIR$/src/yaruliy/db/Node.java" />
       </list>
     </option>
   </component>
@@ -143,6 +122,12 @@
             <id>Android Lint</id>
           </State>
           <State>
+            <id>Class structureJava</id>
+          </State>
+          <State>
+            <id>Declaration redundancyJava</id>
+          </State>
+          <State>
             <id>Java</id>
           </State>
           <State>
@@ -157,7 +142,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>ConstantConditions</id>
+            <id>FieldCanBeLocal</id>
           </State>
         </selected-state>
       </profile-state>
@@ -836,7 +821,7 @@
       <workItem from="1479718071713" duration="5141000" />
       <workItem from="1479723835314" duration="1114000" />
       <workItem from="1479727004250" duration="656000" />
-      <workItem from="1479736631651" duration="643000" />
+      <workItem from="1479736631651" duration="4763000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1479386607517</created>
@@ -1034,15 +1019,22 @@
       <option name="project" value="LOCAL" />
       <updated>1479727645071</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="db structure">
+      <created>1479737289081</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1479737289081</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64980000" />
+    <option name="totallyTimeSpent" value="69100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1682" height="1025" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1056,7 +1048,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20195839" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20195839" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1391,34 +1383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1218#1219#0" expanded="true" />
-            <element signature="e#1289#1290#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1340#1341#0" expanded="true" />
-            <element signature="e#1382#1383#0" expanded="true" />
-            <element signature="e#1430#1431#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/data/model/Book.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1447,24 +1411,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Partition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        <state relative-caret-position="255">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#331#332#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#196#197#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#710#711#0" expanded="true" />
+            <element signature="e#767#768#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Region.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+        <state relative-caret-position="690">
+          <caret line="46" column="47" selection-start-line="46" selection-start-column="47" selection-end-line="46" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yaruliy/db/Warehouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

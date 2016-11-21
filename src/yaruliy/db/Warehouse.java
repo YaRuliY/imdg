@@ -13,10 +13,19 @@ public class Warehouse {
     }
 
     public void addObject(String key, IMDGObject object, Class regionClass){
+        //берем ПК
+        //считаем хэш
+        //получили остаток от деления на количество нод в кластере
+        //получили номер ноды
         getRegion(regionClass).addObject(key, object);
     }
 
     public IMDGObject getObject(String key, Class regionClass){
+        //берем ПК
+        //считаем хэш
+        //получили остаток от деления на количество нод в кластере
+        //получили номер ноды
+        //полезли туда, взяли данные
         return getRegion(regionClass).getObject(key);
     }
 
