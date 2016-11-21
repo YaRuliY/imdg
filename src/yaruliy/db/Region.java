@@ -3,33 +3,51 @@ import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
 import yaruliy.util.WHProperties;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
 
 public class Region {
     private short nodeCount;
     private short replicationCount;
+    private short partitionCount;
     private ArrayList<Node> nodes;
+    private String name;
 
-    public Region(){
+    public Region(String name){
+        this.name = name;
         nodeCount = Short.parseShort(WHProperties.getProperty("nodeCount"));
         replicationCount = Short.parseShort(WHProperties.getProperty("replicationCount"));
+        partitionCount = Short.parseShort(WHProperties.getProperty("partitionCount"));
         this.nodes = new ArrayList<>();
-        for (int i = 0; i < nodeCount; i++){
-            nodes.add(new Node());
+        for (int i = 0; i < nodeCount; i++) {
+            HashMap<String, Partition> partitions = new HashMap<>();
+            for (int j = 0; j< partitionCount; j++)
+                partitions.put(this.name, new Partition(this));
+            nodes.add(new Node(partitions));
         }
     }
 
-    //когда мы кладем данные в кластер
-    //регион высчит. хэш, определ. ноду и говорит ей - положы это в себя
-    public void addObject(String key, IMDGObject object) {
-        int hashCode = MurMurHash.hash32(key.getBytes(), key.length());
+    public void addObject(IMDGObject object) {
+        String idAsText = "" + object.getID();
+        int hashCode = MurMurHash.hash32(idAsText.getBytes(), idAsText.length());
         int index = Math.abs(hashCode) % nodes.size();
-        nodes.get(index).addObject(this.getClass().getName(), object);
+        System.out.println("INDEX: " + index);
+        nodes.get(index).addObject(this.getName(), object);
+
+        for (int i = 0;i < replicationCount; i++){
+            if (index + 1 < nodes.size())
+                nodes.get(index + 1).addObject(this.getName(), object);
+            else nodes.get(index - 1).addObject(this.getName(), object);
+        }
     }
 
-    public IMDGObject getObject(String key) {
-        int hashCode = MurMurHash.hash32(key.getBytes(), key.length());
+    public IMDGObject getObject(long id) {
+        String idAsText = "" + id;
+        int hashCode = MurMurHash.hash32(idAsText.getBytes(), idAsText.length());
         int index = Math.abs(hashCode) % nodes.size();
-        return nodes.get(index).getObject(this.getClass().getName(), key);
+        return nodes.get(index).getObject(this.getName(), id);
+    }
+
+    public String getName(){
+        return this.name;
     }
 }

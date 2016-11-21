@@ -6,6 +6,7 @@ import java.io.InputStream;
 public class WHProperties {
     private static java.util.Properties properties;
     private static int nodeCount = 0;
+    private static long warehouseSize = 0;
 
     static {
         InputStream input = null;
@@ -31,5 +32,13 @@ public class WHProperties {
 
     public static void increaseNodeCount(){
         nodeCount++;
+    }
+
+    public static long getWarehouseSize() {
+        return warehouseSize;
+    }
+
+    public static void increaseWarehouseSize(){
+        warehouseSize++;
     }
 }

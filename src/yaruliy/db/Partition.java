@@ -1,24 +1,25 @@
 package yaruliy.db;
 import yaruliy.data.IMDGObject;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 
 class Partition {
-    private String regionName;
-    private ArrayList<IMDGObject> objects;
-    HashSet<IMDGObject> objectsH = new HashSet<>();
+    private final Region owner;
+    private HashMap<Long, IMDGObject> objects;
 
-    public Partition(String regionName){
-        this.regionName = regionName;
-        objects = new ArrayList<>();
+    public Partition(Region owner){
+        this.owner = owner;
+        objects = new HashMap<>();
     }
 
     public void addObject(IMDGObject object){
-        objects.add(object);
+        objects.put(object.getID(), object);
     }
 
-    public IMDGObject getObject(String key){
-        //objectsH
-        return objects.get(0);
+    public IMDGObject getObject(long id){
+        return objects.get(id);
+    }
+
+    public Region getOwner() {
+        return owner;
     }
 }

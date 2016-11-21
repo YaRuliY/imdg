@@ -25,18 +25,19 @@ public class MainFrame {
         System.out.println("FALSE_POSITIVE count:" + count);*/
 
         Warehouse warehouse = new Warehouse();
-        IMDGObject book1 = new IMDGObject(0, "name1", "sername2", 3);
-        IMDGObject book2 = new IMDGObject(0, "name2", "sername2", 3);
-        IMDGObject book3 = new IMDGObject(0, "name3", "sername3", 3);
+        IMDGObject book1 = new IMDGObject("name1", "sername2", 3);
+        IMDGObject book2 = new IMDGObject("name2", "sername2", 3);
+        IMDGObject book3 = new IMDGObject("name3", "sername3", 3);
 
-        warehouse.addObject("book1", book1, Region.class);
-        warehouse.addObject("book2", book2, Region.class);
-        warehouse.addObject("book3", book3, Region.class);
+        String region = "Region0";
+        warehouse.addObject(book1, region);
+        warehouse.addObject(book2, region);
+        warehouse.addObject(book3, region);
 
         System.out.println("---------GETobjects---------");
 
-        System.out.println(warehouse.getObject("book1", Region.class).getName());
-        System.out.println(warehouse.getObject("book2", Region.class).getName());
-        System.out.println(warehouse.getObject("book3", Region.class).getName());
+        System.out.println(warehouse.getObject(0, region).getName());
+        System.out.println(warehouse.getObject(1, region).getName());
+        System.out.println(warehouse.getObject(2, region).getName());
     }
 }
