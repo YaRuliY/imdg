@@ -24,8 +24,9 @@ public class Node {
         int hashCode = MurMurHash.hash32(key.getBytes(), key.length());
         int index = Math.abs(hashCode) % partitions.size();
         System.out.println("Index: " + index);
-        System.out.println("HashCode: " + hashCode + " Key: " + key);
-        System.out.println();
+        System.out.println("HashCode: " + hashCode);
+        System.out.println("Key: " + key);
+        System.out.println("-----------------------");
         partHash.put(key, index);
         partitions.get(index).addObject(key, object);
     }
@@ -36,5 +37,9 @@ public class Node {
 
     public int getID() {
         return id;
+    }
+
+    public boolean contains(String key){
+        return partHash.containsKey(key);
     }
 }

@@ -33,10 +33,12 @@ public class BookRegion implements Region {
         for (int i = 0; i < replicationCount; i++){
             int nodeIndex = getRandom(this.nodeCount - 1);
             System.out.println("Random Node Index in BookRegion: " + nodeIndex);
-            nodes.get(nodeIndex).addObject(key, object);
+            if (!nodes.get(nodeIndex).contains(key)){
+                nodes.get(nodeIndex).addObject(key, object);
+            }
+            else System.out.println(key + " is already in node");
             mas.add(nodeIndex);
         }
-
         indexHash.put(key, mas);
     }
 
