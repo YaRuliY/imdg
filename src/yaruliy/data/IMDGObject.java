@@ -1,5 +1,4 @@
 package yaruliy.data;
-
 import yaruliy.util.WHProperties;
 
 public class IMDGObject {

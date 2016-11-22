@@ -1,25 +1,20 @@
 package yaruliy.algorithm;
 
 public class JoinCondition {
-    private String leftOperator;
-    private String rightOperator;
-    private String operation;
+    private String field;
+    private Operation operation;
+    public enum Operation { MORE, LESS, EQUALLY }
 
-    public JoinCondition(String left, String right, String operation){
-        this.leftOperator = left;
-        this.rightOperator = right;
+    public JoinCondition(String field, Operation operation){
+        this.field = field;
         this.operation = operation;
     }
 
-    public String getLeftOperator() {
-        return leftOperator;
+    public String getField() {
+        return field;
     }
 
-    public String getRightOperator() {
-        return rightOperator;
-    }
-
-    public String getOperation() {
+    public Operation getOperation() {
         return operation;
     }
 }

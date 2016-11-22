@@ -22,11 +22,10 @@ public class MainFrame {
         warehouse.addObject(user4, region);
 
         System.out.println("---------GETobjects---------");
-        for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords()) {
+        for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords())
             System.out.println(object.getName());
-        }
 
-        Region temporaryResion = warehouse.executeJOIN("", "", new HashJoin(), new JoinCondition("", "", ""));
+        Region temporaryResion = warehouse.executeJOIN("", "", new HashJoin(), new JoinCondition("name", JoinCondition.Operation.EQUALLY));
         //temporaryResion.getAllRecords();
     }
 }
