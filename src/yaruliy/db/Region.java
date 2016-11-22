@@ -4,6 +4,8 @@ import yaruliy.data.IMDGObject;
 import yaruliy.util.WHProperties;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Region {
     private short nodeCount;
@@ -14,9 +16,9 @@ public class Region {
 
     public Region(String name){
         this.name = name;
-        nodeCount = Short.parseShort(WHProperties.getProperty("nodeCount"));
-        replicationCount = Short.parseShort(WHProperties.getProperty("replicationCount"));
-        partitionCount = Short.parseShort(WHProperties.getProperty("partitionCount"));
+        this.nodeCount = WHProperties.getProperty("nodeCount");
+        this.replicationCount = WHProperties.getProperty("replicationCount");
+        this.partitionCount = WHProperties.getProperty("partitionCount");
         this.nodes = new ArrayList<>();
         for (int i = 0; i < nodeCount; i++) {
             HashMap<String, Partition> partitions = new HashMap<>();
@@ -27,27 +29,41 @@ public class Region {
     }
 
     public void addObject(IMDGObject object) {
-        String idAsText = "" + object.getID();
-        int hashCode = MurMurHash.hash32(idAsText.getBytes(), idAsText.length());
-        int index = Math.abs(hashCode) % nodes.size();
-        System.out.println("INDEX: " + index);
+        int index = getNodeIndex(object.getID());
         nodes.get(index).addObject(this.getName(), object);
 
         for (int i = 0;i < replicationCount; i++){
-            if (index + 1 < nodes.size())
-                nodes.get(index + 1).addObject(this.getName(), object);
-            else nodes.get(index - 1).addObject(this.getName(), object);
+            int in = ++index;
+            if (in < nodes.size()) {
+                nodes.get(in).addObject(this.getName(), object);
+            }
+            else {
+                nodes.get(0).addObject(this.getName(), object);
+            }
         }
     }
 
     public IMDGObject getObject(long id) {
-        String idAsText = "" + id;
-        int hashCode = MurMurHash.hash32(idAsText.getBytes(), idAsText.length());
-        int index = Math.abs(hashCode) % nodes.size();
-        return nodes.get(index).getObject(this.getName(), id);
+        return nodes.get(getNodeIndex(id)).getObject(this.getName(), id);
     }
 
     public String getName(){
         return this.name;
+    }
+
+    private int getNodeIndex(long id){
+        String idAsText = "" + id;
+        int hashCode = MurMurHash.hash32(idAsText.getBytes(), idAsText.length());
+        return Math.abs(hashCode) % nodes.size();
+    }
+
+    public Set<IMDGObject> getAllRecords(){
+        Set<IMDGObject> array = new HashSet<>();
+        for (Node node : nodes) {
+            for (String key: node.getPartition().keySet()) {
+                array.addAll(node.getPartition().get(key).getAllRecords());
+            }
+        }
+        return array;
     }
 }

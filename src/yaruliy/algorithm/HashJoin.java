@@ -3,7 +3,7 @@ import yaruliy.db.Region;
 
 public class HashJoin implements JoinAlgorithm{
     @Override
-    public Region executeJOIN(Class<Region> left, Class<Region> right, JoinCondition condition) {
+    public Region executeJOIN(String left, String right, JoinCondition condition) {
         return null;
     }
 }

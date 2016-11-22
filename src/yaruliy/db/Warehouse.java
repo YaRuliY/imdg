@@ -10,7 +10,9 @@ public class Warehouse {
     public Warehouse(){
         this.regions = new HashMap<>();
         Region region = new Region("Region0");
+        Region region1 = new Region("Region1");
         this.regions.put(region.getName(), region);
+        this.regions.put(region.getName(), region1);
     }
 
     public void addObject(IMDGObject object, String regionName){
@@ -21,7 +23,11 @@ public class Warehouse {
         return regions.get(regionName).getObject(id);
     }
 
-    public Region executeJOIN(Class<Region> left, Class<Region> right, JoinAlgorithm algorithm, JoinCondition condition){
+    public Region executeJOIN(String left, String right, JoinAlgorithm algorithm, JoinCondition condition){
         return algorithm.executeJOIN(left, right, condition);
+    }
+
+    public Region getRegionByName(String name){
+        return regions.get(name);
     }
 }

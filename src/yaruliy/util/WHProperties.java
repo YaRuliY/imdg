@@ -22,8 +22,8 @@ public class WHProperties {
         }
     }
 
-    public static String getProperty(String property){
-        return properties.getProperty(property);
+    public static byte getProperty(String property){
+        return Byte.parseByte(properties.getProperty(property));
     }
 
     public static int getNodeCount() {

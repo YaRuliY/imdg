@@ -16,4 +16,8 @@ class Node {
     public IMDGObject getObject(String regionName, long id){
         return partitions.get(regionName).getObject(id);
     }
+
+    public HashMap<String, Partition> getPartition(){
+        return this.partitions;
+    }
 }

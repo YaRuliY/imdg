@@ -1,43 +1,32 @@
 package yaruliy.machine;
+import yaruliy.algorithm.HashJoin;
+import yaruliy.algorithm.JoinCondition;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.Region;
 import yaruliy.db.Warehouse;
 
 public class MainFrame {
     public static void main(String a[]){
-        /*BloomFilter bf = new BloomFilter(5000, 10);
-
-        for (int i = 0; i < 100; i++){
-            bf.add(i*100);
-        }
-
-        *//*Logger.log("BEGIN: ", false);
-        for (int i = 0; i < 150; i++){
-            Logger.log("Query for " + i * 100 + ": " + bf.mightContain(i * 100));
-        }*//*
-
-        int count = 0;
-        for (int i = 100; i < 150; i++){
-            if (bf.mightContain(i * 100)){
-                count++;
-            }
-        }
-        System.out.println("FALSE_POSITIVE count:" + count);*/
-
         Warehouse warehouse = new Warehouse();
         IMDGObject book1 = new IMDGObject("name1", "sername2", 3);
         IMDGObject book2 = new IMDGObject("name2", "sername2", 3);
         IMDGObject book3 = new IMDGObject("name3", "sername3", 3);
+        IMDGObject user3 = new IMDGObject("user3", "sername3", 3);
+        IMDGObject user4 = new IMDGObject("user4", "sername3", 3);
 
         String region = "Region0";
         warehouse.addObject(book1, region);
         warehouse.addObject(book2, region);
         warehouse.addObject(book3, region);
+        warehouse.addObject(user3, region);
+        warehouse.addObject(user4, region);
 
         System.out.println("---------GETobjects---------");
+        for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords()) {
+            System.out.println(object.getName());
+        }
 
-        System.out.println(warehouse.getObject(0, region).getName());
-        System.out.println(warehouse.getObject(1, region).getName());
-        System.out.println(warehouse.getObject(2, region).getName());
+        Region temporaryResion = warehouse.executeJOIN("", "", new HashJoin(), new JoinCondition("", "", ""));
+        //temporaryResion.getAllRecords();
     }
 }
