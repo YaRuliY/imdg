@@ -1,6 +1,7 @@
 package yaruliy.algorithm;
 import yaruliy.db.Region;
+import yaruliy.db.JoinResult;
 
 public interface JoinAlgorithm {
-    Region executeJOIN(Region left, Region right, JoinCondition condition);
+    JoinResult executeJOIN(Region left, Region right, String field);
 }

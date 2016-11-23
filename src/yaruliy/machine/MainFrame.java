@@ -1,8 +1,7 @@
 package yaruliy.machine;
 import yaruliy.algorithm.HashJoin;
-import yaruliy.algorithm.JoinCondition;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.Region;
+import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 
 public class MainFrame {
@@ -35,13 +34,14 @@ public class MainFrame {
         System.out.println("---------GET objects---------");
         for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords())
             System.out.println(object.getName() + "[" + object.getID() + "]");
+        System.out.println("Region 2:");
+        for (IMDGObject object : warehouse.getRegionByName(region2).getAllRecords())
+            System.out.println(object.getName() + "[" + object.getID() + "]");
 
-        Region temporaryResion = warehouse.executeJOIN(region, region2,
-                new HashJoin(), new JoinCondition("name", JoinCondition.Operation.EQUALLY));
-        temporaryResion.getAllRecords();
+        JoinResult temporary = warehouse.executeJOIN(region, region2, new HashJoin(), "name");
 
         System.out.println("---------GET JOIN objects---------");
-        for (IMDGObject object : temporaryResion.getAllRecords())
-            System.out.println(object.getName() + "[" + object.getID() + "]");
+        for (IMDGObject[] objectCouple : temporary.getResultArray())
+            System.out.println(objectCouple[0].getName() + " -- " + objectCouple[1].getName());
     }
 }
