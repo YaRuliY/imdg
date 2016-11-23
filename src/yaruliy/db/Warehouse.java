@@ -12,7 +12,7 @@ public class Warehouse {
         Region region = new Region("Region0");
         Region region1 = new Region("Region1");
         this.regions.put(region.getName(), region);
-        this.regions.put(region.getName(), region1);
+        this.regions.put(region1.getName(), region1);
     }
 
     public void addObject(IMDGObject object, String regionName){
@@ -24,7 +24,7 @@ public class Warehouse {
     }
 
     public Region executeJOIN(String left, String right, JoinAlgorithm algorithm, JoinCondition condition){
-        return algorithm.executeJOIN(left, right, condition);
+        return algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), condition);
     }
 
     public Region getRegionByName(String name){

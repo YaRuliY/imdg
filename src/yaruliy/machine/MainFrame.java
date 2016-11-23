@@ -14,6 +14,10 @@ public class MainFrame {
         IMDGObject user3 = new IMDGObject("user3", "sername3", 3);
         IMDGObject user4 = new IMDGObject("user4", "sername3", 3);
 
+        IMDGObject user5 = new IMDGObject("user5", "sername3", 3);
+        IMDGObject user6 = new IMDGObject("user6", "sername3", 3);
+        IMDGObject user7 = new IMDGObject("user6", "sername3", 3);
+
         String region = "Region0";
         warehouse.addObject(book1, region);
         warehouse.addObject(book2, region);
@@ -21,11 +25,23 @@ public class MainFrame {
         warehouse.addObject(user3, region);
         warehouse.addObject(user4, region);
 
-        System.out.println("---------GETobjects---------");
-        for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords())
-            System.out.println(object.getName());
+        String region2 = "Region1";
+        user5.setId(0);
+        user6.setId(1);
+        warehouse.addObject(user5, region2);
+        warehouse.addObject(user6, region2);
+        warehouse.addObject(user7, region2);
 
-        Region temporaryResion = warehouse.executeJOIN("", "", new HashJoin(), new JoinCondition("name", JoinCondition.Operation.EQUALLY));
-        //temporaryResion.getAllRecords();
+        System.out.println("---------GET objects---------");
+        for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords())
+            System.out.println(object.getName() + "[" + object.getID() + "]");
+
+        Region temporaryResion = warehouse.executeJOIN(region, region2,
+                new HashJoin(), new JoinCondition("name", JoinCondition.Operation.EQUALLY));
+        temporaryResion.getAllRecords();
+
+        System.out.println("---------GET JOIN objects---------");
+        for (IMDGObject object : temporaryResion.getAllRecords())
+            System.out.println(object.getName() + "[" + object.getID() + "]");
     }
 }
