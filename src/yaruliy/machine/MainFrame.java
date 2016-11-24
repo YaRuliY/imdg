@@ -1,12 +1,14 @@
 package yaruliy.machine;
 import yaruliy.algorithm.HashJoin;
+import yaruliy.bloom.BloomFilter;
+import yaruliy.bloom.BloomFilter_MD5;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 
 public class MainFrame {
     public static void main(String a[]){
-        Warehouse warehouse = new Warehouse();
+        /*Warehouse warehouse = new Warehouse();
         IMDGObject book1 = new IMDGObject("name1", "sername2", 3);
         IMDGObject book2 = new IMDGObject("name2", "sername2", 3);
         IMDGObject book3 = new IMDGObject("name3", "sername3", 3);
@@ -42,6 +44,9 @@ public class MainFrame {
 
         System.out.println("---------GET JOIN objects---------");
         for (IMDGObject[] objectCouple : temporary.getResultArray())
-            System.out.println(objectCouple[0].getName() + " -- " + objectCouple[1].getName());
+            System.out.println(objectCouple[0].getName() + " -- " + objectCouple[1].getName());*/
+
+        int elementCount = 50000;
+        BloomFilter_MD5<String> bloomFilter_md5 = new BloomFilter_MD5<>(0.001, elementCount);
     }
 }
