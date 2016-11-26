@@ -2,7 +2,7 @@ package yaruliy.db;
 import yaruliy.data.IMDGObject;
 import java.util.HashMap;
 
-class Node {
+public class Node {
     private HashMap<String, Partition> partitions;
 
     public Node(HashMap<String, Partition> partitions){

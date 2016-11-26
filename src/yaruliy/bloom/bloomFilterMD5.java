@@ -6,12 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.BitSet;
 import java.util.Collection;
 
-public class BloomFilter_MD5<E> implements Serializable{
+public class BloomFilterMD5<E> implements Serializable{
     private BitSet bitset;
     private int bitSetSize;
-    private double bitsPerElement;
     private int expectedNumberOfFilterElements;
-    private int numberOfAddedElements;
     private int k;
     static final Charset charset = Charset.forName("UTF-8");
     static final String hashName = "MD5";
@@ -24,48 +22,21 @@ public class BloomFilter_MD5<E> implements Serializable{
         digestFunction = tmp;
     }
 
-    public BloomFilter_MD5(double c, int n, int k) {
+    public BloomFilterMD5(double c, int n, int k) {
         this.expectedNumberOfFilterElements = n;
         this.k = k;
-        this.bitsPerElement = c;
         this.bitSetSize = (int)Math.ceil(c * n);
-        numberOfAddedElements = 0;
         this.bitset = new BitSet(bitSetSize);
     }
 
-    public BloomFilter_MD5(int bitSetSize, int expectedNumberOElements) {
-        this(bitSetSize / (double)expectedNumberOElements,
-                expectedNumberOElements,
-                (int) Math.round((bitSetSize / (double)expectedNumberOElements) * Math.log(2.0)));
-    }
-
-    public BloomFilter_MD5(double falsePositiveProbability, int expectedNumberOfElements) {
-        this(Math.ceil(-(Math.log(falsePositiveProbability) / Math.log(2))) / Math.log(2), // c = k / ln(2)
+    public BloomFilterMD5(double falsePositiveProbability, int expectedNumberOfElements) {
+        this(Math.ceil(-(Math.log(falsePositiveProbability) / Math.log(2))) / Math.log(2),
                 expectedNumberOfElements,
-                (int)Math.ceil(-(Math.log(falsePositiveProbability) / Math.log(2)))); // k = ceil(-log_2(false prob.))
-    }
-
-    /*public BloomFilter_MD5(int bitSetSize, int expectedNumberOfFilterElements, int actualNumberOfFilterElements, BitSet filterData) {
-        this(bitSetSize, expectedNumberOfFilterElements);
-        this.bitset = filterData;
-        this.numberOfAddedElements = actualNumberOfFilterElements;
-    }*/
-
-    public static int createHash(String val, Charset charset) {
-        return createHash(val.getBytes(charset));
-    }
-
-    public static int createHash(String val) {
-        return createHash(val, charset);
-    }
-
-    public static int createHash(byte[] data) {
-        return createHashes(data, 1)[0];
+                (int)Math.ceil(-(Math.log(falsePositiveProbability) / Math.log(2))));
     }
 
     public static int[] createHashes(byte[] data, int hashes) {
         int[] result = new int[hashes];
-
         int k = 0;
         byte salt = 0;
         while (k < hashes) {
@@ -93,13 +64,13 @@ public class BloomFilter_MD5<E> implements Serializable{
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        if (obj instanceof BloomFilter_MD5) {
-            final BloomFilter_MD5<E> other = (BloomFilter_MD5<E>) obj;
+        if (obj instanceof BloomFilterMD5) {
+            final BloomFilterMD5<E> other = (BloomFilterMD5<E>) obj;
             return this.expectedNumberOfFilterElements == other.expectedNumberOfFilterElements &&
                     this.k == other.k &&
                     this.bitSetSize == other.bitSetSize &&
-                    !(this.bitset != other.bitset &&
-                            (this.bitset == null || !this.bitset.equals(other.bitset)));
+                    !(this.bitset != other.bitset
+                            && (this.bitset == null || !this.bitset.equals(other.bitset)));
         }
         return false;
     }
@@ -114,33 +85,14 @@ public class BloomFilter_MD5<E> implements Serializable{
         return hash;
     }
 
-    public double expectedFalsePositiveProbability() {
-        return getFalsePositiveProbability(expectedNumberOfFilterElements);
-    }
-
-    public double getFalsePositiveProbability(double numberOfElements) {
-        // (1 - e^(-k * n / m)) ^ k
-        return Math.pow((1 - Math.exp(-k * numberOfElements / (double) bitSetSize)), k);
-    }
-
-    public int getK() {
-        return k;
-    }
-
-    public void clear() {
-        bitset.clear();
-        numberOfAddedElements = 0;
-    }
-
     public void add(E element) {
-        add(element.toString().getBytes(charset));
+        this.add(element.toString().getBytes(charset));
     }
 
     public void add(byte[] bytes) {
         int[] hashes = createHashes(bytes, k);
         for (int hash : hashes)
             bitset.set(Math.abs(hash % bitSetSize), true);
-        numberOfAddedElements ++;
     }
 
     public boolean contains(E element) {
@@ -162,37 +114,5 @@ public class BloomFilter_MD5<E> implements Serializable{
             if (!contains(element))
                 return false;
         return true;
-    }
-
-    public boolean getBit(int bit) {
-        return bitset.get(bit);
-    }
-
-    public void setBit(int bit, boolean value) {
-        bitset.set(bit, value);
-    }
-
-    public BitSet getBitSet() {
-        return bitset;
-    }
-
-    public int size() {
-        return this.bitSetSize;
-    }
-
-    public int count() {
-        return this.numberOfAddedElements;
-    }
-
-    public int getExpectedNumberOfElements() {
-        return expectedNumberOfFilterElements;
-    }
-
-    public double getExpectedBitsPerElement() {
-        return this.bitsPerElement;
-    }
-
-    public double getBitsPerElement() {
-        return this.bitSetSize / (double)numberOfAddedElements;
     }
 }

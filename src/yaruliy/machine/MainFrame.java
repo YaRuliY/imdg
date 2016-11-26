@@ -1,19 +1,17 @@
 package yaruliy.machine;
 import yaruliy.algorithm.HashJoin;
-import yaruliy.bloom.BloomFilter;
-import yaruliy.bloom.BloomFilter_MD5;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 
 public class MainFrame {
     public static void main(String a[]){
-        /*Warehouse warehouse = new Warehouse();
+        Warehouse warehouse = new Warehouse();
         IMDGObject book1 = new IMDGObject("name1", "sername2", 3);
         IMDGObject book2 = new IMDGObject("name2", "sername2", 3);
-        IMDGObject book3 = new IMDGObject("name3", "sername3", 3);
-        IMDGObject user3 = new IMDGObject("user3", "sername3", 3);
-        IMDGObject user4 = new IMDGObject("user4", "sername3", 3);
+        IMDGObject book3 = new IMDGObject("name3", "sername33", 3);
+        IMDGObject user3 = new IMDGObject("user3", "sername4", 3);
+        IMDGObject user4 = new IMDGObject("user4", "sername4", 3);
 
         IMDGObject user5 = new IMDGObject("user5", "sername3", 3);
         IMDGObject user6 = new IMDGObject("user6", "sername3", 3);
@@ -27,26 +25,25 @@ public class MainFrame {
         warehouse.addObject(user4, region);
 
         String region2 = "Region1";
-        user5.setId(0);
-        user6.setId(1);
+        user5.setID(0);
+        user6.setID(1);
         warehouse.addObject(user5, region2);
         warehouse.addObject(user6, region2);
         warehouse.addObject(user7, region2);
 
         System.out.println("---------GET objects---------");
+        System.out.println("Region 1:");
         for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords())
-            System.out.println(object.getName() + "[" + object.getID() + "]");
+            System.out.println(object.getName() + "[" + object.getHashID() + "]");
         System.out.println("Region 2:");
         for (IMDGObject object : warehouse.getRegionByName(region2).getAllRecords())
-            System.out.println(object.getName() + "[" + object.getID() + "]");
+            System.out.println(object.getName() + "[" + object.getHashID() + "]");
 
-        JoinResult temporary = warehouse.executeJOIN(region, region2, new HashJoin(), "name");
+        JoinResult temporary = warehouse.executeJOIN(region, region2, new HashJoin(), "SersName");
 
         System.out.println("---------GET JOIN objects---------");
         for (IMDGObject[] objectCouple : temporary.getResultArray())
-            System.out.println(objectCouple[0].getName() + " -- " + objectCouple[1].getName());*/
-
-        int elementCount = 50000;
-        BloomFilter_MD5<String> bloomFilter_md5 = new BloomFilter_MD5<>(0.001, elementCount);
+            System.out.println(objectCouple[0].getName() + "[" + objectCouple[0].getHashID() + "]" + " -- " +
+                    objectCouple[1].getName() + "[" + objectCouple[0].getHashID() + "]");
     }
 }

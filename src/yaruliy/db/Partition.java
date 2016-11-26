@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-class Partition {
+public class Partition {
     private final Region owner;
     private HashMap<Long, IMDGObject> objects;
 
