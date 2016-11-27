@@ -17,7 +17,7 @@ class DependencyInjector {
 
     private static String getDependencyValue(){
         try {
-            BufferedReader br = new BufferedReader(new FileReader("text.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("resources/text.txt"));
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 

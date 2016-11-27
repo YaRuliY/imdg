@@ -10,7 +10,10 @@ public abstract class JoinAlgorithm {
     protected String getFieldValue(String field, IMDGObject object){
         String result = null;
         try { result = IMDGObject.class.getMethod("get"+field).invoke(object).toString(); }
-        catch (NoSuchMethodException e) { System.out.println("No such field!!!"); }
+        catch (NoSuchMethodException e) {
+            System.out.println("No Such Field Exception!!!");
+            System.exit(2);
+        }
         catch (InvocationTargetException | IllegalAccessException e) { e.printStackTrace(); }
         return result;
     }

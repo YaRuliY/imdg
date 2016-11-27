@@ -11,7 +11,7 @@ public class WHProperties {
         InputStream input = null;
         properties = new java.util.Properties();
         try {
-            input = new FileInputStream("imdg.properties");
+            input = new FileInputStream("resources/imdg.properties");
             properties.load(input);
         }
         catch (IOException ex) { ex.printStackTrace(); }
