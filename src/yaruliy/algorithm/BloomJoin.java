@@ -8,7 +8,7 @@ public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
         Set<IMDGObject> leftFilteredSet = leftRegion.getFilteredRecords(rightRegion.getBloomFilter());
-        Set<IMDGObject> rightFilteredSet = leftRegion.getFilteredRecords(rightRegion.getBloomFilter());
+        Set<IMDGObject> rightFilteredSet = rightRegion.getFilteredRecords(leftRegion.getBloomFilter());
         return new JoinResult();
     }
 }

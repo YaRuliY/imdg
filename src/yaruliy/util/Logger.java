@@ -17,9 +17,6 @@ public class Logger {
     }
 
     public static void log(String string){
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, true), "utf-8"))) {
-            writer.write(string + "\n");
-        }
-        catch (IOException e){ e.printStackTrace(); }
+        log(string, true);
     }
 }

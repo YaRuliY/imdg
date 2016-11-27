@@ -1,6 +1,7 @@
 package yaruliy.db;
 import yaruliy.algorithm.JoinAlgorithm;
 import yaruliy.data.IMDGObject;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Warehouse {
@@ -14,19 +15,15 @@ public class Warehouse {
         this.regions.put(region1.getName(), region1);
     }
 
-    public void addObject(IMDGObject object, String regionName){
-        regions.get(regionName).addObject(object);
-    }
+    public void addObject(IMDGObject object, String regionName){ regions.get(regionName).addObject(object); }
+    public IMDGObject getObject(long id, String regionName){ return regions.get(regionName).getObject(id); }
+    public Region getRegionByName(String name){ return regions.get(name); }
 
-    public IMDGObject getObject(long id, String regionName){
-        return regions.get(regionName).getObject(id);
+    public void addCollection(Collection<IMDGObject> collection, String regionName){
+        regions.get(regionName).addCollection(collection);
     }
 
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
         return algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
-    }
-
-    public Region getRegionByName(String name){
-        return regions.get(name);
     }
 }

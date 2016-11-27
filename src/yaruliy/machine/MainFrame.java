@@ -1,49 +1,42 @@
 package yaruliy.machine;
+import yaruliy.algorithm.BloomJoin;
 import yaruliy.algorithm.HashJoin;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MainFrame {
+    private static int n = 3;
+    private static String region0 = "Region0";
+    private static String region1 = "Region1";
+
     public static void main(String a[]){
         Warehouse warehouse = new Warehouse();
-        IMDGObject book1 = new IMDGObject("name1", "sername2", 3);
-        IMDGObject book2 = new IMDGObject("name2", "sername2", 3);
-        IMDGObject book3 = new IMDGObject("name3", "sername33", 3);
-        IMDGObject user3 = new IMDGObject("user3", "sername4", 3);
-        IMDGObject user4 = new IMDGObject("user4", "sername4", 3);
+        ArrayList<IMDGObject> first = prepareObjects();
+        ArrayList<IMDGObject> second = prepareObjects();
 
-        IMDGObject user5 = new IMDGObject("user5", "sername3", 3);
-        IMDGObject user6 = new IMDGObject("user6", "sername3", 3);
-        IMDGObject user7 = new IMDGObject("user6", "sername3", 3);
+        warehouse.addCollection(first, region0);
+        warehouse.addCollection(second, region1);
 
-        String region = "Region0";
-        warehouse.addObject(book1, region);
-        warehouse.addObject(book2, region);
-        warehouse.addObject(book3, region);
-        warehouse.addObject(user3, region);
-        warehouse.addObject(user4, region);
+        warehouse.getRegionByName(region0).printRecords();
+        warehouse.getRegionByName(region1).printRecords();
 
-        String region2 = "Region1";
-        user5.setID(0);
-        user6.setID(1);
-        warehouse.addObject(user5, region2);
-        warehouse.addObject(user6, region2);
-        warehouse.addObject(user7, region2);
+        warehouse.executeJOIN(region0, region1, new HashJoin(), "SerName").printResults();
+        warehouse.executeJOIN(region0, region1, new BloomJoin(), "Name").printResults();
+    }
 
-        System.out.println("---------GET objects---------");
-        System.out.println("Region 1:");
-        for (IMDGObject object : warehouse.getRegionByName(region).getAllRecords())
-            System.out.println(object.getName() + "[" + object.getHashID() + "]");
-        System.out.println("Region 2:");
-        for (IMDGObject object : warehouse.getRegionByName(region2).getAllRecords())
-            System.out.println(object.getName() + "[" + object.getHashID() + "]");
-
-        JoinResult temporary = warehouse.executeJOIN(region, region2, new HashJoin(), "SersName");
-
-        System.out.println("---------GET JOIN objects---------");
-        for (IMDGObject[] objectCouple : temporary.getResultArray())
-            System.out.println(objectCouple[0].getName() + "[" + objectCouple[0].getHashID() + "]" + " -- " +
-                    objectCouple[1].getName() + "[" + objectCouple[0].getHashID() + "]");
+    private static ArrayList<IMDGObject> prepareObjects(){
+        ArrayList<IMDGObject> objects = new ArrayList<>();
+        String alpfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random r = new Random();
+        for (int i = 0; i < n; i++){
+            String name = "";
+            for (int j = 0; j < 7; j++) name = name + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
+            String serName = "";
+            for (int j = 0; j < 10; j++) serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
+            objects.add(new IMDGObject(name, serName, r.nextInt((3)) + 1));
+        }
+        return objects;
     }
 }

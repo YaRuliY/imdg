@@ -17,9 +17,9 @@ public class HashJoin extends JoinAlgorithm{
             rightRegion.getAllRecords()
                     .stream()
                     .filter(rightObject -> key.equals(getFieldValue(field, rightObject)))
-                    .forEachOrdered(rightObject -> result.addObjectsCouple(new IMDGObject[]{
-                            leftTable.get(key), rightObject
-                    }));
+                    .forEachOrdered(rightObject -> result.addObjectsCouple(
+                            new IMDGObject[]{ leftTable.get(key), rightObject }
+                    ));
         }
         return result;
     }

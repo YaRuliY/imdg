@@ -2,16 +2,18 @@ package yaruliy.db;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
-import yaruliy.util.WHProperties;
+import yaruliy.util.WHUtils;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Collections;
 
 public class Region {
-    private short nodeCount = WHProperties.getProperty("nodeCount");
-    private short replicationCount = WHProperties.getProperty("replicationCount");
-    private short partitionCount = WHProperties.getProperty("partitionCount");
+    private short nodeCount = WHUtils.getProperty("nodeCount");
+    private short replicationCount = WHUtils.getProperty("replicationCount");
+    private short partitionCount = WHUtils.getProperty("partitionCount");
     private long elementCount = 0;
     private String name;
     private ArrayList<Node> nodes;
@@ -29,7 +31,9 @@ public class Region {
         }
     }
 
-    public String getName(){ return this.name; }
+    public void addCollection(Collection<IMDGObject> collection){
+        collection.forEach(this::addObject);
+    }
 
     public void addObject(IMDGObject object) {
         object.setID(this.elementCount);
@@ -65,6 +69,27 @@ public class Region {
         }
         return array;
     }
+
+    public void printRecords(){
+        if (this.getAllRecords().size() <= 0) System.out.println(this.name + " is Empty.");
+        else {
+            System.out.println("[----------------" + this.name + " Records: " + "-------------------------]");
+            System.out.println("| ID | HashID     | Name    | SerName    | DCount| Size(bt)|");
+            System.out.println("|----|------------|---------|------------|-------|---------|");
+            ArrayList<IMDGObject> objects = new ArrayList<>(this.getAllRecords());
+            Collections.sort(objects);
+            for (IMDGObject object : objects) {
+                System.out.printf("| %-3d| %-10s | %-6s | %-7s |%6d | %7d |\n",
+                        object.getID(), object.getHashID(),
+                        object.getName(), object.getSerName(),
+                        object.getDepCount(), object.calculateSize());
+            }
+            System.out.println("[----------------------------------------------------------]");
+            System.out.println();
+        }
+    }
+
+    public String getName(){ return this.name; }
 
     public Set<IMDGObject> getFilteredRecords(BloomFilterMD5 bloomFilter) {
         return this.getAllRecords();

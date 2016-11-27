@@ -11,13 +11,8 @@ public class Partition {
         objects = new HashMap<>();
     }
 
-    public void addObject(IMDGObject object){
-        objects.put(object.getID(), object);
-    }
-
-    public IMDGObject getObject(long id){
-        return objects.get(id);
-    }
+    public void addObject(IMDGObject object){ objects.put(object.getID(), object); }
+    public IMDGObject getObject(long id){ return objects.get(id); }
 
     public Set<IMDGObject> getAllRecords(){
         /*Set<IMDGObject> set = new HashSet<>();
