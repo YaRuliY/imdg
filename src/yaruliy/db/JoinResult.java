@@ -9,7 +9,7 @@ public class JoinResult {
         this.resultArray = new ArrayList<>();
     }
 
-    public void addObjects(IMDGObject[]mas){
+    public void addObjectsCouple(IMDGObject[]mas){
         this.resultArray.add(mas);
     }
 

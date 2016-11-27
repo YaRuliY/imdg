@@ -45,11 +45,6 @@ public class IMDGObject {
         this.objectDependency = objectDependency;
     }
 
-    public void setID(long id) {
-        this.id = id;
-    }
-
-    public void setHashID(String region) {
-        this.hashID = region + "_" + this.id;
-    }
+    public void setID(long id) { this.id = id; }
+    public void setHashID(String region) { this.hashID = region + "_" + this.id; }
 }

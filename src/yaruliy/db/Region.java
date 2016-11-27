@@ -1,4 +1,5 @@
 package yaruliy.db;
+import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
 import yaruliy.util.WHProperties;
@@ -14,8 +15,10 @@ public class Region {
     private long elementCount = 0;
     private String name;
     private ArrayList<Node> nodes;
+    private BloomFilterMD5 bloomFilter;
 
     public Region(String name){
+        this.bloomFilter = new BloomFilterMD5(0.001, 50000);
         this.name = name;
         this.nodes = new ArrayList<>();
         for (int i = 0; i < nodeCount; i++) {
@@ -25,6 +28,8 @@ public class Region {
             nodes.add(new Node(partitions));
         }
     }
+
+    public String getName(){ return this.name; }
 
     public void addObject(IMDGObject object) {
         object.setID(this.elementCount);
@@ -46,10 +51,6 @@ public class Region {
         return nodes.get(getNodeIndex(this.name + "_" + id)).getObject(this.getName(), id);
     }
 
-    public String getName(){
-        return this.name;
-    }
-
     private int getNodeIndex(String hashID){
         int hashCode = MurMurHash.hash32(hashID.getBytes(), hashID.length());
         return Math.abs(hashCode) % nodes.size();
@@ -63,5 +64,13 @@ public class Region {
             }
         }
         return array;
+    }
+
+    public Set<IMDGObject> getFilteredRecords(BloomFilterMD5 bloomFilter) {
+        return this.getAllRecords();
+    }
+
+    public BloomFilterMD5 getBloomFilter() {
+        return bloomFilter;
     }
 }

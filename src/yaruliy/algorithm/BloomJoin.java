@@ -1,18 +1,14 @@
 package yaruliy.algorithm;
-import yaruliy.bloom.BloomFilter;
+import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Region;
+import java.util.Set;
 
-public class BloomJoin implements JoinAlgorithm{
-    private final int bloomCapacity = 1000;
-    private final int hashFunctionCount = 10;
-
+public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
-        BloomFilter leftBloom = new BloomFilter(bloomCapacity, hashFunctionCount);
-        BloomFilter rightBloom = new BloomFilter(bloomCapacity, hashFunctionCount);
-
-        /*leftBloom.add();*/
-        return null;
+        Set<IMDGObject> leftFilteredSet = leftRegion.getFilteredRecords(rightRegion.getBloomFilter());
+        Set<IMDGObject> rightFilteredSet = leftRegion.getFilteredRecords(rightRegion.getBloomFilter());
+        return new JoinResult();
     }
 }
