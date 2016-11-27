@@ -1,17 +1,13 @@
 package yaruliy.db;
 import yaruliy.data.IMDGObject;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Partition {
-    private final Region owner;
     private HashMap<Long, IMDGObject> objects;
 
-    public Partition(Region owner){
-        this.owner = owner;
+    public Partition(){
         objects = new HashMap<>();
     }
 
@@ -21,10 +17,6 @@ public class Partition {
 
     public IMDGObject getObject(long id){
         return objects.get(id);
-    }
-
-    public Region getOwner() {
-        return owner;
     }
 
     public Set<IMDGObject> getAllRecords(){

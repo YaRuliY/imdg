@@ -24,7 +24,7 @@ public class Region {
         for (int i = 0; i < nodeCount; i++) {
             HashMap<String, Partition> partitions = new HashMap<>();
             for (int j = 0; j< partitionCount; j++)
-                partitions.put(this.name, new Partition(this));
+                partitions.put(this.name, new Partition());
             nodes.add(new Node(partitions));
         }
     }
