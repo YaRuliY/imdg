@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-class DependencyInjector {
+public final class DependencyInjector {
     private DependencyInjector(){}
 
     static ObjectDependency getDependency(int nestingLevel) {
