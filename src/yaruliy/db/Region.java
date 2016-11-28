@@ -76,7 +76,7 @@ public class Region {
             ArrayList<IMDGObject> objects = new ArrayList<>(this.getAllRecords());
             if (flag) Collections.sort(objects);
             for (IMDGObject object : objects) {
-                System.out.printf("| %-3d| %-10s | %-7s | %-7s |%6d | %7d |\n",
+                System.out.printf("| %-3d| %-10s | %-7s | %-10s |%6d | %7d |\n",
                         object.getID(), object.getHashID(),
                         object.getName(), object.getSerName(),
                         object.getDepCount(), object.calculateSize());

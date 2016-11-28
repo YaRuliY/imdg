@@ -5,7 +5,6 @@ import yaruliy.db.JoinResult;
 import yaruliy.db.Region;
 import yaruliy.util.WHUtils;
 import java.util.ArrayList;
-
 import static yaruliy.util.WHUtils.getFieldValue;
 
 public class BloomJoin extends JoinAlgorithm{
