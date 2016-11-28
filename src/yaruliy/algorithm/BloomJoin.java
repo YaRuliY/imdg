@@ -6,19 +6,19 @@ import yaruliy.db.Region;
 import yaruliy.util.WHUtils;
 import java.util.ArrayList;
 
+import static yaruliy.util.WHUtils.getFieldValue;
+
 public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
         BloomFilterMD5<String> bloomFilter = WHUtils.getBloomFilter();
-        leftRegion.writeValuesIntoFilter(bloomFilter);
-        ArrayList<IMDGObject> rightSet = rightRegion.getFilteredRecords(bloomFilter);
+        leftRegion.writeValuesIntoFilter(bloomFilter, field);
+        ArrayList<IMDGObject> rightSet = rightRegion.getFilteredRecords(bloomFilter, field);
         JoinResult jr = new JoinResult();
         for (IMDGObject leftObj: leftRegion.getAllRecords())
-            for (IMDGObject rightObj: rightSet) {
-                if (leftObj.getName().equals(rightObj.getName()))
-                    jr.addObjectsCouple(new IMDGObject[]{leftObj, rightObj});
-                //else jr.addObjectsCouple(new IMDGObject[]{leftObj, null});
-            }
+            rightSet.stream()
+                    .filter(rightObj -> getFieldValue(field, leftObj).equals(getFieldValue(field, rightObj)))
+                    .forEachOrdered(rightObj -> jr.addObjectsCouple(new IMDGObject[]{leftObj, rightObj}));
         return jr;
     }
 }

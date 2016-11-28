@@ -1,8 +1,10 @@
 package yaruliy.util;
 import yaruliy.bloom.BloomFilterMD5;
+import yaruliy.data.IMDGObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 
 public class WHUtils {
     private static java.util.Properties properties;
@@ -22,7 +24,6 @@ public class WHUtils {
             catch (IOException e) { e.printStackTrace(); }}
         }
     }
-
     static { bloomFilter = new BloomFilterMD5<>(0.001, elementCount); }
 
     public static int calculateStringSize(String s){
@@ -30,6 +31,17 @@ public class WHUtils {
         int diff = 8 - (size % 8);
         size = size + diff + 24;
         return size;
+    }
+
+    public static String getFieldValue(String field, IMDGObject object){
+        String result = null;
+        try { result = IMDGObject.class.getMethod("get"+field).invoke(object).toString(); }
+        catch (NoSuchMethodException e) {
+            System.out.println("No Such Field Exception!!!");
+            System.exit(2);
+        }
+        catch (InvocationTargetException | IllegalAccessException e) { e.printStackTrace(); }
+        return result;
     }
 
     public static byte getProperty(String property){ return Byte.parseByte(properties.getProperty(property)); }

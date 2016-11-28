@@ -3,6 +3,7 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Region;
 import java.util.HashMap;
+import static yaruliy.util.WHUtils.getFieldValue;
 
 public class HashJoin extends JoinAlgorithm{
     @Override

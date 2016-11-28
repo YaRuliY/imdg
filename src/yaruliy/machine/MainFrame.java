@@ -21,8 +21,8 @@ public class MainFrame {
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
 
-        warehouse.executeJOIN(region0, region1, new HashJoin(), "SerName").printResults();
-        warehouse.executeJOIN(region0, region1, new BloomJoin(), "Name").printResults();
+        warehouse.executeJOIN(region0, region1, new HashJoin(), "ID").printResults();
+        warehouse.executeJOIN(region0, region1, new BloomJoin(), "ID").printResults();
     }
 
     private static ArrayList<IMDGObject> prepareObjects(){

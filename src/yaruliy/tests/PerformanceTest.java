@@ -1,4 +1,4 @@
-package yaruliy.tester;
+package yaruliy.tests;
 import yaruliy.bloom.BloomFilterMD5;
 import java.util.ArrayList;
 import java.util.List;
