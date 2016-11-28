@@ -115,4 +115,6 @@ public class BloomFilterMD5<E> implements Serializable{
                 return false;
         return true;
     }
+
+    public void clear(){ bitset.clear(); }
 }
