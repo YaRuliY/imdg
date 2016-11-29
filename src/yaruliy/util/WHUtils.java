@@ -34,6 +34,8 @@ public class WHUtils {
     }
 
     public static String valueGetter(String field, IMDGObject object){
+        field = Character.toUpperCase(field.charAt(0)) + field.substring(1);
+        System.out.println("field: " + field);
         String result = null;
         try { result = IMDGObject.class.getMethod("get"+field).invoke(object).toString(); }
         catch (NoSuchMethodException e) {

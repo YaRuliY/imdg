@@ -22,8 +22,8 @@ public class MainFrame {
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
 
-        JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "Name");
-        JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "Name");
+        JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
+        JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         jr1.printResults();
         jr2.printResults();
     }
