@@ -2,6 +2,7 @@ package yaruliy.machine;
 import yaruliy.algorithm.BloomJoin;
 import yaruliy.algorithm.HashJoin;
 import yaruliy.data.IMDGObject;
+import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,8 +22,10 @@ public class MainFrame {
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
 
-        warehouse.executeJOIN(region0, region1, new HashJoin(), "Name").printResults();
-        warehouse.executeJOIN(region0, region1, new BloomJoin(), "Name").printResults();
+        JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "Name");
+        JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "Name");
+        jr1.printResults();
+        jr2.printResults();
     }
 
     private static ArrayList<IMDGObject> prepareObjects(){

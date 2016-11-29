@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Collections;
 import java.util.stream.Collectors;
-import static yaruliy.util.WHUtils.getFieldValue;
+import static yaruliy.util.WHUtils.valueGetter;
 
 public class Region {
     private short nodeCount = WHUtils.getProperty("nodeCount");
@@ -90,7 +90,7 @@ public class Region {
 
     public BloomFilterMD5<String> writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
         for (IMDGObject object: this.getAllRecords()) {
-            bloomFilter.add(getFieldValue(field, object));
+            bloomFilter.add(valueGetter(field, object));
         }
         return bloomFilter;
     }
@@ -98,7 +98,7 @@ public class Region {
     public ArrayList<IMDGObject> getFilteredRecords(BloomFilterMD5<String> bloomFilter, String field){
         Set<IMDGObject> result = this.getAllRecords()
                 .stream()
-                .filter(object -> bloomFilter.contains(getFieldValue(field, object)))
+                .filter(object -> bloomFilter.contains(valueGetter(field, object)))
                 .collect(Collectors.toSet());
         ArrayList<IMDGObject> objects = new ArrayList<>();
         objects.addAll(result);

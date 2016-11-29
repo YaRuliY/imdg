@@ -33,7 +33,7 @@ public class WHUtils {
         return size;
     }
 
-    public static String getFieldValue(String field, IMDGObject object){
+    public static String valueGetter(String field, IMDGObject object){
         String result = null;
         try { result = IMDGObject.class.getMethod("get"+field).invoke(object).toString(); }
         catch (NoSuchMethodException e) {

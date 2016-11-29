@@ -9,7 +9,8 @@ public class JoinResult {
 
     public void printResults(){
         if (this.resultArray.size() > 0){
-            System.out.println("\nJOIN Results:");
+            System.out.println("##########################################");
+            System.out.println("JOIN Results(" + this.resultArray.size() + ") :");
             for (int i = 0; i < this.resultArray.size(); i++){
                 System.out.printf("%-6s [%-7s] -- ", resultArray.get(i)[0].getName(), resultArray.get(i)[0].getHashID());
                 if(resultArray.get(i)[1] != null)
@@ -17,7 +18,7 @@ public class JoinResult {
                 else System.out.println("null");
                 if (i < this.resultArray.size()-1){
                     if (!resultArray.get(i)[0].getHashID().equals(resultArray.get(i+1)[0].getHashID()))
-                        System.out.println("--------------------------------------");
+                        System.out.println("----------------------------------------");
                 }
             }
         }
