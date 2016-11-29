@@ -1,6 +1,7 @@
 package yaruliy.db;
 import yaruliy.algorithm.JoinAlgorithm;
 import yaruliy.data.IMDGObject;
+import yaruliy.util.Logger;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -24,6 +25,13 @@ public class Warehouse {
     }
 
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
-        return algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
+        long start = System.currentTimeMillis();
+        String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
+        Logger.log("Start JOIN (" + joinName + ")");
+        JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
+        long time = System.currentTimeMillis() - start;
+        Logger.log("JOIN (" + joinName + ") time: " + time + " ms.");
+        Logger.log("---------------------------------------------------");
+        return joinResult;
     }
 }

@@ -70,7 +70,8 @@ public class Region {
     public void printRecords(boolean flag){
         if (this.getAllRecords().size() <= 0) System.out.println(this.name + " is Empty.");
         else {
-            System.out.println("[----------------" + this.name + " Records: " + "-------------------------]");
+            System.out.println("[----------------" + this.name + "[" + this.getAllRecords().size() + "]"
+                    + " Records: " + "-------------------------]");
             System.out.println("| ID | HashID     | Name    | SerName    | DCount| Size(bt)|");
             System.out.println("|----|------------|---------|------------|-------|---------|");
             ArrayList<IMDGObject> objects = new ArrayList<>(this.getAllRecords());
@@ -103,5 +104,12 @@ public class Region {
         ArrayList<IMDGObject> objects = new ArrayList<>();
         objects.addAll(result);
         return objects;
+    }
+
+    public int getRegionSize(){
+        int size = 0;
+        for (IMDGObject object: this.getAllRecords())
+            size = size + object.calculateSize();
+        return size;
     }
 }

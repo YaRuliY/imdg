@@ -4,12 +4,13 @@ import yaruliy.algorithm.HashJoin;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
+import yaruliy.util.Logger;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainFrame {
-
     public static void main(String a[]){
+        Logger.clearLog();
         Warehouse warehouse = new Warehouse();
         ArrayList<IMDGObject> first = prepareObjects();
         ArrayList<IMDGObject> second = prepareObjects();
@@ -26,6 +27,7 @@ public class MainFrame {
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         jr1.printResults();
         jr2.printResults();
+        Logger.writeEnd();
     }
 
     private static ArrayList<IMDGObject> prepareObjects(){
@@ -33,7 +35,7 @@ public class MainFrame {
         String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
         String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
-        int n = 10;
+        int n = r.nextInt((10)) + 5;
         for (int i = 0; i < n; i++){
             String name = names[r.nextInt((names.length))];
             String serName = "";
