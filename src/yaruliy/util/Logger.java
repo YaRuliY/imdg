@@ -1,5 +1,8 @@
 package yaruliy.util;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Logger {
     private Logger(){}
@@ -14,9 +17,7 @@ public class Logger {
 
     public static void log(String string){ log(string, true); }
     public static void clearLog() {
-        Writer writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(source, false));
+        try (Writer writer = new BufferedWriter(new FileWriter(source, false))){
             writer.write("");
             writer.close();
         }
@@ -25,7 +26,9 @@ public class Logger {
 
     public static void writeEnd(){
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, true), "utf-8"))) {
-            writer.write("####################################################");
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss [a] - dd.M.yyyy");
+            sdf.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
+            writer.write("########### " + sdf.format(new Date()) + " ###########");
         }
         catch (IOException e){ e.printStackTrace(); }
     }
