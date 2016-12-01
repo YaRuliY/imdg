@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MainFrame {
     public static void main(String a[]){
-        Logger.clearLog();
+        //Logger.clearLog();
         Warehouse warehouse = new Warehouse();
         ArrayList<IMDGObject> first = prepareObjects();
         ArrayList<IMDGObject> second = prepareObjects();
@@ -35,7 +35,7 @@ public class MainFrame {
         String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
         String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
-        int n = r.nextInt((10)) + 5;
+        int n = 10;//r.nextInt((10)) + 5;
         for (int i = 0; i < n; i++){
             String name = names[r.nextInt((names.length))];
             String serName = "";
