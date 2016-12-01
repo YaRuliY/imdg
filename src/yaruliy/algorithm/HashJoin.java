@@ -29,18 +29,12 @@ public class HashJoin extends JoinAlgorithm{
         Logger.log("Start JOIN comparison");
 
         for (String key : leftTable.keySet()) {
-            /*rightRegion.getAllRecords()
-                    .stream()
-                    .filter(rightObject -> key.equals(valueGetter(field, rightObject)))
-                    .forEachOrdered(rightObject -> result.addObjectsCouple(
-                            new IMDGObject[]{ leftTable.get(key), rightObject }
-                    ));*/
-            for (IMDGObject object: leftTable.get(key)) {
+            for (IMDGObject leftObject: leftTable.get(key)) {
                 rightRegion.getAllRecords()
                         .stream()
                         .filter(rightObject -> key.equals(valueGetter(field, rightObject)))
                         .forEachOrdered(rightObject -> result.addObjectsCouple(
-                                new IMDGObject[]{ object, rightObject }
+                                new IMDGObject[]{ leftObject, rightObject }
                         ));
             }
         }
