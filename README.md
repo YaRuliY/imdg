@@ -1,5 +1,5 @@
 # imdg
 In-memory Data Grid Distributed Join Algorithm Test
-Implemented Algorithms:_
-  -Hash join_
+Implemented Algorithms:<br />
+  -Hash join<br />
   -Bloom join
