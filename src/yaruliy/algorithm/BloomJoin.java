@@ -11,8 +11,11 @@ import static yaruliy.util.WHUtils.valueGetter;
 public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
+        long bloominit = System.currentTimeMillis();
         BloomFilterMD5<String> bloomFilter = WHUtils.getBloomFilter();
         leftRegion.writeValuesIntoFilter(bloomFilter, field);
+        long bloomInitTime = System.currentTimeMillis() - bloominit;
+        Logger.log("BloomFilter init and write into time: " + bloomInitTime + " ms.");
         ArrayList<IMDGObject> rightSet = rightRegion.getFilteredRecords(bloomFilter, field);
 
         int size = 0;

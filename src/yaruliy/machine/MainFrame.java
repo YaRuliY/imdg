@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MainFrame {
     public static void main(String a[]){
-        //Logger.clearLog();
+        Logger.clearLog();
         Warehouse warehouse = new Warehouse();
         ArrayList<IMDGObject> first = prepareObjects();
         ArrayList<IMDGObject> second = prepareObjects();
