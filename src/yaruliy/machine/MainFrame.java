@@ -39,7 +39,7 @@ public class MainFrame {
         for (int i = 0; i < n; i++){
             String name = names[r.nextInt((names.length))];
             String serName = "";
-            for (int j = 0; j < r.nextInt((8)) + 5; j++) serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
+            for (int j = 0; j < r.nextInt((6)) + 5; j++) serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
             objects.add(new IMDGObject(name, serName, r.nextInt((3)) + 1));
         }
         return objects;
