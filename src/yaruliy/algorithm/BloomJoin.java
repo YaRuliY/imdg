@@ -15,7 +15,7 @@ public class BloomJoin extends JoinAlgorithm{
         BloomFilterMD5<String> bloomFilter = WHUtils.getBloomFilter();
         leftRegion.writeValuesIntoFilter(bloomFilter, field);
         long bloomInitTime = System.nanoTime() - bloominit;
-        Logger.log("BloomFilter init and write into time: " + bloomInitTime + " ns.");
+        Logger.log("BloomFilter init and hash into time: " + bloomInitTime + " ns.");
         ArrayList<IMDGObject> rightSet = rightRegion.getFilteredRecords(bloomFilter, field);
 
         int size = 0;

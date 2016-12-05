@@ -92,7 +92,7 @@ public class Region {
     public String getName(){ return this.name; }
 
     public BloomFilterMD5<String> writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
-        Logger.log("Objects that writes into BF[" + this.name + "]:");
+        Logger.log("Objects that hashed into BF[" + this.name + "]:");
         for (IMDGObject object: this.getAllRecords()) {
             Logger.log("\t[" + object.getName() + "]");
             bloomFilter.add(valueGetter(field, object));
