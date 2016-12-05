@@ -25,12 +25,12 @@ public class Warehouse {
     }
 
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
-        long start = System.currentTimeMillis();
         String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
+        long start = System.nanoTime();
         Logger.log("Start JOIN (" + joinName + ")");
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
-        long time = System.currentTimeMillis() - start;
-        Logger.log("JOIN (" + joinName + ") time: " + time + " ms.");
+        long time = System.nanoTime() - start;
+        Logger.log("JOIN (" + joinName + ") time: " + time + " ns.");
         Logger.log("---------------------------------------------------");
         return joinResult;
     }

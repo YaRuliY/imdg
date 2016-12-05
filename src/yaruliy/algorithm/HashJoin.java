@@ -25,7 +25,7 @@ public class HashJoin extends JoinAlgorithm{
 
         JoinResult result = new JoinResult();
 
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         Logger.log("Start JOIN comparison");
 
         for (String key : leftTable.keySet()) {
@@ -38,8 +38,8 @@ public class HashJoin extends JoinAlgorithm{
                         ));
             }
         }
-        long time = System.currentTimeMillis() - start;
-        Logger.log("JOIN comparison time: " + time + " ms.");
+        long time = System.nanoTime() - start;
+        Logger.log("JOIN comparison time: " + time + " ns.");
         return result;
     }
 }

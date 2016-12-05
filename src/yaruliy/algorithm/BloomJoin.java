@@ -11,11 +11,11 @@ import static yaruliy.util.WHUtils.valueGetter;
 public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
-        long bloominit = System.currentTimeMillis();
+        long bloominit = System.nanoTime();
         BloomFilterMD5<String> bloomFilter = WHUtils.getBloomFilter();
         leftRegion.writeValuesIntoFilter(bloomFilter, field);
-        long bloomInitTime = System.currentTimeMillis() - bloominit;
-        Logger.log("BloomFilter init and write into time: " + bloomInitTime + " ms.");
+        long bloomInitTime = System.nanoTime() - bloominit;
+        Logger.log("BloomFilter init and write into time: " + bloomInitTime + " ns.");
         ArrayList<IMDGObject> rightSet = rightRegion.getFilteredRecords(bloomFilter, field);
 
         int size = 0;
@@ -27,16 +27,16 @@ public class BloomJoin extends JoinAlgorithm{
 
         JoinResult jr = new JoinResult();
 
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         Logger.log("Start JOIN comparison");
 
         for (IMDGObject leftObj: leftRegion.getAllRecords())
             rightSet.stream()
                     .filter(rightObj -> valueGetter(field, leftObj).equals(valueGetter(field, rightObj)))
                     .forEachOrdered(rightObj -> jr.addObjectsCouple(new IMDGObject[]{leftObj, rightObj}));
-        long time = System.currentTimeMillis() - start;
+        long time = System.nanoTime() - start;
 
-        Logger.log("JOIN comparison time: " + time + " ms.");
+        Logger.log("JOIN comparison time: " + time + " ns.");
         return jr;
     }
 }
