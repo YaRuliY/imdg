@@ -2,6 +2,7 @@ package yaruliy.db;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
+import yaruliy.util.Logger;
 import yaruliy.util.WHUtils;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +50,7 @@ public class Region {
     }
 
     public IMDGObject getObject(long id) {
-        return nodes.get(getNodeIndex(this.name + "_" + id)).getObject(this.getName(), id);
+        return nodes.get(getNodeIndex(this.name.substring(0,1) + "_" + id)).getObject(this.getName(), id);
     }
 
     private int getNodeIndex(String hashID){
@@ -91,19 +92,28 @@ public class Region {
     public String getName(){ return this.name; }
 
     public BloomFilterMD5<String> writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
+        Logger.log("Objects that writes into BF[" + this.name + "]:");
         for (IMDGObject object: this.getAllRecords()) {
+            Logger.log("\t[" + object.getName() + "]");
             bloomFilter.add(valueGetter(field, object));
         }
         return bloomFilter;
     }
 
     public ArrayList<IMDGObject> getFilteredRecords(BloomFilterMD5<String> bloomFilter, String field){
-        Set<IMDGObject> result = this.getAllRecords()
-                .stream()
-                .filter(object -> bloomFilter.contains(valueGetter(field, object)))
-                .collect(Collectors.toSet());
+        Set<IMDGObject> result = new HashSet<>();
+        Logger.log("Objects that don't transfer with Region[" + this.name + "]:");
+        for (IMDGObject object : this.getAllRecords()){
+            if(bloomFilter.contains(valueGetter(field, object)))
+                result.add(object);
+            else Logger.log("\t[" + object.getName() + "]");
+        }
         ArrayList<IMDGObject> objects = new ArrayList<>();
         objects.addAll(result);
+        Logger.log("Region[" + this.name + "] fransfer next objects:");
+        for (IMDGObject object: objects) {
+            Logger.log("\t[" + object.getName() + "]");
+        }
         return objects;
     }
 
