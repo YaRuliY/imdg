@@ -6,6 +6,7 @@ import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class MainFrame {
@@ -20,14 +21,16 @@ public class MainFrame {
         warehouse.addCollection(first, region0);
         warehouse.addCollection(second, region1);
 
-        warehouse.getRegionByName(region0).printRecords(false);
+        warehouse.printNodesContent();
+
+        /*warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
 
         JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         jr1.printResults();
         jr2.printResults();
-        Logger.writeEnd();
+        Logger.writeEnd();*/
     }
 
     private static ArrayList<IMDGObject> prepareObjects(){
@@ -35,11 +38,12 @@ public class MainFrame {
         String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
         String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
-        int n = r.nextInt((10)) + 5;
+        int n = 5;
         for (int i = 0; i < n; i++){
             String name = names[r.nextInt((names.length))];
             String serName = "";
-            for (int j = 0; j < r.nextInt((6)) + 5; j++) serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
+            for (int j = 0; j < r.nextInt((6)) + 5; j++)
+                serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
             objects.add(new IMDGObject(name, serName, r.nextInt((3)) + 1));
         }
         return objects;

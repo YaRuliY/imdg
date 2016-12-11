@@ -4,32 +4,18 @@ import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
 import yaruliy.util.Logger;
 import yaruliy.util.WHUtils;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
-import java.util.stream.Collectors;
+import java.util.*;
 import static yaruliy.util.WHUtils.valueGetter;
 
 public class Region {
-    private short nodeCount = WHUtils.getProperty("nodeCount");
     private short replicationCount = WHUtils.getProperty("replicationCount");
-    private short partitionCount = WHUtils.getProperty("partitionCount");
     private long elementCount = 0;
     private String name;
     private ArrayList<Node> nodes;
 
     public Region(String name){
         this.name = name;
-        this.nodes = new ArrayList<>();
-        for (int i = 0; i < nodeCount; i++) {
-            HashMap<String, Partition> partitions = new HashMap<>();
-            for (int j = 0; j< partitionCount; j++)
-                partitions.put(this.name, new Partition());
-            nodes.add(new Node(partitions));
-        }
+        this.nodes = WHUtils.getNodes();
     }
 
     public void addCollection(Collection<IMDGObject> collection){ collection.forEach(this::addObject); }
@@ -38,7 +24,6 @@ public class Region {
         object.setHashID(this.name);
         int index = getNodeIndex(object.getHashID());
         nodes.get(index).addObject(this.getName(), object);
-
         for (int i = 0;i < replicationCount; i++){
             int in = ++index;
             if (in < nodes.size())
@@ -50,7 +35,7 @@ public class Region {
     }
 
     public IMDGObject getObject(long id) {
-        return nodes.get(getNodeIndex(this.name.substring(0,1) + "_" + id)).getObject(this.getName(), id);
+        return nodes.get(getNodeIndex(this.name + "_" + id)).getObject(this.getName(), id);
     }
 
     private int getNodeIndex(String hashID){
@@ -61,9 +46,10 @@ public class Region {
     public Set<IMDGObject> getAllRecords(){
         Set<IMDGObject> array = new HashSet<>();
         for (Node node : nodes) {
-            for (String key: node.getPartition().keySet()) {
-                array.addAll(node.getPartition().get(key).getAllRecords());
-            }
+            node.getPartition().keySet()
+                    .stream()
+                    .filter(key -> key.contains(this.name))
+                    .forEachOrdered(key -> array.addAll(node.getPartition().get(key).getAllRecords()));
         }
         return array;
     }
@@ -111,9 +97,8 @@ public class Region {
         ArrayList<IMDGObject> objects = new ArrayList<>();
         objects.addAll(result);
         Logger.log("Region[" + this.name + "] fransfer next objects:");
-        for (IMDGObject object: objects) {
+        for (IMDGObject object: objects)
             Logger.log("\t[" + object.getName() + "]");
-        }
         return objects;
     }
 

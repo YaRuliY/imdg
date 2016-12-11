@@ -15,10 +15,19 @@ public class Partition {
     public IMDGObject getObject(long id){ return objects.get(id); }
 
     public Set<IMDGObject> getAllRecords(){
-        /*Set<IMDGObject> set = new HashSet<>();
-        for (long key: objects.keySet()) {
-            set.add(objects.get(key));
-        }*/
         return objects.keySet().stream().map(key -> objects.get(key)).collect(Collectors.toSet());
+    }
+
+    public void printContent(String regKey){
+        int i = 0;
+        for (long key : objects.keySet()) {
+            if(i == objects.keySet().size()/2 || objects.size() == 1) {
+                System.out.print(regKey + ": ");
+                System.out.println("key: " + objects.get(key).getHashID());
+            }
+            else
+                System.out.println("\t\t key: " + objects.get(key).getHashID());
+            i++;
+        }
     }
 }
