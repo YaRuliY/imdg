@@ -10,10 +10,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class WHUtils {
-    private static java.util.Properties properties;
-    private static BloomFilterMD5<String> bloomFilter;
+    private static final java.util.Properties properties;
+    private static final BloomFilterMD5<String> bloomFilter;
     private static final int elementCount = 50000;
-    private static ArrayList<Node> array;
+    private static final ArrayList<Node> array;
 
     static {
         properties = new java.util.Properties();
