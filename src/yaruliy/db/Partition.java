@@ -23,11 +23,26 @@ public class Partition {
         for (long key : objects.keySet()) {
             if(i == objects.keySet().size()/2 || objects.size() == 1) {
                 System.out.print(regKey + ": ");
-                System.out.println("key: " + objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
+                System.out.println(objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
             }
             else
-                System.out.println("\t\t key: " + objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
+                System.out.println("\t\t " + objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
             i++;
+        }
+    }
+
+    public void printContent(String regKey, String name){
+        int i = 0;
+        for (long key : objects.keySet()) {
+            if(objects.get(key).getName().equals(name)){
+                if(i == objects.keySet().size()/2 || objects.size() == 1) {
+                    System.out.print(regKey + ": ");
+                    System.out.println(objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
+                }
+                else
+                    System.out.println("\t\t " + objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
+                i++;
+            }
         }
     }
 }

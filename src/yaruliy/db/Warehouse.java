@@ -46,7 +46,21 @@ public class Warehouse {
             if (node.getPartition().keySet().size() < 1) System.out.println("Node is empty");
             else System.out.println("-------------------------------");
             System.out.println("==============Node[" + node.getNodeID() + "]=END==============");
-            System.out.println("########################################");
+            System.out.println("#######################################");
+        }
+    }
+
+    public void printNodesContent(String name) {
+        for (Node node: WHUtils.getNodes()) {
+            System.out.println("==============Node[" + node.getNodeID() + "]=BEGIN============");
+            for (String regKey: node.getPartition().keySet()){
+                System.out.println("-------------------------------");
+                node.getPartition().get(regKey).printContent(regKey, name);
+            }
+            if (node.getPartition().keySet().size() < 1) System.out.println("Node is empty");
+            else System.out.println("-------------------------------");
+            System.out.println("==============Node[" + node.getNodeID() + "]=END==============");
+            System.out.println("#######################################");
         }
     }
 }

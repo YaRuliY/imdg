@@ -24,7 +24,7 @@ public class Region {
         object.setHashID(this.name);
         int index = getNodeIndex(object.getHashID());
         nodes.get(index).addObject(this.getName(), object);
-        for (int i = 0;i < replicationCount; i++){
+        for (int i = 0;i < replicationCount - 1; i++){
             int in = ++index;
             if (in < nodes.size())
                 nodes.get(in).addObject(this.getName(), object);

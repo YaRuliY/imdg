@@ -11,6 +11,8 @@ import java.util.Random;
 
 public class MainFrame {
     public static void main(String a[]){
+        String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
+        Random r = new Random();
         Logger.clearLog();
         Warehouse warehouse = new Warehouse();
         ArrayList<IMDGObject> first = prepareObjects();
@@ -21,12 +23,11 @@ public class MainFrame {
         warehouse.addCollection(first, region0);
         warehouse.addCollection(second, region1);
 
-        warehouse.printNodesContent();
-
-        /*warehouse.getRegionByName(region0).printRecords(false);
+        warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
+        warehouse.printNodesContent(names[r.nextInt((names.length))]);
 
-        JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
+        /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         jr1.printResults();
         jr2.printResults();
