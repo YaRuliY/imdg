@@ -1,5 +1,5 @@
 package yaruliy.data;
-import yaruliy.util.WHUtils;
+import yaruliy.util.Util;
 
 public class IMDGObject implements Comparable<IMDGObject>{
     private long id;
@@ -17,8 +17,8 @@ public class IMDGObject implements Comparable<IMDGObject>{
     }
 
     public int calculateSize(){
-        return 64 + 32 + WHUtils.calculateStringSize(hashID) + WHUtils.calculateStringSize(name)
-                + WHUtils.calculateStringSize(serName) + objectDependency.getSize();
+        return 64 + 32 + Util.calculateStringSize(hashID) + Util.calculateStringSize(name)
+                + Util.calculateStringSize(serName) + objectDependency.getSize();
     }
 
     @Override

@@ -4,15 +4,15 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Region;
 import yaruliy.util.Logger;
-import yaruliy.util.WHUtils;
+import yaruliy.util.Util;
 import java.util.ArrayList;
-import static yaruliy.util.WHUtils.valueGetter;
+import static yaruliy.util.Util.valueGetter;
 
 public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
         long bloominit = System.nanoTime();
-        BloomFilterMD5<String> bloomFilter = WHUtils.getBloomFilter();
+        BloomFilterMD5<String> bloomFilter = Util.getBloomFilter();
         leftRegion.writeValuesIntoFilter(bloomFilter, field);
         long bloomInitTime = System.nanoTime() - bloominit;
         Logger.log("BloomFilter init and hash into time: " + bloomInitTime + " ns.");

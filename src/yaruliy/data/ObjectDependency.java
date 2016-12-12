@@ -1,5 +1,5 @@
 package yaruliy.data;
-import yaruliy.util.WHUtils;
+import yaruliy.util.Util;
 
 public class ObjectDependency {
     private ObjectDependency baseObjectDependency;
@@ -34,10 +34,10 @@ public class ObjectDependency {
 
     public int getSize() {
         if (baseObjectDependency != null) {
-            return 64 + 32 + WHUtils.calculateStringSize(this.value) + baseObjectDependency.getSize();
+            return 64 + 32 + Util.calculateStringSize(this.value) + baseObjectDependency.getSize();
         }
         else {
-            return 64 + 32 + WHUtils.calculateStringSize(this.value);
+            return 64 + 32 + Util.calculateStringSize(this.value);
         }
     }
 }

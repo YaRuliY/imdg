@@ -3,22 +3,24 @@ import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
 import yaruliy.util.Logger;
-import yaruliy.util.WHUtils;
+import yaruliy.util.Util;
 import java.util.*;
-import static yaruliy.util.WHUtils.valueGetter;
+import static yaruliy.util.Util.valueGetter;
+import static yaruliy.util.Util.getNodes;
 
 public class Region {
-    private short replicationCount = WHUtils.getProperty("replicationCount");
+    private short replicationCount = Util.getProperty("replicationCount");
     private long elementCount = 0;
     private String name;
     private ArrayList<Node> nodes;
 
     public Region(String name){
         this.name = name;
-        this.nodes = WHUtils.getNodes();
+        this.nodes = getNodes();
     }
 
     public void addCollection(Collection<IMDGObject> collection){ collection.forEach(this::addObject); }
+
     public void addObject(IMDGObject object) {
         object.setID(this.elementCount);
         object.setHashID(this.name);
@@ -37,6 +39,8 @@ public class Region {
     public IMDGObject getObject(long id) {
         return nodes.get(getNodeIndex(this.name + "_" + id)).getObject(this.getName(), id);
     }
+
+    public String getName(){ return this.name; }
 
     private int getNodeIndex(String hashID){
         int hashCode = MurMurHash.hash32(hashID.getBytes(), hashID.length());
@@ -74,8 +78,6 @@ public class Region {
             System.out.println();
         }
     }
-
-    public String getName(){ return this.name; }
 
     public BloomFilterMD5<String> writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
         Logger.log("Objects that hashed into BF[" + this.name + "]:");

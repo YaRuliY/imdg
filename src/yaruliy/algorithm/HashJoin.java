@@ -5,7 +5,7 @@ import yaruliy.db.Region;
 import yaruliy.util.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
-import static yaruliy.util.WHUtils.valueGetter;
+import static yaruliy.util.Util.valueGetter;
 
 public class HashJoin extends JoinAlgorithm{
     @Override

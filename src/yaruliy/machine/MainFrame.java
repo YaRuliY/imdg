@@ -5,14 +5,12 @@ import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
+import yaruliy.util.Util;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class MainFrame {
     public static void main(String a[]){
-        String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
-        Random r = new Random();
         Logger.clearLog();
         Warehouse warehouse = new Warehouse();
         ArrayList<IMDGObject> first = prepareObjects();
@@ -25,7 +23,8 @@ public class MainFrame {
 
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
-        warehouse.printNodesContent(names[r.nextInt((names.length))]);
+        //Util.printNodesContent(warehouse.getRegionByName(region0).getObject(2).getName());
+        Util.printNodesContent();
 
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");

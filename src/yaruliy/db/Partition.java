@@ -7,10 +7,7 @@ import java.util.stream.Collectors;
 public class Partition {
     private HashMap<Long, IMDGObject> objects;
 
-    public Partition(){
-        objects = new HashMap<>();
-    }
-
+    public Partition(){ this.objects = new HashMap<>(); }
     public void addObject(IMDGObject object){ objects.put(object.getID(), object); }
     public IMDGObject getObject(long id){ return objects.get(id); }
 
@@ -40,7 +37,7 @@ public class Partition {
                     System.out.println(objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
                 }
                 else
-                    System.out.println("\t\t " + objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
+                    System.out.println("\t\t " + objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
                 i++;
             }
         }
