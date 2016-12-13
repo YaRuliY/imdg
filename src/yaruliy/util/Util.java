@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Util {
     private static final java.util.Properties properties = new java.util.Properties();
     private static final BloomFilterMD5<String> bloomFilter;
-    private static final int elementCount = 50000;
+    private static final int bloomFilterElementCount = 50000;
     private static final ArrayList<Node> array;
 
     public static byte getProperty(String property) { return Byte.parseByte(properties.getProperty(property)); }
@@ -24,7 +24,7 @@ public class Util {
     }
 
     static {
-        bloomFilter = new BloomFilterMD5<>(0.001, elementCount);
+        bloomFilter = new BloomFilterMD5<>(0.001, bloomFilterElementCount);
         array = new ArrayList<>();
         for (int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){
             array.add(new Node(i));
