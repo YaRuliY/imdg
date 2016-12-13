@@ -99,7 +99,6 @@ public class Util {
                 }
             }
         }
-        System.out.println(firstRegion + " -> Node" + nodeIndex);
         return nodeIndex;
     }
 
