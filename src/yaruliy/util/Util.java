@@ -14,6 +14,10 @@ public class Util {
     private static final int elementCount = 50000;
     private static final ArrayList<Node> array;
 
+    public static byte getProperty(String property) { return Byte.parseByte(properties.getProperty(property)); }
+    public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
+    public static ArrayList<Node> getNodes() { return array; }
+
     static {
         try(InputStream input = new FileInputStream("resources/imdg.properties")) { properties.load(input); }
         catch (IOException ex) { ex.printStackTrace(); }
@@ -27,14 +31,14 @@ public class Util {
         }
     }
 
-    public static int calculateStringSize(String s){
+    static public int calculateStringSize(String s){
         int size = 12 + (s.length()*2);
         int diff = 8 - (size % 8);
         size = size + diff + 24;
         return size;
     }
 
-    public static String valueGetter(String field, IMDGObject object){
+    static public String valueGetter(String field, IMDGObject object){
         field = Character.toUpperCase(field.charAt(0)) + field.substring(1);
         String result = null;
         try { result = IMDGObject.class.getMethod("get"+field).invoke(object).toString(); }
@@ -45,10 +49,6 @@ public class Util {
         catch (InvocationTargetException | IllegalAccessException e) { e.printStackTrace(); }
         return result;
     }
-
-    public static byte getProperty(String property) { return Byte.parseByte(properties.getProperty(property)); }
-    public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
-    public static ArrayList<Node> getNodes() { return array; }
 
     static public void printNodesContent() {
         for (Node node: Util.getNodes()) {

@@ -2,9 +2,9 @@ package yaruliy.machine;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
-import yaruliy.util.Util;
 import java.util.ArrayList;
 import java.util.Random;
+import static yaruliy.util.Util.*;
 
 public class MainFrame {
     public static void main(String a[]){
@@ -20,14 +20,11 @@ public class MainFrame {
 
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
-        //Util.printNodesContent(warehouse.getRegionByName(region0).getObject(2).getName());
-        Util.printNodesContent();
-        //Util.findNodeWithMaxElemCount(region0, region1);
-        //Util.findNodeWithMaxElemCount(region1, region0);
+        printNodesContent();
 
-        Util.transferDataToNode(Util.findNodeWithMaxElemCount(region0, region1), Util.findNodeWithMaxElemCount(region1, region0));
-        Util.sendSignalToAll(Util.findNodeWithMaxElemCount(region1, region0), region1);
-        Util.printNodesContent();
+        transferDataToNode(findNodeWithMaxElemCount(region0, region1), findNodeWithMaxElemCount(region1, region0));
+        sendSignalToAll(findNodeWithMaxElemCount(region1, region0), region1);
+        printNodesContent();
 
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");

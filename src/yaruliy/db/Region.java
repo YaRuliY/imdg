@@ -20,6 +20,7 @@ public class Region {
     }
 
     public void addCollection(Collection<IMDGObject> collection){ collection.forEach(this::addObject); }
+    public String getName(){ return this.name; }
 
     public void addObject(IMDGObject object) {
         object.setID(this.elementCount);
@@ -39,8 +40,6 @@ public class Region {
     public IMDGObject getObject(long id) {
         return nodes.get(getNodeIndex(this.name + "_" + id)).getObject(this.getName(), id);
     }
-
-    public String getName(){ return this.name; }
 
     private int getNodeIndex(String hashID){
         int hashCode = MurMurHash.hash32(hashID.getBytes(), hashID.length());

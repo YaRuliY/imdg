@@ -5,6 +5,9 @@ import java.util.HashMap;
 public class Node {
     private HashMap<String, Partition> partitions;
     private int nodeID;
+    public IMDGObject getObject(String regionName, long id){ return partitions.get(regionName).getObject(id);}
+    public HashMap<String, Partition> getPartition(){ return this.partitions; }
+    public int getNodeID() { return nodeID; }
 
     public Node(int id){
         this.partitions = new HashMap<>();
@@ -20,8 +23,4 @@ public class Node {
             partitions.get(regionName).addObject(object);
         }
     }
-
-    public IMDGObject getObject(String regionName, long id){ return partitions.get(regionName).getObject(id);}
-    public HashMap<String, Partition> getPartition(){ return this.partitions; }
-    public int getNodeID() { return nodeID; }
 }
