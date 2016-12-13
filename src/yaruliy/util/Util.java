@@ -65,21 +65,6 @@ public class Util {
         }
     }
 
-    static public void printNodesContent(String name) {
-        for (Node node: Util.getNodes()) {
-            if (node.getPartition().keySet().size() < 0) {
-                System.out.println("Node[" + node.getNodeID() + "] is empty");
-            }
-            else {
-                System.out.println("==============Node[" + node.getNodeID() + "]=BEGIN============");
-                for (String regKey : node.getPartition().keySet()) {
-                    node.getPartition().get(regKey).printContent(regKey, name);
-                }
-                System.out.println("==============Node[" + node.getNodeID() + "]=END==============\n");
-            }
-        }
-    }
-
     static public int findNodeWithMaxElemCount(String firstRegion, String secondRegion){
         int firstSize = 0;
         int secondSize = 0;
