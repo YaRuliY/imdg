@@ -20,7 +20,7 @@ public class Partition {
         for (long key : objects.keySet()) {
             if(i == objects.keySet().size()/2 || objects.size() == 1) {
                 System.out.print(regKey + ": ");
-                System.out.println(objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
+                System.out.println(objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
             }
             else
                 System.out.println("\t\t " + objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
@@ -34,7 +34,7 @@ public class Partition {
             if(objects.get(key).getName().equals(name)){
                 if(i == objects.keySet().size()/2 || objects.size() == 1) {
                     System.out.print(regKey + ": ");
-                    System.out.println(objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
+                    System.out.println(objects.get(key).getHashID() + "[" + objects.get(key).getName() + "]");
                 }
                 else
                     System.out.println("\t\t " + objects.get(key).getHashID() + " [" + objects.get(key).getName() + "]");
@@ -42,4 +42,6 @@ public class Partition {
             }
         }
     }
+
+    public int getPartitionSize(){ return this.objects.size(); }
 }

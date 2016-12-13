@@ -80,9 +80,18 @@ public class Util {
         }
     }
 
-    static public void countObjectInNode(String regionName){
+    static public int findNodeWithMaxElem(String regionName){
+        int size = 0;
+        int nodeIndex = 0;
         for (Node node: Util.getNodes()) {
-            
+            if(node.getPartition().containsKey(regionName)){
+                if(node.getPartition().get(regionName).getPartitionSize() > size){
+                    size = node.getPartition().get(regionName).getPartitionSize();
+                    nodeIndex = node.getNodeID();
+                }
+            }
         }
+        System.out.println(regionName + " -> Node" + nodeIndex);
+        return nodeIndex;
     }
 }

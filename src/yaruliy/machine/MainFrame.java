@@ -1,8 +1,5 @@
 package yaruliy.machine;
-import yaruliy.algorithm.BloomJoin;
-import yaruliy.algorithm.HashJoin;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
 import yaruliy.util.Util;
@@ -25,6 +22,8 @@ public class MainFrame {
         warehouse.getRegionByName(region1).printRecords(false);
         //Util.printNodesContent(warehouse.getRegionByName(region0).getObject(2).getName());
         Util.printNodesContent();
+        Util.findNodeWithMaxElem(region0);
+        Util.findNodeWithMaxElem(region1);
 
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
