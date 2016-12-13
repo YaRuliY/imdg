@@ -22,8 +22,12 @@ public class MainFrame {
         warehouse.getRegionByName(region1).printRecords(false);
         //Util.printNodesContent(warehouse.getRegionByName(region0).getObject(2).getName());
         Util.printNodesContent();
-        Util.findNodeWithMaxElem(region0);
-        Util.findNodeWithMaxElem(region1);
+        //Util.findNodeWithMaxElemCount(region0, region1);
+        //Util.findNodeWithMaxElemCount(region1, region0);
+
+        Util.transferDataToNode(Util.findNodeWithMaxElemCount(region0, region1), Util.findNodeWithMaxElemCount(region1, region0));
+        Util.sendSignalToAll(Util.findNodeWithMaxElemCount(region1, region0), region1);
+        Util.printNodesContent();
 
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
@@ -37,7 +41,7 @@ public class MainFrame {
         String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
         String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
-        int n = 5;
+        int n = 10;
         for (int i = 0; i < n; i++){
             String name = names[r.nextInt((names.length))];
             String serName = "";

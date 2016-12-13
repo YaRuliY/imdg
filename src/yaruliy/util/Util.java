@@ -80,18 +80,50 @@ public class Util {
         }
     }
 
-    static public int findNodeWithMaxElem(String regionName){
-        int size = 0;
+    static public int findNodeWithMaxElemCount(String firstRegion, String secondRegion){
+        int firstSize = 0;
+        int secondSize = 0;
         int nodeIndex = 0;
         for (Node node: Util.getNodes()) {
-            if(node.getPartition().containsKey(regionName)){
-                if(node.getPartition().get(regionName).getPartitionSize() > size){
-                    size = node.getPartition().get(regionName).getPartitionSize();
+            if(node.getPartition().containsKey(firstRegion)){
+                if(node.getPartition().get(firstRegion).getPartitionSize() > firstSize){
+                    firstSize = node.getPartition().get(firstRegion).getPartitionSize();
                     nodeIndex = node.getNodeID();
+                }
+                if(node.getPartition().get(firstRegion).getPartitionSize() == firstSize){
+                    if(node.getPartition().get(secondRegion).getPartitionSize() > secondSize){
+                        secondSize = node.getPartition().get(secondRegion).getPartitionSize();
+                        firstSize = node.getPartition().get(firstRegion).getPartitionSize();
+                        nodeIndex = node.getNodeID();
+                    }
                 }
             }
         }
-        System.out.println(regionName + " -> Node" + nodeIndex);
+        System.out.println(firstRegion + " -> Node" + nodeIndex);
         return nodeIndex;
+    }
+
+    static public void transferDataToNode(int nodeSender, int nodeReceiver){
+        for (String regionKey: array.get(nodeSender).getPartition().keySet()) {
+            for (IMDGObject object: array.get(nodeSender).getPartition().get(regionKey).getAllRecords()) {
+                if(!array.get(nodeReceiver).getPartition().get(regionKey).getAllRecords().contains(object)){
+                    array.get(nodeReceiver).addObject(regionKey, object);
+                    System.out.println("SENDED by a data transfer: " + object.getHashID());
+                }
+            }
+        }
+    }
+
+    static public void sendSignalToAll(int nodeIndex, String regionName){
+        while (array.get(nodeIndex).getPartition().get(regionName).getAllRecords().size() < 10){
+            for (Node node: array) {
+                for (IMDGObject object: node.getPartition().get(regionName).getAllRecords()){
+                    if(!array.get(nodeIndex).getPartition().get(regionName).getAllRecords().contains(object)){
+                        array.get(nodeIndex).addObject(regionName, object);
+                        System.out.println("SENDED by a signal: " + object.getHashID());
+                    }
+                }
+            }
+        }
     }
 }
