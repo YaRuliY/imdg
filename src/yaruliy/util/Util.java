@@ -21,9 +21,6 @@ public class Util {
     static {
         try(InputStream input = new FileInputStream("resources/imdg.properties")) { properties.load(input); }
         catch (IOException ex) { ex.printStackTrace(); }
-    }
-
-    static {
         bloomFilter = new BloomFilterMD5<>(0.001, bloomFilterElementCount);
         array = new ArrayList<>();
         for (int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){
@@ -52,13 +49,13 @@ public class Util {
 
     static public void printNodesContent() {
         for (Node node: Util.getNodes()) {
-            if (node.getPartition().keySet().size() < 0) {
+            if (node.getPartitions().keySet().size() < 0) {
                 System.out.println("Node[" + node.getNodeID() + "] is empty");
             }
             else {
                 System.out.println("==============Node[" + node.getNodeID() + "]=BEGIN============");
-                for (String regKey: node.getPartition().keySet()){
-                    node.getPartition().get(regKey).printContent(regKey);
+                for (String regKey: node.getPartitions().keySet()){
+                    node.getPartitions().get(regKey).printContent(regKey);
                 }
                 System.out.println("==============Node[" + node.getNodeID() + "]=END==============\n");
             }
@@ -70,15 +67,15 @@ public class Util {
         int secondSize = 0;
         int nodeIndex = 0;
         for (Node node: Util.getNodes()) {
-            if(node.getPartition().containsKey(firstRegion)){
-                if(node.getPartition().get(firstRegion).getPartitionSize() > firstSize){
-                    firstSize = node.getPartition().get(firstRegion).getPartitionSize();
+            if(node.getPartitions().containsKey(firstRegion)){
+                if(node.getPartitions().get(firstRegion).getPartitionSize() > firstSize){
+                    firstSize = node.getPartitions().get(firstRegion).getPartitionSize();
                     nodeIndex = node.getNodeID();
                 }
-                if(node.getPartition().get(firstRegion).getPartitionSize() == firstSize){
-                    if(node.getPartition().get(secondRegion).getPartitionSize() > secondSize){
-                        secondSize = node.getPartition().get(secondRegion).getPartitionSize();
-                        firstSize = node.getPartition().get(firstRegion).getPartitionSize();
+                if(node.getPartitions().get(firstRegion).getPartitionSize() == firstSize){
+                    if(node.getPartitions().get(secondRegion).getPartitionSize() > secondSize){
+                        secondSize = node.getPartitions().get(secondRegion).getPartitionSize();
+                        firstSize = node.getPartitions().get(firstRegion).getPartitionSize();
                         nodeIndex = node.getNodeID();
                     }
                 }
@@ -88,9 +85,9 @@ public class Util {
     }
 
     static public void transferDataToNode(int nodeSender, int nodeReceiver){
-        for (String regionKey: array.get(nodeSender).getPartition().keySet()) {
-            for (IMDGObject object: array.get(nodeSender).getPartition().get(regionKey).getAllRecords()) {
-                if(!array.get(nodeReceiver).getPartition().get(regionKey).getAllRecords().contains(object)){
+        for (String regionKey: array.get(nodeSender).getPartitions().keySet()) {
+            for (IMDGObject object: array.get(nodeSender).getPartitions().get(regionKey).getAllRecords()) {
+                if(!array.get(nodeReceiver).getPartitions().get(regionKey).getAllRecords().contains(object)){
                     array.get(nodeReceiver).addObject(regionKey, object);
                     System.out.println("SENDED by a data transfer: " + object.getHashID());
                 }
@@ -99,10 +96,10 @@ public class Util {
     }
 
     static public void sendSignalToAll(int nodeIndex, String regionName){
-        while (array.get(nodeIndex).getPartition().get(regionName).getAllRecords().size() < 10){
+        while (array.get(nodeIndex).getPartitions().get(regionName).getAllRecords().size() < 10){
             for (Node node: array) {
-                for (IMDGObject object: node.getPartition().get(regionName).getAllRecords()){
-                    if(!array.get(nodeIndex).getPartition().get(regionName).getAllRecords().contains(object)){
+                for (IMDGObject object: node.getPartitions().get(regionName).getAllRecords()){
+                    if(!array.get(nodeIndex).getPartitions().get(regionName).getAllRecords().contains(object)){
                         array.get(nodeIndex).addObject(regionName, object);
                         System.out.println("SENDED by a signal: " + object.getHashID());
                     }

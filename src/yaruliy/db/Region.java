@@ -49,10 +49,10 @@ public class Region {
     public Set<IMDGObject> getAllRecords(){
         Set<IMDGObject> array = new HashSet<>();
         for (Node node : nodes) {
-            node.getPartition().keySet()
+            node.getPartitions().keySet()
                     .stream()
                     .filter(key -> key.contains(this.name))
-                    .forEachOrdered(key -> array.addAll(node.getPartition().get(key).getAllRecords()));
+                    .forEachOrdered(key -> array.addAll(node.getPartitions().get(key).getAllRecords()));
         }
         return array;
     }

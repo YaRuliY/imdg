@@ -1,10 +1,10 @@
 package yaruliy.machine;
+import yaruliy.algorithm.TrackJoin;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
 import java.util.ArrayList;
 import java.util.Random;
-import static yaruliy.util.Util.*;
 
 public class MainFrame {
     public static void main(String a[]){
@@ -20,12 +20,13 @@ public class MainFrame {
 
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
-        printNodesContent();
+        /*printNodesContent();
 
         transferDataToNode(findNodeWithMaxElemCount(region0, region1), findNodeWithMaxElemCount(region1, region0));
         sendSignalToAll(findNodeWithMaxElemCount(region1, region0), region1);
-        printNodesContent();
+        printNodesContent();*/
 
+        warehouse.executeJOIN(region0, region1, new TrackJoin(), "name");
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         jr1.printResults();
@@ -35,7 +36,7 @@ public class MainFrame {
 
     private static ArrayList<IMDGObject> prepareObjects(){
         ArrayList<IMDGObject> objects = new ArrayList<>();
-        String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack"};
+        String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack", "Kelly", "Robert"};
         String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
         int n = 10;

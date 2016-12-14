@@ -6,7 +6,7 @@ public class Node {
     private HashMap<String, Partition> partitions;
     private int nodeID;
     public IMDGObject getObject(String regionName, long id){ return partitions.get(regionName).getObject(id);}
-    public HashMap<String, Partition> getPartition(){ return this.partitions; }
+    public HashMap<String, Partition> getPartitions(){ return this.partitions; }
     public int getNodeID() { return nodeID; }
 
     public Node(int id){
