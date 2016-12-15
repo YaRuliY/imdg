@@ -13,9 +13,12 @@ public class TrackJoin extends JoinAlgorithm{
     public JoinResult executeJOIN(Region left, Region right, String field) {
         for (Node node: Util.getNodes()) {
             for (IMDGObject object: node.getPartitions().get(left.getName()).getAllRecords()) {
-                int nodeReceiver = getNodeIndex(object.getName());
-                TMessage message = TUtil.makeProjectionMessageOnTheKey();
-                TUtil.sendMessage(nodeReceiver, message);
+                TMessage message = new TMessage(object.getName(), left.getName(), node.getNodeID());
+                TUtil.sendMessage(getNodeIndex(object.getName()), message);
+            }
+            for (IMDGObject object: node.getPartitions().get(right.getName()).getAllRecords()) {
+                TMessage message = new TMessage(object.getName(), right.getName(), node.getNodeID());
+                TUtil.sendMessage(getNodeIndex(object.getName()), message);
             }
         }
         return null;
