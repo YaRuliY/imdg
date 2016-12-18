@@ -54,15 +54,18 @@ public class Util {
             }
             else {
                 System.out.println("==============Node[" + node.getNodeID() + "]=BEGIN============");
+                int count = 0;
                 for (String regKey: node.getPartitions().keySet()){
                     node.getPartitions().get(regKey).printContent(regKey);
+                    if (count < 1) System.out.println("\t\t ------------------");
+                    count++;
                 }
                 System.out.println("==============Node[" + node.getNodeID() + "]=END==============\n");
             }
         }
     }
 
-    static public int findNodeWithMaxElemCount(String firstRegion, String secondRegion){
+    /*static public int findNodeWithMaxElemCount(String firstRegion, String secondRegion){
         int firstSize = 0;
         int secondSize = 0;
         int nodeIndex = 0;
@@ -82,9 +85,9 @@ public class Util {
             }
         }
         return nodeIndex;
-    }
+    }*/
 
-    static public void transferDataToNode(int nodeSender, int nodeReceiver){
+    /*static public void transferDataToNode(int nodeSender, int nodeReceiver){
         for (String regionKey: array.get(nodeSender).getPartitions().keySet()) {
             for (IMDGObject object: array.get(nodeSender).getPartitions().get(regionKey).getAllRecords()) {
                 if(!array.get(nodeReceiver).getPartitions().get(regionKey).getAllRecords().contains(object)){
@@ -106,5 +109,5 @@ public class Util {
                 }
             }
         }
-    }
+    }*/
 }

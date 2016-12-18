@@ -30,4 +30,5 @@ public class IMDGObject implements Comparable<IMDGObject>{
     public String getSerName() { return serName; }
     public void setID(long id) { this.id = id; }
     public void setHashID(String region) { this.hashID = region + "_" + this.id; }
+    public String getRegion(){ return this.hashID.substring(0, this.hashID.indexOf('_'));}
 }

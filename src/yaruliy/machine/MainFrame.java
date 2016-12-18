@@ -3,8 +3,6 @@ import yaruliy.algorithm.TrackJoin;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
-import yaruliy.util.trackstaff.TProccess;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,13 +23,9 @@ public class MainFrame {
         /*printNodesContent();
 
         transferDataToNode(findNodeWithMaxElemCount(region0, region1), findNodeWithMaxElemCount(region1, region0));
-        sendSignalToAll(findNodeWithMaxElemCount(region1, region0), region1);
-        printNodesContent();*/
+        sendSignalToAll(findNodeWithMaxElemCount(region1, region0), region1);*/
 
         warehouse.executeJOIN(region0, region1, new TrackJoin(), "name");
-        TProccess tProccess = TProccess.getInstance();
-        System.out.println();
-        tProccess.printTable();
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         jr1.printResults();

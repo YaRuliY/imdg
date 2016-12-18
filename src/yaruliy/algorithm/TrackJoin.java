@@ -6,26 +6,38 @@ import yaruliy.db.Node;
 import yaruliy.db.Region;
 import yaruliy.util.Util;
 import yaruliy.util.trackstaff.TMessage;
-import yaruliy.util.trackstaff.TUtil;
+import yaruliy.util.trackstaff.TProccess;
+import yaruliy.util.trackstaff.TTransport;
+
+import static yaruliy.util.Util.printNodesContent;
 
 public class TrackJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region left, Region right, String field) {
+        printNodesContent();
         for (Node node: Util.getNodes()) {
-            for (IMDGObject object: node.getPartitions().get(left.getName()).getAllRecords()) {
-                TMessage message = new TMessage(object.getName(), left.getName(), node.getNodeID());
-                TUtil.sendMessage(getNodeIndex(object.getName()), message);
-            }
-            for (IMDGObject object: node.getPartitions().get(right.getName()).getAllRecords()) {
-                TMessage message = new TMessage(object.getName(), right.getName(), node.getNodeID());
-                TUtil.sendMessage(getNodeIndex(object.getName()), message);
-            }
+            doBroadcast(node, left);
+            doBroadcast(node, right);
         }
-        return null;
+
+        TProccess tProccess = TProccess.getInstance();
+        tProccess.printTable();
+        tProccess.doTransfer(left.getName(), right.getName());
+
+        printNodesContent();
+        return new JoinResult();
     }
 
     private int getNodeIndex(String objectName){
         int hashCode = MurMurHash.hash32(objectName.getBytes(), objectName.length());
         return Math.abs(hashCode) % Util.getNodes().size();
+    }
+
+    private void doBroadcast(Node node, Region region){
+        for (IMDGObject object: node.getPartitions().get(region.getName()).getAllRecords()) {
+            TMessage message = new TMessage(object.getName(), region.getName(), node.getNodeID());
+            int i = getNodeIndex(object.getName());
+            TTransport.sendMessage(i, message);
+        }
     }
 }
