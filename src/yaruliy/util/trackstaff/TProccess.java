@@ -1,9 +1,6 @@
 package yaruliy.util.trackstaff;
-import yaruliy.data.IMDGObject;
 import yaruliy.db.Node;
 import yaruliy.util.Util;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,18 +24,23 @@ public class TProccess {
     }
 
     public void printTable() {
-        System.out.println("[--------------------" + "Hash-Table-[" + this.table.getHash().size() + "]:" + "--------------------]");
+        System.out.println("[-------------------------------------------------" + "Hash-Table-[" +
+                this.table.getHash().size() + "]:" + "-------------------------------------------------");
         int max = 0;
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             if(this.table.getNodes(key, "Region0") != null)
                 if(max < this.table.getNodes(key, "Region0").length)
                     max = this.table.getNodes(key, "Region0").length;
+            if(this.table.getNodes(key, "Region1") != null)
+                if (max < this.table.getNodes(key, "Region1").length)
+                    max = this.table.getNodes(key, "Region1").length;
         }
-        int t = (max*3 + 1);
+        int t = (max*12) + max;
         System.out.print("| UnicKey ");
         System.out.printf("| %-"+t+"s| %-"+t+"s \n", "    Region0     ", "     Region1");
-        System.out.println("|-------------------------------------------------------]");
+        System.out.println("|---------------------------------------------------------" +
+                "-----------------------------------------------------------------");
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             HashMap<String, TElement> value = entry.getValue();
@@ -52,37 +54,43 @@ public class TProccess {
             }
             else System.out.printf("%-"+t+"s \n", "[null]");
         }
-        System.out.println("[-------------------------------------------------------]");
+        System.out.println("[--------------------------------------------------------------" +
+                "--------------------------------------------------------------------");
     }
 
     public void doTransfer(String leftRegion, String rightRegion) {
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
-            String key = entry.getKey();// key = уникальный ключ
-            System.out.printf("%-8s", key);
-            System.out.print(": ");
-            HashMap<String, TElement> value = entry.getValue();// value = значение ключа(конкретный регион)
+            String key = entry.getKey();
+            HashMap<String, TElement> value = entry.getValue();
+
             if(value.get(leftRegion) != null && value.get(rightRegion) != null){
-                if (value.get(leftRegion).getNodes().length < value.get(rightRegion).getNodes().length){
+                System.out.printf("\t\t%-8s: ", key);
+                if(value.get(leftRegion).getTotalCount() < value.get(rightRegion).getTotalCount()){
+                    sendData(leftRegion, rightRegion, key, value);
                     System.out.println(leftRegion + " -> " + rightRegion);
-                    for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
-                        Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
-                        for (String regKey : nodeForLeft.getPartitions().keySet()) {
-                            for (IMDGObject object: nodeForLeft.getPartitions().get(regKey).getAllRecords()) {
-                                if (object.getName().equals(key)){
-                                    int[] rightRegionIndexs = value.get(rightRegion).getNodes();
-                                    for (int rightRegionIndex: rightRegionIndexs){
-                                        Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
                 else {
+                    sendData(rightRegion, leftRegion, key, value);
                     System.out.println(leftRegion + " <- " + rightRegion);
                 }
             }
-            else System.out.println("transfer not done!");
+        }
+        System.out.println();
+    }
+
+    private void sendData(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
+        for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
+            Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
+            for (String regKey : nodeForLeft.getPartitions().keySet()) {
+                nodeForLeft.getPartitions().get(regKey).getAllRecords()
+                        .stream()
+                        .filter(object -> object.getName().equals(key))
+                        .forEachOrdered(object -> {
+                    for (int rightRegionIndex: value.get(rightRegion).getNodes()) {
+                        Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
+                    }
+                });
+            }
         }
     }
 }

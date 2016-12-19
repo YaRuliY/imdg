@@ -17,13 +17,13 @@ public class TTable {
     public void addInfoFromMessage(TMessage message){
         if (hashTable.containsKey(message.getJoinKey())){
             if(hashTable.get(message.getJoinKey()).containsKey(message.getRegionName()))
-                hashTable.get(message.getJoinKey()).get(message.getRegionName()).addInfo(message.getNodeIndex());
+                hashTable.get(message.getJoinKey()).get(message.getRegionName()).addInfo(message.getNodeIndex(), message.getObjectSize());
             else
-                hashTable.get(message.getJoinKey()).put(message.getRegionName(), new TElement(message.getNodeIndex()));
+                hashTable.get(message.getJoinKey()).put(message.getRegionName(), new TElement(message.getNodeIndex(), message.getObjectSize()));
         }
         else {
             hashTable.put(message.getJoinKey(), new HashMap<>());
-            hashTable.get(message.getJoinKey()).put(message.getRegionName(), new TElement(message.getNodeIndex()));
+            hashTable.get(message.getJoinKey()).put(message.getRegionName(), new TElement(message.getNodeIndex(), message.getObjectSize()));
         }
     }
 }

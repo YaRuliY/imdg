@@ -1,14 +1,16 @@
 package yaruliy.util.trackstaff;
 
 public class TMessage {
-    private String joinKey;
     private int nodeIndex;
+    private int objectSize;
+    private String joinKey;
     private String regionName;
 
-    public TMessage(String joinKey, String regionName, int nodeIndex){
+    public TMessage(String joinKey, String regionName, int nodeIndex, int objectSize){
         this.joinKey = joinKey;
         this.regionName = regionName;
         this.nodeIndex = nodeIndex;
+        this.objectSize = objectSize;
     }
 
     public String getJoinKey() {
@@ -21,5 +23,9 @@ public class TMessage {
 
     public String getRegionName() {
         return regionName;
+    }
+
+    public int getObjectSize() {
+        return objectSize;
     }
 }

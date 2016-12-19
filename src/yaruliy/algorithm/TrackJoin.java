@@ -8,7 +8,6 @@ import yaruliy.util.Util;
 import yaruliy.util.trackstaff.TMessage;
 import yaruliy.util.trackstaff.TProccess;
 import yaruliy.util.trackstaff.TTransport;
-
 import static yaruliy.util.Util.printNodesContent;
 
 public class TrackJoin extends JoinAlgorithm{
@@ -16,8 +15,8 @@ public class TrackJoin extends JoinAlgorithm{
     public JoinResult executeJOIN(Region left, Region right, String field) {
         printNodesContent();
         for (Node node: Util.getNodes()) {
-            doBroadcast(node, left);
-            doBroadcast(node, right);
+            sendProjections(node, left);
+            sendProjections(node, right);
         }
 
         TProccess tProccess = TProccess.getInstance();
@@ -33,9 +32,9 @@ public class TrackJoin extends JoinAlgorithm{
         return Math.abs(hashCode) % Util.getNodes().size();
     }
 
-    private void doBroadcast(Node node, Region region){
+    private void sendProjections(Node node, Region region){
         for (IMDGObject object: node.getPartitions().get(region.getName()).getAllRecords()) {
-            TMessage message = new TMessage(object.getName(), region.getName(), node.getNodeID());
+            TMessage message = new TMessage(object.getName(), region.getName(), node.getNodeID(), object.calculateSize());
             int i = getNodeIndex(object.getName());
             TTransport.sendMessage(i, message);
         }

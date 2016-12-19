@@ -17,9 +17,8 @@ public class Node {
 
     public void addObject(String regionName, IMDGObject object){
         if(partitions.containsKey(regionName)){
-            if (!partitions.get(regionName).getAllRecords().contains(object)){
+            if (!partitions.get(regionName).getAllRecords().contains(object))
                 partitions.get(regionName).addObject(object);
-            }
         }
         else {
             partitions.put(regionName, new Partition());
