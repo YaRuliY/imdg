@@ -1,7 +1,5 @@
 package yaruliy.util.trackstaff;
 
-import yaruliy.util.Util;
-
 public class TElement {
     private int[] nodes = null;
     private int[] sizes = null;
@@ -69,7 +67,16 @@ public class TElement {
         }
     }
 
-    public int getMigrationCost(){
+    public int calculateMigrationCost(){
+        this.doSort();
+        int count = 0;
+        for (int o = 0; o < this.nodes.length - 1; o++)
+            count = count + sizes[o];
+        System.out.println("Transfer nodes to " + nodes[nodes.length - 1] + " cost " + count);
+        return count;
+    }
+
+    public void doSort(){
         for(int i = this.nodes.length-1 ; i > 0 ; i--){
             for(int j = 0 ; j < i ; j++)
                 if( sizes[j] > sizes[j+1] ){
@@ -81,13 +88,6 @@ public class TElement {
                     nodes[j+1] = tempNode;
                 }
         }
-
-        int count = 0;
-        for (int o = 0; o < this.nodes.length - 1; o++){
-            count = count + sizes[o];
-        }
-        System.out.println("Transfer nodes to " + nodes[nodes.length - 1] + " cost " + count);
-        return count;
     }
 
     public void doMigration(){
