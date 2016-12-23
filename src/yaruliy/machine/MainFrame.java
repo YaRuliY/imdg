@@ -39,12 +39,14 @@ public class MainFrame {
         String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
         int n = 10;
+        objects.add(new IMDGObject("Jenna", "Medison", 8));
+        objects.add(new IMDGObject("Sam", "Winchester", 7));
         for (int i = 0; i < n; i++){
             String name = names[r.nextInt((names.length))];
             String serName = "";
             for (int j = 0; j < r.nextInt((6)) + 5; j++)
                 serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
-            objects.add(new IMDGObject(name, serName, r.nextInt((3)) + 1));
+            objects.add(new IMDGObject(name, serName, r.nextInt((7)) + 1));
         }
         return objects;
     }

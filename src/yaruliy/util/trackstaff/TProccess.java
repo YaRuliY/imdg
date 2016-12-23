@@ -8,6 +8,7 @@ public class TProccess {
     private TTable table;
     private static volatile TProccess instance;
     private TProccess(){ this.table = new TTable(); }
+    public TTable getTable(){ return this.table; }
     public void writeIntoTable(TMessage message){ table.addInfoFromMessage(message); }
 
     public static TProccess getInstance() {
@@ -92,5 +93,9 @@ public class TProccess {
                 });
             }
         }
+    }
+
+    private void objectMigration(){
+
     }
 }

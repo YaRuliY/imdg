@@ -1,5 +1,7 @@
 package yaruliy.util.trackstaff;
 
+import yaruliy.util.Util;
+
 public class TElement {
     private int[] nodes = null;
     private int[] sizes = null;
@@ -64,6 +66,33 @@ public class TElement {
             if (i == iMax)
                 return sb.append(']').toString();
             sb.append(", ");
+        }
+    }
+
+    public int getMigrationCost(){
+        for(int i = this.nodes.length-1 ; i > 0 ; i--){
+            for(int j = 0 ; j < i ; j++)
+                if( sizes[j] > sizes[j+1] ){
+                    int tempSize = sizes[j];
+                    int tempNode = nodes[j];
+                    sizes[j] = sizes[j+1];
+                    nodes[j] = nodes[j+1];
+                    sizes[j+1] = tempSize;
+                    nodes[j+1] = tempNode;
+                }
+        }
+
+        int count = 0;
+        for (int o = 0; o < this.nodes.length - 1; o++){
+            count = count + sizes[o];
+        }
+        System.out.println("Transfer nodes to " + nodes[nodes.length - 1] + " cost " + count);
+        return count;
+    }
+
+    public void doMigration(){
+        for (int o = 0; o < this.nodes.length - 1; o++){
+            //Util.getNodes().get(o).addObject();
         }
     }
 }

@@ -22,8 +22,10 @@ public class TrackJoin extends JoinAlgorithm{
         TProccess tProccess = TProccess.getInstance();
         tProccess.printTable();
         tProccess.doTransfer(left.getName(), right.getName());
+        tProccess.getTable().getHash().get("Jenna").get("Region0").getMigrationCost();
+        tProccess.printTable();
 
-        printNodesContent();
+        //printNodesContent();
         return new JoinResult();
     }
 
