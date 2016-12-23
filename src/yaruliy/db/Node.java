@@ -1,6 +1,6 @@
 package yaruliy.db;
 import yaruliy.data.IMDGObject;
-import yaruliy.util.trackstaff.TMessage;
+import yaruliy.trackstaff.TMessage;
 import java.util.HashMap;
 
 public class Node {

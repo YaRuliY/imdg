@@ -5,9 +5,9 @@ import yaruliy.db.JoinResult;
 import yaruliy.db.Node;
 import yaruliy.db.Region;
 import yaruliy.util.Util;
-import yaruliy.util.trackstaff.TMessage;
-import yaruliy.util.trackstaff.TProccess;
-import yaruliy.util.trackstaff.TTransport;
+import yaruliy.trackstaff.TMessage;
+import yaruliy.trackstaff.proccess.TProccess;
+import yaruliy.trackstaff.TTransport;
 import static yaruliy.util.Util.printNodesContent;
 
 public class TrackJoin extends JoinAlgorithm{

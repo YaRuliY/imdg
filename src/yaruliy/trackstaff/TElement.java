@@ -1,4 +1,4 @@
-package yaruliy.util.trackstaff;
+package yaruliy.trackstaff;
 
 public class TElement {
     private int[] nodes = null;

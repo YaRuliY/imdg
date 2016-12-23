@@ -1,4 +1,4 @@
-package yaruliy.util.trackstaff;
+package yaruliy.trackstaff;
 
 public class TMessage {
     private int nodeIndex;

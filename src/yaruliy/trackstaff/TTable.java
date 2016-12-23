@@ -1,4 +1,4 @@
-package yaruliy.util.trackstaff;
+package yaruliy.trackstaff;
 import java.util.HashMap;
 
 public class TTable {

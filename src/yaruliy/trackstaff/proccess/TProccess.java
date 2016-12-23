@@ -1,6 +1,9 @@
-package yaruliy.util.trackstaff;
+package yaruliy.trackstaff.proccess;
 import yaruliy.db.Node;
 import yaruliy.util.Util;
+import yaruliy.trackstaff.TElement;
+import yaruliy.trackstaff.TMessage;
+import yaruliy.trackstaff.TTable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,9 +96,5 @@ public class TProccess {
                 });
             }
         }
-    }
-
-    private void objectMigration(){
-
     }
 }
