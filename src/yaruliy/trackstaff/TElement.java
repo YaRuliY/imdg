@@ -1,9 +1,12 @@
 package yaruliy.trackstaff;
+import yaruliy.trackstaff.proccess.MProccess;
+import yaruliy.trackstaff.proccess.ProccessManager;
 
 public class TElement {
     private int[] nodes = null;
     private int[] sizes = null;
     public int[] getNodes(){ return this.nodes; }
+    public int[] getSizes(){ return this.sizes; }
 
     public TElement(int node, int size){
         this.nodes = new int[]{node};
@@ -70,9 +73,7 @@ public class TElement {
     public int calculateMigrationCost(){
         this.doSort();
         int count = 0;
-        for (int o = 0; o < this.nodes.length - 1; o++)
-            count = count + sizes[o];
-        System.out.println("Transfer nodes to " + nodes[nodes.length - 1] + " cost " + count);
+        for (int o = 0; o < this.nodes.length - 1; o++) count = count + sizes[o];
         return count;
     }
 
@@ -90,9 +91,12 @@ public class TElement {
         }
     }
 
-    public void doMigration(){
+    public void doMigration(String regionName, String joinUniKey){
         for (int o = 0; o < this.nodes.length - 1; o++){
-            //Util.getNodes().get(o).addObject();
+            MProccess currentProccess = ProccessManager.getProccessByTableName(regionName);
+            currentProccess.sendData(this.nodes, joinUniKey);
+            this.nodes = new int[]{this.nodes[this.nodes.length - 1]};
+            this.sizes = new int[]{this.sizes[this.sizes.length - 1]};
         }
     }
 }

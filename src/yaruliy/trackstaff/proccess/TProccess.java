@@ -11,7 +11,6 @@ public class TProccess {
     private TTable table;
     private static volatile TProccess instance;
     private TProccess(){ this.table = new TTable(); }
-    public TTable getTable(){ return this.table; }
     public void writeIntoTable(TMessage message){ table.addInfoFromMessage(message); }
 
     public static TProccess getInstance() {
@@ -70,19 +69,49 @@ public class TProccess {
             if(value.get(leftRegion) != null && value.get(rightRegion) != null){
                 System.out.printf("\t\t%-8s: ", key);
                 if(value.get(leftRegion).getTotalCount() < value.get(rightRegion).getTotalCount()){
-                    sendData(leftRegion, rightRegion, key, value);
                     System.out.println(leftRegion + " -> " + rightRegion);
+
+                    int beforeMigrationCount = 0;
+                    for (int i : value.get(leftRegion).getSizes())
+                        beforeMigrationCount = beforeMigrationCount + i*value.get(rightRegion).getNodes().length;
+                    System.out.println("transfer count from left to right is: " + beforeMigrationCount/1024);
+
+                    int afterMigrationCount = value.get(rightRegion).calculateMigrationCost();
+                    for (int i: value.get(leftRegion).getSizes())
+                        afterMigrationCount = afterMigrationCount + i;
+                    System.out.println("transfer count after migration is: " + afterMigrationCount/1024);
+
+                    if(afterMigrationCount < beforeMigrationCount){
+                        value.get(rightRegion).doMigration(rightRegion, key);
+                    }
+
+                    sendData3Phase(leftRegion, rightRegion, key, value);
                 }
                 else {
-                    sendData(rightRegion, leftRegion, key, value);
                     System.out.println(leftRegion + " <- " + rightRegion);
+
+                    int beforeMigrationCount = 0;
+                    for (int i : value.get(rightRegion).getSizes())
+                        beforeMigrationCount = beforeMigrationCount + i*value.get(leftRegion).getNodes().length;
+                    System.out.println("transfer count from right to left is: " + beforeMigrationCount/1024);
+
+                    int afterMigrationCount = value.get(leftRegion).calculateMigrationCost();
+                    for (int i: value.get(rightRegion).getSizes())
+                        afterMigrationCount = afterMigrationCount + i;
+                    System.out.println("transfer count after migration is: " + afterMigrationCount/1024);
+
+                    if(afterMigrationCount < beforeMigrationCount){
+                        value.get(leftRegion).doMigration(leftRegion, key);
+                    }
+
+                    sendData3Phase(rightRegion, leftRegion, key, value);
                 }
             }
         }
         System.out.println();
     }
 
-    private void sendData(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
+    private void sendData3Phase(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {

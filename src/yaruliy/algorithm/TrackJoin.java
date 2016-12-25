@@ -14,7 +14,8 @@ public class TrackJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region left, Region right, String field) {
         printNodesContent();
-        for (Node node: Util.getNodes()) {
+        for (Node node: Util.getNodes())
+        {
             sendProjections(node, left);
             sendProjections(node, right);
         }
@@ -22,10 +23,9 @@ public class TrackJoin extends JoinAlgorithm{
         TProccess tProccess = TProccess.getInstance();
         tProccess.printTable();
         tProccess.doTransfer(left.getName(), right.getName());
-        tProccess.getTable().getHash().get("Jenna").get("Region0").calculateMigrationCost();
         tProccess.printTable();
+        printNodesContent();
 
-        //printNodesContent();
         return new JoinResult();
     }
 
@@ -37,8 +37,7 @@ public class TrackJoin extends JoinAlgorithm{
     private void sendProjections(Node node, Region region){
         for (IMDGObject object: node.getPartitions().get(region.getName()).getAllRecords()) {
             TMessage message = new TMessage(object.getName(), region.getName(), node.getNodeID(), object.calculateSize());
-            int i = getNodeIndex(object.getName());
-            TTransport.sendMessage(i, message);
+            TTransport.sendMessage(getNodeIndex(object.getName()), message, region.getName());
         }
     }
 }

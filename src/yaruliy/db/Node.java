@@ -1,6 +1,5 @@
 package yaruliy.db;
 import yaruliy.data.IMDGObject;
-import yaruliy.trackstaff.TMessage;
 import java.util.HashMap;
 
 public class Node {
@@ -24,9 +23,5 @@ public class Node {
             partitions.put(regionName, new Partition());
             partitions.get(regionName).addObject(object);
         }
-    }
-
-    public void receiveMessage(TMessage message){
-
     }
 }

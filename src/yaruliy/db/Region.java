@@ -2,6 +2,7 @@ package yaruliy.db;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
+import yaruliy.trackstaff.proccess.ProccessManager;
 import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import java.util.*;
@@ -17,6 +18,7 @@ public class Region {
     public Region(String name){
         this.name = name;
         this.nodes = getNodes();
+        ProccessManager.addProccess(this.getName(), this);
     }
 
     public void addCollection(Collection<IMDGObject> collection){ collection.forEach(this::addObject); }
