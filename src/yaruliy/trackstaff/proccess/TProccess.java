@@ -1,5 +1,6 @@
 package yaruliy.trackstaff.proccess;
 import yaruliy.db.Node;
+import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import yaruliy.trackstaff.TElement;
 import yaruliy.trackstaff.TMessage;
@@ -12,13 +13,13 @@ import java.util.Set;
 public class TProccess {
     private TTable table;
     private Set<Integer> nodesForJoin;
-    private Set<String> keysForJoin;
+    //private Set<String> keysForJoin;
     private static volatile TProccess instance;
     public void writeIntoTable(TMessage message){ table.addInfoFromMessage(message); }
     private TProccess(){
         this.table = new TTable();
         this.nodesForJoin = new HashSet<>();
-        this.keysForJoin = new HashSet<>();
+        //this.keysForJoin = new HashSet<>();
     }
 
     public static TProccess getInstance() {
@@ -70,13 +71,21 @@ public class TProccess {
     }
 
     public void doTransfer(String leftRegion, String rightRegion) {
+        Logger.log("=================Phase=Two=Starts================");
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             HashMap<String, TElement> value = entry.getValue();
 
             if(value.get(leftRegion) != null && value.get(rightRegion) != null){
                 System.out.printf("\t\t%-8s: ", key);
-                if(value.get(leftRegion).getTotalCount() < value.get(rightRegion).getTotalCount()){
+
+                Logger.log("Route Definition Starts");
+                int leftTotal = value.get(leftRegion).getTotalCount();
+                Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
+                int rightTotal = value.get(rightRegion).getTotalCount();
+                Logger.log("Total Count from Right Table (for key " + key + "): " + rightTotal + "\n");
+                Logger.log("Migration Starts");
+                if(leftTotal < rightTotal){
                     System.out.println(leftRegion + " -> " + rightRegion);
 
                     int beforeMigrationCount = 0;
@@ -93,7 +102,7 @@ public class TProccess {
                         value.get(rightRegion).doMigration(rightRegion, key);
                     }
 
-                    sendData3Phase(leftRegion, rightRegion, key, value);
+                    //sendData3Phase(leftRegion, rightRegion, key, value);
                 }
                 else {
                     System.out.println(leftRegion + " <- " + rightRegion);
@@ -112,36 +121,46 @@ public class TProccess {
                         value.get(leftRegion).doMigration(leftRegion, key);
                     }
 
-                    sendData3Phase(rightRegion, leftRegion, key, value);
+                    //sendData3Phase(rightRegion, leftRegion, key, value);
                 }
+                Logger.log("------------------------------------------------");
             }
         }
         System.out.println();
     }
 
     private void sendData3Phase(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
+        //Logger.log("Send Real Data");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {
+                /*if(nodeForLeft.getPartitions().get(regKey).contains(key)){
+
+                }*/
                 nodeForLeft.getPartitions().get(regKey).getAllRecords()
                         .stream()
                         .filter(object -> object.getName().equals(key))
                         .forEachOrdered(object -> {
                     for (int rightRegionIndex: value.get(rightRegion).getNodes()) {
                         Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
+                        if(!(Util.getNodes().get(rightRegionIndex).getPartitions().get(object.getRegion()).contains(object.getHashID()))){
+                            Logger.log("From Node " + leftRegionIndex + " to " + rightRegionIndex
+                                    + " transfer [" + object.getHashID() + "]: " + object.calculateSize());
+                        }
                     }
                 });
             }
         }
+        Logger.log("");
     }
 
     public Set<Integer> getNodesForJoin(){ return this.nodesForJoin; }
-    public Set<String> getKeysForJoin(){ return this.keysForJoin; }
+    //public Set<String> getKeysForJoin(){ return this.keysForJoin; }
 
-    public void writeNodes(int[] mas, String joinUniKey) {
+    public void writeNodes(int[] mas) {
         for (int m: mas){
             this.nodesForJoin.add(m);
         }
-        this.keysForJoin.add(joinUniKey);
+        //this.keysForJoin.add(joinUniKey);
     }
 }

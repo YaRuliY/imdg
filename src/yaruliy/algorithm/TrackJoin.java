@@ -5,7 +5,6 @@ import yaruliy.db.Region;
 import yaruliy.trackstaff.proccess.MProccessManager;
 import yaruliy.trackstaff.proccess.TProccess;
 import yaruliy.util.Util;
-
 import java.util.Set;
 import static yaruliy.util.Util.printNodesContent;
 import static yaruliy.util.Util.valueGetter;
@@ -21,24 +20,20 @@ public class TrackJoin extends JoinAlgorithm{
         tProccess.printTable();
         tProccess.doTransfer(left.getName(), right.getName());
         tProccess.printTable();
-
         printNodesContent();
 
         Set<Integer> nodes = TProccess.getInstance().getNodesForJoin();
         System.out.println(nodes);
-        for (int i = 0; i < nodes.toArray().length; i++){
+        for (int i = 0; i < nodes.toArray().length; i++)
             Util.transferDataToNode(i, (int)nodes.toArray()[nodes.toArray().length - 1]);
-        }
 
         int end = (int)nodes.toArray()[nodes.size() - 1];
         JoinResult jr = new JoinResult(this.getClass().toGenericString());
         for (IMDGObject objectL: Util.getNodes().get(end).getPartitions().get(left.getName()).getAllRecords())
-            for (IMDGObject objectR: Util.getNodes().get(end).getPartitions().get(right.getName()).getAllRecords()){
-                if (valueGetter(field, objectL).equals(valueGetter(field, objectR)))
-                    jr.addObjectsCouple(new IMDGObject[]{ objectL, objectR });
-                else if(valueGetter(field, objectR).equals(valueGetter(field, objectL)))
-                    jr.addObjectsCouple(new IMDGObject[]{ objectL, objectR });
-            }
+            Util.getNodes().get(end).getPartitions().get(right.getName()).getAllRecords()
+                    .stream()
+                    .filter(objectR -> valueGetter(field, objectL).equals(valueGetter(field, objectR)))
+                    .forEachOrdered(objectR -> jr.addObjectsCouple(new IMDGObject[]{objectL, objectR}));
         return jr;
     }
 }

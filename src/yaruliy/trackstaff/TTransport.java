@@ -8,7 +8,7 @@ public class TTransport {
         TProccess.getInstance().writeIntoTable(message);
     }
 
-    public static void sendNodesToTProccess(int[] mas, String joinUniKey) {
-        TProccess.getInstance().writeNodes(mas, joinUniKey);
+    public static void sendNodesToTProccess(int[] mas) {
+        TProccess.getInstance().writeNodes(mas);
     }
 }

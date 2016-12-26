@@ -26,4 +26,11 @@ public class Partition {
             i++;
         }
     }
+
+    public boolean contains(String Ukey){
+        for (long key : objects.keySet()) {
+            if(objects.get(key).getHashID().equals(Ukey)) return true;
+        }
+        return false;
+    }
 }

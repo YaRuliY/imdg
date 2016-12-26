@@ -28,4 +28,11 @@ public class TMessage {
     public int getObjectSize() {
         return objectSize;
     }
+
+    public String toString(){
+        return "\tTMessage:" +
+                "\tNode[" + nodeIndex + "]" + "\n" +
+                "\tObject Size: " + objectSize + "\n" +
+                "\tJoin Key: " + joinKey + "\n";
+    }
 }

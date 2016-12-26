@@ -1,5 +1,6 @@
 package yaruliy.trackstaff;
 import yaruliy.trackstaff.proccess.MProccessManager;
+import yaruliy.util.Logger;
 
 public class TElement {
     private int[] nodes = null;
@@ -95,7 +96,7 @@ public class TElement {
             MProccessManager.getProccessByTableName(regionName).sendDataToLastNode(this.nodes, joinUniKey);
             this.nodes = new int[]{this.nodes[this.nodes.length - 1]};
             this.sizes = new int[]{this.sizes[this.sizes.length - 1]};
-            MProccessManager.getProccessByTableName(regionName).sendMMessage(this.nodes, joinUniKey);
+            MProccessManager.getProccessByTableName(regionName).sendMMessage(this.nodes);
         }
     }
 }

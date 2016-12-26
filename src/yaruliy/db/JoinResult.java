@@ -13,7 +13,7 @@ public class JoinResult {
 
     public void printResults(){
         if (this.resultArray.size() > 0){
-            System.out.println("##########################################");
+            System.out.println("\n##########################################");
             System.out.println("JOIN(" + this.joinType + ") Results(" + this.resultArray.size() + ") :");
             for (int i = 0; i < this.resultArray.size(); i++){
                 System.out.printf("%-6s [%-10s] -- ", resultArray.get(i)[0].getName(), resultArray.get(i)[0].getHashID());
