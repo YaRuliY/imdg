@@ -5,13 +5,21 @@ import yaruliy.trackstaff.TElement;
 import yaruliy.trackstaff.TMessage;
 import yaruliy.trackstaff.TTable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class TProccess {
     private TTable table;
+    private Set<Integer> nodesForJoin;
+    private Set<String> keysForJoin;
     private static volatile TProccess instance;
-    private TProccess(){ this.table = new TTable(); }
     public void writeIntoTable(TMessage message){ table.addInfoFromMessage(message); }
+    private TProccess(){
+        this.table = new TTable();
+        this.nodesForJoin = new HashSet<>();
+        this.keysForJoin = new HashSet<>();
+    }
 
     public static TProccess getInstance() {
         TProccess localInstance = instance;
@@ -125,5 +133,15 @@ public class TProccess {
                 });
             }
         }
+    }
+
+    public Set<Integer> getNodesForJoin(){ return this.nodesForJoin; }
+    public Set<String> getKeysForJoin(){ return this.keysForJoin; }
+
+    public void writeNodes(int[] mas, String joinUniKey) {
+        for (int m: mas){
+            this.nodesForJoin.add(m);
+        }
+        this.keysForJoin.add(joinUniKey);
     }
 }

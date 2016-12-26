@@ -1,43 +1,44 @@
 package yaruliy.algorithm;
-import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.JoinResult;
-import yaruliy.db.Node;
 import yaruliy.db.Region;
-import yaruliy.util.Util;
-import yaruliy.trackstaff.TMessage;
+import yaruliy.trackstaff.proccess.MProccessManager;
 import yaruliy.trackstaff.proccess.TProccess;
-import yaruliy.trackstaff.TTransport;
+import yaruliy.util.Util;
+
+import java.util.Set;
 import static yaruliy.util.Util.printNodesContent;
+import static yaruliy.util.Util.valueGetter;
 
 public class TrackJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region left, Region right, String field) {
         printNodesContent();
-        for (Node node: Util.getNodes())
-        {
-            sendProjections(node, left);
-            sendProjections(node, right);
-        }
+        MProccessManager.getProccessByTableName(left.getName()).sendProjection();
+        MProccessManager.getProccessByTableName(right.getName()).sendProjection();
 
         TProccess tProccess = TProccess.getInstance();
         tProccess.printTable();
         tProccess.doTransfer(left.getName(), right.getName());
         tProccess.printTable();
+
         printNodesContent();
 
-        return new JoinResult();
-    }
-
-    private int getNodeIndex(String objectName){
-        int hashCode = MurMurHash.hash32(objectName.getBytes(), objectName.length());
-        return Math.abs(hashCode) % Util.getNodes().size();
-    }
-
-    private void sendProjections(Node node, Region region){
-        for (IMDGObject object: node.getPartitions().get(region.getName()).getAllRecords()) {
-            TMessage message = new TMessage(object.getName(), region.getName(), node.getNodeID(), object.calculateSize());
-            TTransport.sendMessage(getNodeIndex(object.getName()), message, region.getName());
+        Set<Integer> nodes = TProccess.getInstance().getNodesForJoin();
+        System.out.println(nodes);
+        for (int i = 0; i < nodes.toArray().length; i++){
+            Util.transferDataToNode(i, (int)nodes.toArray()[nodes.toArray().length - 1]);
         }
+
+        int end = (int)nodes.toArray()[nodes.size() - 1];
+        JoinResult jr = new JoinResult(this.getClass().toGenericString());
+        for (IMDGObject objectL: Util.getNodes().get(end).getPartitions().get(left.getName()).getAllRecords())
+            for (IMDGObject objectR: Util.getNodes().get(end).getPartitions().get(right.getName()).getAllRecords()){
+                if (valueGetter(field, objectL).equals(valueGetter(field, objectR)))
+                    jr.addObjectsCouple(new IMDGObject[]{ objectL, objectR });
+                else if(valueGetter(field, objectR).equals(valueGetter(field, objectL)))
+                    jr.addObjectsCouple(new IMDGObject[]{ objectL, objectR });
+            }
+        return jr;
     }
 }

@@ -25,7 +25,7 @@ public class BloomJoin extends JoinAlgorithm{
         Logger.log("Left Region send: " + leftRegion.getAllRecords().size() + " elements, total zize: " + leftRegion.getRegionSize());
         Logger.log("Right Region(filtered) send: " + rightSet.size() + " elements, total zize: " + size);
 
-        JoinResult jr = new JoinResult();
+        JoinResult jr = new JoinResult(this.getClass().toGenericString());
 
         long start = System.nanoTime();
         Logger.log("Start JOIN comparison");

@@ -23,7 +23,7 @@ public class HashJoin extends JoinAlgorithm{
         Logger.log("Left Region send: " + leftRegion.getAllRecords().size() + " elements, total zize: " + leftRegion.getRegionSize());
         Logger.log("Right Region send: " + rightRegion.getAllRecords().size() + " elements, total zize: " + rightRegion.getRegionSize());
 
-        JoinResult result = new JoinResult();
+        JoinResult result = new JoinResult(this.getClass().toGenericString());
 
         long start = System.nanoTime();
         Logger.log("Start JOIN comparison");

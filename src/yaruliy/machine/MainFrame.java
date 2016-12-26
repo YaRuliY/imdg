@@ -1,6 +1,9 @@
 package yaruliy.machine;
+import yaruliy.algorithm.BloomJoin;
+import yaruliy.algorithm.HashJoin;
 import yaruliy.algorithm.TrackJoin;
 import yaruliy.data.IMDGObject;
+import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
 import java.util.ArrayList;
@@ -25,12 +28,13 @@ public class MainFrame {
         transferDataToNode(findNodeWithMaxElemCount(region0, region1), findNodeWithMaxElemCount(region1, region0));
         sendSignalToAll(findNodeWithMaxElemCount(region1, region0), region1);*/
 
-        warehouse.executeJOIN(region0, region1, new TrackJoin(), "name");
-        /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
+        JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
+        JoinResult jr3 = warehouse.executeJOIN(region0, region1, new TrackJoin(), "name");
         jr1.printResults();
         jr2.printResults();
-        Logger.writeEnd();*/
+        jr3.printResults();
+        Logger.writeEnd();
     }
 
     private static ArrayList<IMDGObject> prepareObjects(){

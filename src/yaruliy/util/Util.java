@@ -2,7 +2,6 @@ package yaruliy.util;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.data.IMDGObject;
 import yaruliy.db.Node;
-import yaruliy.trackstaff.proccess.ProccessManager;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -89,17 +88,7 @@ public class Util {
         return nodeIndex;
     }*/
 
-    /*static public void transferDataToNode(int nodeSender, int nodeReceiver){
-        for (String regionKey: array.get(nodeSender).getPartitions().keySet()) {
-            for (IMDGObject object: array.get(nodeSender).getPartitions().get(regionKey).getAllRecords()) {
-                if(!array.get(nodeReceiver).getPartitions().get(regionKey).getAllRecords().contains(object)){
-                    array.get(nodeReceiver).addObject(regionKey, object);
-                    System.out.println("SENDED by a data transfer: " + object.getHashID());
-                }
-            }
-        }
-    }
-
+    /*
     static public void sendSignalToAll(int nodeIndex, String regionName){
         while (array.get(nodeIndex).getPartitions().get(regionName).getAllRecords().size() < 10){
             for (Node node: array) {
@@ -112,4 +101,14 @@ public class Util {
             }
         }
     }*/
+    static public void transferDataToNode(int nodeSender, int nodeReceiver){
+        for (String regionKey: array.get(nodeSender).getPartitions().keySet()) {
+            for (IMDGObject object: array.get(nodeSender).getPartitions().get(regionKey).getAllRecords()) {
+                if(!array.get(nodeReceiver).getPartitions().get(regionKey).getAllRecords().contains(object)){
+                    array.get(nodeReceiver).addObject(regionKey, object);
+                    System.out.println("SENDED by a data transfer: " + object.getHashID());
+                }
+            }
+        }
+    }
 }

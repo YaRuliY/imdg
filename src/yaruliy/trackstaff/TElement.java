@@ -1,6 +1,5 @@
 package yaruliy.trackstaff;
-import yaruliy.trackstaff.proccess.MProccess;
-import yaruliy.trackstaff.proccess.ProccessManager;
+import yaruliy.trackstaff.proccess.MProccessManager;
 
 public class TElement {
     private int[] nodes = null;
@@ -93,10 +92,10 @@ public class TElement {
 
     public void doMigration(String regionName, String joinUniKey){
         for (int o = 0; o < this.nodes.length - 1; o++){
-            MProccess currentProccess = ProccessManager.getProccessByTableName(regionName);
-            currentProccess.sendData(this.nodes, joinUniKey);
+            MProccessManager.getProccessByTableName(regionName).sendDataToLastNode(this.nodes, joinUniKey);
             this.nodes = new int[]{this.nodes[this.nodes.length - 1]};
             this.sizes = new int[]{this.sizes[this.sizes.length - 1]};
+            MProccessManager.getProccessByTableName(regionName).sendMMessage(this.nodes, joinUniKey);
         }
     }
 }
