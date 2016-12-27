@@ -20,13 +20,13 @@ public class TrackJoin extends JoinAlgorithm{
         tProccess.printTable();
         tProccess.doTransfer(left.getName(), right.getName());
         tProccess.printTable();
-        printNodesContent();
 
         Set<Integer> nodes = TProccess.getInstance().getNodesForJoin();
         System.out.println(nodes);
         for (int i = 0; i < nodes.toArray().length; i++)
             Util.transferDataToNode(i, (int)nodes.toArray()[nodes.toArray().length - 1]);
 
+        printNodesContent();
         int end = (int)nodes.toArray()[nodes.size() - 1];
         JoinResult jr = new JoinResult(this.getClass().toGenericString());
         for (IMDGObject objectL: Util.getNodes().get(end).getPartitions().get(left.getName()).getAllRecords())

@@ -79,12 +79,12 @@ public class TProccess {
             if(value.get(leftRegion) != null && value.get(rightRegion) != null){
                 System.out.printf("\t\t%-8s: ", key);
 
-                Logger.log("Route Definition Starts");
+                Logger.log("Route Definition Starts:");
                 int leftTotal = value.get(leftRegion).getTotalCount();
                 Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
                 int rightTotal = value.get(rightRegion).getTotalCount();
                 Logger.log("Total Count from Right Table (for key " + key + "): " + rightTotal + "\n");
-                Logger.log("Migration Starts");
+                Logger.log("Migration Starts:");
                 if(leftTotal < rightTotal){
                     System.out.println(leftRegion + " -> " + rightRegion);
 
@@ -102,7 +102,7 @@ public class TProccess {
                         value.get(rightRegion).doMigration(rightRegion, key);
                     }
 
-                    //sendData3Phase(leftRegion, rightRegion, key, value);
+                    sendData3Phase(leftRegion, rightRegion, key, value);
                 }
                 else {
                     System.out.println(leftRegion + " <- " + rightRegion);
@@ -121,7 +121,7 @@ public class TProccess {
                         value.get(leftRegion).doMigration(leftRegion, key);
                     }
 
-                    //sendData3Phase(rightRegion, leftRegion, key, value);
+                    sendData3Phase(rightRegion, leftRegion, key, value);
                 }
                 Logger.log("------------------------------------------------");
             }
@@ -130,13 +130,9 @@ public class TProccess {
     }
 
     private void sendData3Phase(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
-        //Logger.log("Send Real Data");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {
-                /*if(nodeForLeft.getPartitions().get(regKey).contains(key)){
-
-                }*/
                 nodeForLeft.getPartitions().get(regKey).getAllRecords()
                         .stream()
                         .filter(object -> object.getName().equals(key))
@@ -144,8 +140,10 @@ public class TProccess {
                     for (int rightRegionIndex: value.get(rightRegion).getNodes()) {
                         Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
                         if(!(Util.getNodes().get(rightRegionIndex).getPartitions().get(object.getRegion()).contains(object.getHashID()))){
-                            Logger.log("From Node " + leftRegionIndex + " to " + rightRegionIndex
-                                    + " transfer [" + object.getHashID() + "]: " + object.calculateSize());
+                            if(rightRegionIndex != leftRegionIndex) {
+                                Logger.log("From Node " + leftRegionIndex + " to " + rightRegionIndex
+                                        + " transfer [" + object.getHashID() + "]: " + object.calculateSize());
+                            }
                         }
                     }
                 });
@@ -155,7 +153,6 @@ public class TProccess {
     }
 
     public Set<Integer> getNodesForJoin(){ return this.nodesForJoin; }
-    //public Set<String> getKeysForJoin(){ return this.keysForJoin; }
 
     public void writeNodes(int[] mas) {
         for (int m: mas){

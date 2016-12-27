@@ -24,8 +24,8 @@ public class MProccess {
                     .forEachOrdered(object -> {
                         Util.getNodes().get(nodes[nodes.length - 1]).addObject(this.region, object);
                         if( Util.getNodes().get(nodes[nodes.length - 1]).getPartitions().get(this.region).contains(object.getHashID())) {
-                            Logger.log("From Node " + ID + " to " + nodes[nodes.length - 1] +
-                                    " Node [" + object.getHashID() + "] with size: " + object.calculateSize());
+                            Logger.log("From Node [" + ID + "[ to Node [" + nodes[nodes.length - 1] +
+                                    "] [" + object.getHashID() + "] with size: " + object.calculateSize());
                         }
                     });
         }
