@@ -3,18 +3,21 @@ import yaruliy.algorithm.BloomJoin;
 import yaruliy.algorithm.HashJoin;
 import yaruliy.algorithm.TrackJoin;
 import yaruliy.data.IMDGObject;
+import yaruliy.data.build.OGenerator;
 import yaruliy.db.JoinResult;
 import yaruliy.db.Warehouse;
 import yaruliy.util.Logger;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainFrame {
     public static void main(String a[]){
         Logger.clearLog();
         Warehouse warehouse = new Warehouse();
-        ArrayList<IMDGObject> first = prepareObjects();
-        ArrayList<IMDGObject> second = prepareObjects();
+        OGenerator generator = new OGenerator();
+        generator.setRegionElementsCount(7).setMaxDependencySize(5).setMinDependencySize(3);
+
+        ArrayList<IMDGObject> first = generator.generateObjectArray();
+        ArrayList<IMDGObject> second = generator.generateObjectArray();
 
         String region0 = "Region0";
         String region1 = "Region1";
@@ -31,23 +34,5 @@ public class MainFrame {
         jr2.printResults();
         jr3.printResults();
         Logger.writeEnd();
-    }
-
-    private static ArrayList<IMDGObject> prepareObjects(){
-        ArrayList<IMDGObject> objects = new ArrayList<>();
-        String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack", "Kelly", "Robert"};
-        String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random r = new Random();
-        int n = 10;
-        objects.add(new IMDGObject("Jenna", "Medison", 8));
-        objects.add(new IMDGObject("Sam", "Winchester", 7));
-        for (int i = 0; i < n; i++){
-            String name = names[r.nextInt((names.length))];
-            String serName = "";
-            for (int j = 0; j < r.nextInt((6)) + 5; j++)
-                serName = serName + alpfa.charAt(r.nextInt((alpfa.length() - 1)));
-            objects.add(new IMDGObject(name, serName, r.nextInt((7)) + 1));
-        }
-        return objects;
     }
 }
