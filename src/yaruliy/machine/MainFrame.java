@@ -23,10 +23,6 @@ public class MainFrame {
 
         warehouse.getRegionByName(region0).printRecords(false);
         warehouse.getRegionByName(region1).printRecords(false);
-        /*printNodesContent();
-
-        transferDataToNode(findNodeWithMaxElemCount(region0, region1), findNodeWithMaxElemCount(region1, region0));
-        sendSignalToAll(findNodeWithMaxElemCount(region1, region0), region1);*/
 
         JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");

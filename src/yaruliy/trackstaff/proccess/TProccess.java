@@ -13,13 +13,11 @@ import java.util.Set;
 public class TProccess {
     private TTable table;
     private Set<Integer> nodesForJoin;
-    //private Set<String> keysForJoin;
     private static volatile TProccess instance;
     public void writeIntoTable(TMessage message){ table.addInfoFromMessage(message); }
     private TProccess(){
         this.table = new TTable();
         this.nodesForJoin = new HashSet<>();
-        //this.keysForJoin = new HashSet<>();
     }
 
     public static TProccess getInstance() {
@@ -158,6 +156,5 @@ public class TProccess {
         for (int m: mas){
             this.nodesForJoin.add(m);
         }
-        //this.keysForJoin.add(joinUniKey);
     }
 }
