@@ -16,7 +16,7 @@ public class OGenerator {
         return this;
     }
 
-    public OGenerator setDistributionLawForJoinKey(String key, int count){
+    public OGenerator setJoinKeyFrequency(String key, int count){
         int summa = 0;
         for(int i: rConfig.joinKeyDistributionLaw.values()) summa = summa + i;
 
@@ -26,7 +26,7 @@ public class OGenerator {
         return this;
     }
 
-    public OGenerator setDistributionLawForObjectSize(int[] persentArray, int[] depCountArray){
+    public OGenerator setObjectDependencies(int[] persentArray, int[] depCountArray){
         if(persentArray.length != depCountArray.length)
             throw new IllegalArgumentException("Arrays sizes must match!");
 

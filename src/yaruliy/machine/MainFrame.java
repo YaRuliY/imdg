@@ -11,19 +11,19 @@ public class MainFrame {
         Warehouse warehouse = new Warehouse();
         OGenerator generator = new OGenerator();
         generator.setElementsCountInRegion(30)
-                .setDistributionLawForObjectSize(new int[]{20, 50, 20, 10}, new int[]{3,7,20,15})
-                .setDistributionLawForJoinKey("Jenna", 50)
-                .setDistributionLawForJoinKey("Tom", 20)
-                .setDistributionLawForJoinKey("Sam", 15)
-                .setDistributionLawForJoinKey("Kevin", 15);
+                .setObjectDependencies(new int[]{20, 50, 20, 10}, new int[]{3,7,20,15})
+                .setJoinKeyFrequency("Jenna", 50)
+                .setJoinKeyFrequency("Tom", 20)
+                .setJoinKeyFrequency("Sam", 15)
+                .setJoinKeyFrequency("Kevin", 15);
 
         ArrayList<IMDGObject> first = generator.generateObjectArray();
         generator.clear();
 
-        generator.setDistributionLawForObjectSize(new int[]{70, 10, 20}, new int[]{9,7,5})
-                .setDistributionLawForJoinKey("Jack", 35)
-                .setDistributionLawForJoinKey("Kate", 40)
-                .setDistributionLawForJoinKey("Bobby", 25);
+        generator.setObjectDependencies(new int[]{70, 10, 20}, new int[]{9,7,5})
+                .setJoinKeyFrequency("Jack", 35)
+                .setJoinKeyFrequency("Kate", 40)
+                .setJoinKeyFrequency("Bobby", 25);
         ArrayList<IMDGObject> second = generator.generateObjectArray();
 
         String region0 = "Region0";
