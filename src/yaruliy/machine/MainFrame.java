@@ -10,11 +10,12 @@ public class MainFrame {
         Logger.clearLog();
         Warehouse warehouse = new Warehouse();
         OGenerator generator = new OGenerator();
-        generator.setElementsCountInRegion(15)
-                .setDistributionLawForObjectSize(new int[]{20, 50, 30}, new int[]{3,7,4})
+        generator.setElementsCountInRegion(30)
+                .setDistributionLawForObjectSize(new int[]{20, 50, 20, 10}, new int[]{3,7,20,15})
                 .setDistributionLawForJoinKey("Jenna", 50)
-                .setDistributionLawForJoinKey("Tom", 25)
-                .setDistributionLawForJoinKey("Sam", 25);
+                .setDistributionLawForJoinKey("Tom", 20)
+                .setDistributionLawForJoinKey("Sam", 15)
+                .setDistributionLawForJoinKey("Kevin", 15);
 
         ArrayList<IMDGObject> first = generator.generateObjectArray();
         generator.clear();
@@ -30,7 +31,7 @@ public class MainFrame {
         warehouse.addCollection(first, region0);
         warehouse.addCollection(second, region1);
 
-        warehouse.getRegionByName(region0).printRecords(false);
+        warehouse.getRegionByName(region0).printRecords(true);
         warehouse.getRegionByName(region1).printRecords(false);
 
         /*JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
