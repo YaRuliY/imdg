@@ -72,7 +72,7 @@ public class OGenerator {
                 for (int pKey : percentKeys) {
                     if (rConfig.objectSizeDistributionLaw.get(pKey).size() > 1) {
                         preparedDepCount[i] = rConfig.objectSizeDistributionLaw.get(pKey).get(1);
-                        System.out.println("i: " + i);
+                        //System.out.println("i: " + i);
                     }
                 }
         }

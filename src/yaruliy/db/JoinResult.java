@@ -12,8 +12,8 @@ public class JoinResult {
     }
 
     public void printResults(){
+        System.out.println("\n##########################################");
         if (this.resultArray.size() > 0){
-            System.out.println("\n##########################################");
             System.out.println("JOIN(" + this.joinType + ") Results(" + this.resultArray.size() + ") :");
             for (int i = 0; i < this.resultArray.size(); i++){
                 System.out.printf("%-6s [%-10s] -- ", resultArray.get(i)[0].getName(), resultArray.get(i)[0].getHashID());
@@ -22,10 +22,10 @@ public class JoinResult {
                 else System.out.println("null");
                 if (i < this.resultArray.size()-1){
                     if (!resultArray.get(i)[0].getHashID().equals(resultArray.get(i+1)[0].getHashID()))
-                        System.out.println("----------------------------------------");
+                        System.out.println("------------------------------------------");
                 }
             }
         }
-        else System.out.println("Result Join(" + this.joinType + ") Set is Empty");
+        else System.out.println("JOIN(" + this.joinType + ") Results(0) : Set is Empty");
     }
 }
