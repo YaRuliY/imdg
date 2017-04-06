@@ -1,7 +1,7 @@
 package yaruliy.util;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.Node;
+import yaruliy.structure.Node;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +35,7 @@ public class Util {
         return size;
     }
 
-    static public String valueGetter(String field, IMDGObject object){
+    static public String getValue(String field, IMDGObject object){
         field = Character.toUpperCase(field.charAt(0)) + field.substring(1);
         String result = null;
         try { result = IMDGObject.class.getMethod("get"+field).invoke(object).toString(); }

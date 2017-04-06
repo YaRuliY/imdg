@@ -1,5 +1,5 @@
 package yaruliy.trackstaff.proccess;
-import yaruliy.db.Region;
+import yaruliy.structure.Region;
 import java.util.HashMap;
 
 public class MProccessManager {

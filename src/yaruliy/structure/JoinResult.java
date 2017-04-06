@@ -1,4 +1,4 @@
-package yaruliy.db;
+package yaruliy.structure;
 import yaruliy.data.IMDGObject;
 import java.util.ArrayList;
 
@@ -6,8 +6,8 @@ public class JoinResult {
     private ArrayList<IMDGObject[]> resultArray;
     private String joinType;
     public void addObjectsCouple(IMDGObject[]mas){ this.resultArray.add(mas);}
-    public JoinResult(String jType) {
-        this.joinType = jType.substring(jType.lastIndexOf('.') + 1, jType.length());
+    public JoinResult(String joinType) {
+        this.joinType = joinType.substring(joinType.lastIndexOf('.') + 1, joinType.length());
         this.resultArray = new ArrayList<>();
     }
 

@@ -1,4 +1,4 @@
-package yaruliy.db;
+package yaruliy.structure;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
@@ -6,7 +6,7 @@ import yaruliy.trackstaff.proccess.MProccessManager;
 import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import java.util.*;
-import static yaruliy.util.Util.valueGetter;
+import static yaruliy.util.Util.getValue;
 import static yaruliy.util.Util.getNodes;
 
 public class Region {
@@ -80,20 +80,16 @@ public class Region {
         }
     }
 
-    public BloomFilterMD5<String> writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
-        Logger.log("Objects that hashed into BF[" + this.name + "]:");
-        for (IMDGObject object: this.getAllRecords()) {
-            Logger.log("\t[" + object.getName() + "]");
-            bloomFilter.add(valueGetter(field, object));
-        }
-        return bloomFilter;
+    public void writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
+        for (IMDGObject object: this.getAllRecords())
+            bloomFilter.add(getValue(field, object));
     }
 
     public ArrayList<IMDGObject> getFilteredRecords(BloomFilterMD5<String> bloomFilter, String field){
         Set<IMDGObject> result = new HashSet<>();
         Logger.log("Objects that don't transfer with Region[" + this.name + "]:");
         for (IMDGObject object : this.getAllRecords()){
-            if(bloomFilter.contains(valueGetter(field, object)))
+            if(bloomFilter.contains(getValue(field, object)))
                 result.add(object);
             else Logger.log("\t[" + object.getName() + "]");
         }

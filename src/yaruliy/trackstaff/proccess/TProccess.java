@@ -1,5 +1,5 @@
 package yaruliy.trackstaff.proccess;
-import yaruliy.db.Node;
+import yaruliy.structure.Node;
 import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import yaruliy.trackstaff.TElement;

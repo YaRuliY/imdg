@@ -1,11 +1,11 @@
-package yaruliy.machine;
+package yaruliy.runner;
 import yaruliy.algorithm.BloomJoin;
 import yaruliy.algorithm.HashJoin;
 import yaruliy.algorithm.TrackJoin;
 import yaruliy.data.IMDGObject;
-import yaruliy.data.build.OGenerator;
-import yaruliy.db.JoinResult;
-import yaruliy.db.Warehouse;
+import yaruliy.data.build.ObjectGenerator;
+import yaruliy.structure.JoinResult;
+import yaruliy.structure.Warehouse;
 import yaruliy.util.Logger;
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class MainFrame {
     public static void main(String a[]){
         Logger.clearLog();
         Warehouse warehouse = new Warehouse();
-        OGenerator generator = new OGenerator();
+        ObjectGenerator generator = new ObjectGenerator();
         generator.setElementsCountInRegion(30)
                 .setObjectDependencies(new int[]{20, 50, 20, 10}, new int[]{3,7,20,15})
                 .setJoinKeyFrequency("Jenna", 50)
@@ -22,7 +22,7 @@ public class MainFrame {
                 .setJoinKeyFrequency("Kevin", 15);
 
         ArrayList<IMDGObject> first = generator.generateObjectArray();
-        generator.clear();
+        generator.reInit();
 
         generator.setObjectDependencies(new int[]{70, 10, 20}, new int[]{9,7,5})
                 .setJoinKeyFrequency("Jack", 35)

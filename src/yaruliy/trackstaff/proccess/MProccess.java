@@ -1,8 +1,8 @@
 package yaruliy.trackstaff.proccess;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.Node;
-import yaruliy.db.Region;
+import yaruliy.structure.Node;
+import yaruliy.structure.Region;
 import yaruliy.trackstaff.TMessage;
 import yaruliy.trackstaff.TTransport;
 import yaruliy.util.Logger;

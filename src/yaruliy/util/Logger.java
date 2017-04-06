@@ -8,14 +8,14 @@ public class Logger {
     private Logger(){}
     private static String source = "resources/main.log";
 
-    public static void log(String string, boolean append){
+    public static void log(String message, boolean append){
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, append), "utf-8"))) {
-            writer.write(string + "\n");
+            writer.write(message + "\n");
         }
         catch (IOException e){ e.printStackTrace(); }
     }
 
-    public static void log(String string){ log(string, true); }
+    public static void log(String message){ log(message, true); }
     public static void clearLog() {
         try (Writer writer = new BufferedWriter(new FileWriter(source, false))){
             writer.write("");

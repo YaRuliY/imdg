@@ -1,4 +1,4 @@
-package yaruliy.db;
+package yaruliy.structure;
 import yaruliy.data.IMDGObject;
 import java.util.HashMap;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package yaruliy.db;
+package yaruliy.structure;
 import yaruliy.algorithm.JoinAlgorithm;
 import yaruliy.data.IMDGObject;
 import yaruliy.util.Logger;
@@ -31,7 +31,7 @@ public class Warehouse {
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
         long time = System.nanoTime() - start;
         Logger.log("JOIN (" + joinName + ") time: " + time + " ns.");
-        Logger.log("---------------------------------------------------");
+        Logger.log("---------------------------------------------------\n");
         return joinResult;
     }
 }

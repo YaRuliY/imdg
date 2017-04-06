@@ -5,18 +5,18 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Set;
 
-public class OGenerator {
+public class ObjectGenerator {
     private RConfig rConfig = new RConfig();
     private Random random = new Random();
     private String[] preparedNames;
     private int[] preparedDepCount;
 
-    public OGenerator setElementsCountInRegion(int elementsCount){
+    public ObjectGenerator setElementsCountInRegion(int elementsCount){
         rConfig.regionElementsCount = elementsCount;
         return this;
     }
 
-    public OGenerator setJoinKeyFrequency(String key, int count){
+    public ObjectGenerator setJoinKeyFrequency(String key, int count){
         int summa = 0;
         for(int i: rConfig.joinKeyDistributionLaw.values()) summa = summa + i;
 
@@ -26,7 +26,7 @@ public class OGenerator {
         return this;
     }
 
-    public OGenerator setObjectDependencies(int[] persentArray, int[] depCountArray){
+    public ObjectGenerator setObjectDependencies(int[] persentArray, int[] depCountArray){
         if(persentArray.length != depCountArray.length)
             throw new IllegalArgumentException("Arrays sizes must match!");
 
@@ -77,26 +77,25 @@ public class OGenerator {
                 }
         }
 
-        //Object-Generation
         for (int i = 0; i < rConfig.regionElementsCount; i++){
-            String secondName = "";
+            StringBuilder secondName = new StringBuilder();
             for (int j = 0; j < random.nextInt((6)) + 5; j++)
-                secondName = secondName + rConfig.alpfa.charAt(random.nextInt((rConfig.alpfa.length() - 1)));
+                secondName.append(rConfig.alpfa.charAt(random.nextInt((rConfig.alpfa.length() - 1))));
 
             String name = preparedNames[i];
             int dependencyCount = preparedDepCount[i];
             if (name == null) name = rConfig.names[random.nextInt((rConfig.names.length))];
             if (dependencyCount == 0 ) dependencyCount = -(preparedDepCount[preparedDepCount.length-1]);
-            objects.add(new IMDGObject(name, secondName, dependencyCount));
+            objects.add(new IMDGObject(name, secondName.toString(), dependencyCount));
         }
+
         return objects;
     }
 
-    public OGenerator clear(){
+    public void reInit(){
         rConfig.regionElementsCount = 10;
         rConfig.joinKeyDistributionLaw = new HashMap<>();
         rConfig.objectSizeDistributionLaw = new HashMap<>();
-        return this;
     }
 
     class RConfig{

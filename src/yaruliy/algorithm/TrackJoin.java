@@ -1,13 +1,13 @@
 package yaruliy.algorithm;
 import yaruliy.data.IMDGObject;
-import yaruliy.db.JoinResult;
-import yaruliy.db.Region;
+import yaruliy.structure.JoinResult;
+import yaruliy.structure.Region;
 import yaruliy.trackstaff.proccess.MProccessManager;
 import yaruliy.trackstaff.proccess.TProccess;
 import yaruliy.util.Util;
 import java.util.Set;
 import static yaruliy.util.Util.printNodesContent;
-import static yaruliy.util.Util.valueGetter;
+import static yaruliy.util.Util.getValue;
 
 public class TrackJoin extends JoinAlgorithm{
     @Override
@@ -36,14 +36,14 @@ public class TrackJoin extends JoinAlgorithm{
         for (IMDGObject objectL: Util.getNodes().get(end).getPartitions().get(left.getName()).getAllRecords())
             Util.getNodes().get(end).getPartitions().get(right.getName()).getAllRecords()
                     .stream()
-                    .filter(objectR -> valueGetter(field, objectL).equals(valueGetter(field, objectR)))
+                    .filter(objectR -> getValue(field, objectL).equals(getValue(field, objectR)))
                     .forEachOrdered(objectR -> jr.addObjectsCouple(new IMDGObject[]{objectL, objectR}));
         /*if(nodes.size() > 0){
             int end = (int)nodes.toArray()[nodes.size() - 1];
             for (IMDGObject objectL: Util.getNodes().get(end).getPartitions().get(left.getName()).getAllRecords())
                 Util.getNodes().get(end).getPartitions().get(right.getName()).getAllRecords()
                         .stream()
-                        .filter(objectR -> valueGetter(field, objectL).equals(valueGetter(field, objectR)))
+                        .filter(objectR -> getValue(field, objectL).equals(getValue(field, objectR)))
                         .forEachOrdered(objectR -> jr.addObjectsCouple(new IMDGObject[]{objectL, objectR}));
         }*/
         return jr;
