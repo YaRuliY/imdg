@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Util {
+public final class Util {
     private static final java.util.Properties properties = new java.util.Properties();
     private static final BloomFilterMD5<String> bloomFilter;
     private static final int bloomFilterElementCount = 50000;
@@ -100,14 +101,26 @@ public class Util {
             }
         }
     }*/
+
     static public void transferDataToNode(int nodeSender, int nodeReceiver){
         for (String regionKey: array.get(nodeSender).getPartitions().keySet()) {
             for (IMDGObject object: array.get(nodeSender).getPartitions().get(regionKey).getAllRecords()) {
                 if(!array.get(nodeReceiver).getPartitions().get(regionKey).getAllRecords().contains(object)){
                     array.get(nodeReceiver).addObject(regionKey, object);
-                    System.out.println("SENDED by a data transfer: " + object.getHashID());
                 }
             }
         }
+    }
+
+    static public List<IMDGObject> getRegionDataFromNodes(String regionName){
+        List<IMDGObject> objectsFromRegion = new ArrayList<>();
+        Logger.log("Transfering Data from " + regionName + " Region...");
+        for (Node node: Util.getNodes())
+            for (IMDGObject object: node.getPartitions().get(regionName).getAllRecords())
+                if(!(objectsFromRegion.contains(object))){
+                    objectsFromRegion.add(object);
+                }
+        Logger.log("\t-> " + regionName + " Region Send: " + objectsFromRegion.size() + " objects");
+        return objectsFromRegion;
     }
 }

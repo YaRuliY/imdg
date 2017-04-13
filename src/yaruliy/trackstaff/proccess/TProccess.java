@@ -19,7 +19,6 @@ public class TProccess {
         this.table = new TTable();
         this.nodesForJoin = new HashSet<>();
     }
-
     public static TProccess getInstance() {
         TProccess localInstance = instance;
         if (localInstance == null) {
@@ -32,7 +31,6 @@ public class TProccess {
         }
         return localInstance;
     }
-
     public void printTable() {
         System.out.println("[-------------------------------------------------" + "Hash-Table-[" +
                 this.table.getHash().size() + "]:" + "-------------------------------------------------");
@@ -68,23 +66,24 @@ public class TProccess {
                 "--------------------------------------------------------------------");
     }
 
-    public void doTransfer(String leftRegion, String rightRegion) {
-        Logger.log("=================Phase=Two=Starts================");
+    public void phaseTwoFour(String leftRegion, String rightRegion) {
+        Logger.log("Phase Two Starts:");
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             HashMap<String, TElement> value = entry.getValue();
 
             if(value.get(leftRegion) != null && value.get(rightRegion) != null){
                 System.out.printf("\t\t%-8s: ", key);
-
-                Logger.log("Route Definition Starts:");
                 int leftTotal = value.get(leftRegion).getTotalCount();
-                Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
                 int rightTotal = value.get(rightRegion).getTotalCount();
+                Logger.log("-------------------FOR-KEY-(" + key + ")--------------------");
+                Logger.log("Route Definition Starts:");
+                Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
                 Logger.log("Total Count from Right Table (for key " + key + "): " + rightTotal + "\n");
-                Logger.log("Migration Starts:");
+                //Logger.log("Migration Starts:");
                 if(leftTotal < rightTotal){
                     System.out.println(leftRegion + " -> " + rightRegion);
+                    Logger.log(leftRegion + " -> " + rightRegion);
 
                     int beforeMigrationCount = 0;
                     for (int i : value.get(leftRegion).getSizes())
@@ -100,9 +99,10 @@ public class TProccess {
                         value.get(rightRegion).doMigration(rightRegion, key);
                     }
 
-                    sendData3Phase(leftRegion, rightRegion, key, value);
+                    doTransfer(leftRegion, rightRegion, key, value);
                 }
                 else {
+                    Logger.log(leftRegion + " <- " + rightRegion);
                     System.out.println(leftRegion + " <- " + rightRegion);
 
                     int beforeMigrationCount = 0;
@@ -119,15 +119,15 @@ public class TProccess {
                         value.get(leftRegion).doMigration(leftRegion, key);
                     }
 
-                    sendData3Phase(rightRegion, leftRegion, key, value);
+                    doTransfer(rightRegion, leftRegion, key, value);
                 }
-                Logger.log("------------------------------------------------");
             }
         }
         System.out.println();
     }
 
-    private void sendData3Phase(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
+    private void doTransfer(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
+        Logger.log("Transfering: ");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {
@@ -137,12 +137,15 @@ public class TProccess {
                         .forEachOrdered(object -> {
                     for (int rightRegionIndex: value.get(rightRegion).getNodes()) {
                         Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
-                        if(!(Util.getNodes().get(rightRegionIndex).getPartitions().get(object.getRegion()).contains(object.getHashID()))){
+                        Logger.log("\t[" + object.getHashID()
+                                + "](" + object.getName() + ") to N[" + rightRegionIndex + "]"
+                                + " from N[" + leftRegionIndex + "]");
+                        /*if(!(Util.getNodes().get(rightRegionIndex).getPartitions().get(object.getRegion()).contains(object.getHashID()))){
                             if(rightRegionIndex != leftRegionIndex) {
                                 Logger.log("From Node " + leftRegionIndex + " to " + rightRegionIndex
                                         + " transfer [" + object.getHashID() + "]: " + object.calculateSize());
                             }
-                        }
+                        }*/
                     }
                 });
             }

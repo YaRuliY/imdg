@@ -16,12 +16,10 @@ public class BloomJoin extends JoinAlgorithm{
         leftRegion.writeValuesIntoFilter(bloomFilter, field);
         long bloomInitTime = System.nanoTime() - bloominit;
         Logger.log("BloomFilter init and hashed into time: " + bloomInitTime + " ns.");
-
-        ArrayList<IMDGObject> rightSet = rightRegion.getFilteredRecords(bloomFilter, field);
+        Logger.log("Left Region send Bloom Filter {count: " + leftRegion.getAllRecords().size() + "}");
+        ArrayList<IMDGObject> rightSet = rightRegion.getRecordsWithFilter(bloomFilter, field);
         int size = 0;
         for (IMDGObject object: rightSet) size = size + object.calculateSize();
-
-        Logger.log("Left Region send: " + leftRegion.getAllRecords().size() + " elements, total zize: " + leftRegion.getRegionSize());
         Logger.log("Right Region(filtered) send: " + rightSet.size() + " elements, total zize: " + size);
 
         long start = System.nanoTime();

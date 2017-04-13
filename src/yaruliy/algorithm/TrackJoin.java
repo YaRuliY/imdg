@@ -18,11 +18,11 @@ public class TrackJoin extends JoinAlgorithm{
 
         TProccess tProccess = TProccess.getInstance();
         tProccess.printTable();
-        tProccess.doTransfer(left.getName(), right.getName());
+        tProccess.phaseTwoFour(left.getName(), right.getName());
         tProccess.printTable();
 
         Set<Integer> nodes = TProccess.getInstance().getNodesForJoin();
-        System.out.println("nodes(.toString()): " + nodes);
+        System.out.println("array of nodes: " + nodes);
         JoinResult jr = new JoinResult(this.getClass().toGenericString());
         if (nodes.size() < 1) return jr;
         int nodeReceiver = (int)nodes.toArray()[nodes.toArray().length - 1];
@@ -32,9 +32,8 @@ public class TrackJoin extends JoinAlgorithm{
         //printNodesContent();
         System.out.println("nodes.size():"+nodes.size());
         //int end = (int)nodes.toArray()[nodes.size() - 1];
-        int end = nodeReceiver;
-        for (IMDGObject objectL: Util.getNodes().get(end).getPartitions().get(left.getName()).getAllRecords())
-            Util.getNodes().get(end).getPartitions().get(right.getName()).getAllRecords()
+        for (IMDGObject objectL: Util.getNodes().get(nodeReceiver).getPartitions().get(left.getName()).getAllRecords())
+            Util.getNodes().get(nodeReceiver).getPartitions().get(right.getName()).getAllRecords()
                     .stream()
                     .filter(objectR -> getValue(field, objectL).equals(getValue(field, objectR)))
                     .forEachOrdered(objectR -> jr.addObjectsCouple(new IMDGObject[]{objectL, objectR}));

@@ -8,7 +8,5 @@ public class TTransport {
         TProccess.getInstance().writeIntoTable(message);
     }
 
-    public static void sendNodesToTProccess(int[] mas) {
-        TProccess.getInstance().writeNodes(mas);
-    }
+    public static void sendNodesToTProccess(int[] mas) { TProccess.getInstance().writeNodes(mas); }
 }

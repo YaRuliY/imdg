@@ -49,14 +49,31 @@ public class Region {
     }
 
     public Set<IMDGObject> getAllRecords(){
-        Set<IMDGObject> array = new HashSet<>();
+        Set<IMDGObject> result = new HashSet<>();
         for (Node node : nodes) {
-            node.getPartitions().keySet()
-                    .stream()
+            //System.out.println(node);
+            node.getPartitions().keySet().stream()
                     .filter(key -> key.contains(this.name))
-                    .forEachOrdered(key -> array.addAll(node.getPartitions().get(key).getAllRecords()));
+                    .forEachOrdered(key -> {
+                        /*
+                        System.out.println("GET All Records from " + this.getName());
+                        System.out.println("Node: " + node.getNodeID());
+                        for (IMDGObject object: node.getPartitions().get(key).getAllRecords())
+                            System.out.println("\t" + object.getHashID());
+                        */
+                        //result.add();
+                        for (IMDGObject object: node.getPartitions().get(key).getAllRecords()){
+                            if(!(result.contains(object))) {
+                                result.add(object);
+                                //System.out.println("\t" + object.getHashID() + " (" + object.getName() + ")");
+                            }
+                        }
+                        //System.out.println("-----------------------------------------------");
+                        //result.addAll(node.getPartitions().get(key).getAllRecords());
+                    });
         }
-        return array;
+        //System.out.println("#####################################################");
+        return result;
     }
 
     public void printRecords(boolean flag){
@@ -69,7 +86,7 @@ public class Region {
             System.out.println("|----|------------|---------|------------|-------|---------|");
             ArrayList<IMDGObject> objects = new ArrayList<>(this.getAllRecords());
             if (flag) Collections.sort(objects);
-            for (IMDGObject object : objects) {
+            for (IMDGObject object : objects){
                 System.out.printf("| %-3d| %-10s | %-7s | %-10s |%6d | %7d |\n",
                         object.getID(), object.getHashID(),
                         object.getName(), object.getSerName(),
@@ -85,17 +102,15 @@ public class Region {
             bloomFilter.add(getValue(field, object));
     }
 
-    public ArrayList<IMDGObject> getFilteredRecords(BloomFilterMD5<String> bloomFilter, String field){
+    public ArrayList<IMDGObject> getRecordsWithFilter(BloomFilterMD5<String> bloomFilter, String field){
         Set<IMDGObject> result = new HashSet<>();
-        Logger.log("Objects that don't transfer with Region[" + this.name + "]:");
         for (IMDGObject object : this.getAllRecords()){
             if(bloomFilter.contains(getValue(field, object)))
                 result.add(object);
-            else Logger.log("\t[" + object.getName() + "]");
         }
         ArrayList<IMDGObject> objects = new ArrayList<>();
         objects.addAll(result);
-        Logger.log("Region[" + this.name + "] fransfer next objects:");
+        Logger.log("Region(" + this.name + ") fransfer next objects:");
         for (IMDGObject object: objects)
             Logger.log("\t[" + object.getName() + "]");
         return objects;

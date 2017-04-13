@@ -8,6 +8,7 @@ public class Node {
     public IMDGObject getObject(String regionName, long id){ return partitions.get(regionName).getObject(id);}
     public HashMap<String, Partition> getPartitions(){ return this.partitions; }
     public int getNodeID() { return nodeID; }
+    public String toString(){ return "Node [" + this.nodeID + "]"; }
 
     public Node(int id){
         this.partitions = new HashMap<>();

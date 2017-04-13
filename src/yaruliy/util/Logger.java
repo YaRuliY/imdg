@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class Logger {
+public final class Logger {
     private Logger(){}
     private static String source = "resources/main.log";
 
@@ -17,7 +17,7 @@ public class Logger {
 
     public static void log(String message){ log(message, true); }
     public static void clearLog() {
-        try (Writer writer = new BufferedWriter(new FileWriter(source, false))){
+        try(Writer writer = new BufferedWriter(new FileWriter(source, false))){
             writer.write("");
             writer.close();
         }
@@ -26,7 +26,7 @@ public class Logger {
 
     public static void writeEnd(){
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, true), "utf-8"))) {
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss [a] - dd.M.yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss - dd.M.yyyy");
             sdf.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
             writer.write("########### " + sdf.format(new Date()) + " ###########");
         }

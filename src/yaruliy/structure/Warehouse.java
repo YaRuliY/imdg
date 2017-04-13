@@ -27,11 +27,13 @@ public class Warehouse {
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
         String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
         long start = System.nanoTime();
-        Logger.log("Start JOIN (" + joinName + ")");
+        Logger.log("Start JOIN (" + joinName + ") " +
+                "{R1.Size = " + getRegionByName("Region0").getAllRecords().size() + "; " +
+                " R2.Size = " + getRegionByName("Region1").getAllRecords().size() + ";}");
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
         long time = System.nanoTime() - start;
         Logger.log("JOIN (" + joinName + ") time: " + time + " ns.");
-        Logger.log("---------------------------------------------------\n");
+        Logger.log("-------------------JOIN (" + joinName + ") Ends---------------------");
         return joinResult;
     }
 }
