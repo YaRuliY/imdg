@@ -123,7 +123,7 @@ public final class Util {
                 if(!(result.contains(object))){
                     result.add(object);
                 }
-        Logger.log("\t-> " + regionName + " Region Send: " + result.size() + " objects");
+        Logger.log("\t-> " + regionName + " Send: " + result.size() + " objects");
         return result;
     }
 
@@ -141,7 +141,7 @@ public final class Util {
                     result.add(object);
                 }
 
-        Logger.log("\t-> " + rName + " Region Send: " + result.size() + " objects");
+        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects");
         return result;
     }
 }

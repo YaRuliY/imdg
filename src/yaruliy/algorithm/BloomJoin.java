@@ -16,11 +16,7 @@ public class BloomJoin extends JoinAlgorithm{
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
         BloomFilterMD5<String> bloomFilter = Util.getBloomFilter();
         writeValuesIntoFilter(bloomFilter, leftRegion.getName(), field);
-        Logger.log("Left Region send BloomFilter (COE: " + leftRegion.getAllRecords().size() + ")");
-
-
         ArrayList<IMDGObject> rightSet = getRegionDataWithFilter(bloomFilter, rightRegion.getName(), field);
-        Logger.log("From Right Region transfer " + rightSet.size() + " elements");
         Logger.log("Start JOIN calculating");
 
         JoinResult jr = new JoinResult(this.getClass().toGenericString());
