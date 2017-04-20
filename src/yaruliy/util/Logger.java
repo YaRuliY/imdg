@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static yaruliy.util.Util.getRegionInfo;
+
 public final class Logger {
     private Logger(){}
     private static String source = "resources/main.log";
@@ -31,5 +33,17 @@ public final class Logger {
             writer.write("########### " + sdf.format(new Date()) + " ###########");
         }
         catch (IOException e){ e.printStackTrace(); }
+    }
+
+    public static void logSystemInfo() {
+        log("---------System-Properties---------------");
+        log("--\t\tReplication Count = 3          --");
+        log("--\t\tNode Count = 3                 --");
+        log("--\t\tLandwidth = 3000000            --");
+        log("--\t\tLatency = 1000                 --");
+        log("--\t\t" + "R1: " + getRegionInfo().get("Region0")
+                + "; " + "R2: " + getRegionInfo().get("Region1")
+                + ";                --");
+        log("-----------------------------------------\n");
     }
 }

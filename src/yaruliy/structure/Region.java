@@ -96,30 +96,4 @@ public class Region {
             System.out.println();
         }
     }
-
-    public void writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String field){
-        for (IMDGObject object: this.getAllRecords())
-            bloomFilter.add(getValue(field, object));
-    }
-
-    public ArrayList<IMDGObject> getRecordsWithFilter(BloomFilterMD5<String> bloomFilter, String field){
-        Set<IMDGObject> result = new HashSet<>();
-        for (IMDGObject object : this.getAllRecords()){
-            if(bloomFilter.contains(getValue(field, object)))
-                result.add(object);
-        }
-        ArrayList<IMDGObject> objects = new ArrayList<>();
-        objects.addAll(result);
-        Logger.log("Region(" + this.name + ") fransfer next objects:");
-        for (IMDGObject object: objects)
-            Logger.log("\t[" + object.getName() + "]");
-        return objects;
-    }
-
-    public int getRegionSize(){
-        int size = 0;
-        for (IMDGObject object: this.getAllRecords())
-            size = size + object.calculateSize();
-        return size;
-    }
 }

@@ -6,24 +6,27 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public final class Util {
     private static final java.util.Properties properties = new java.util.Properties();
     private static final BloomFilterMD5<String> bloomFilter;
     private static final int bloomFilterElementCount = 50000;
     private static final ArrayList<Node> array;
+    private static final HashMap<String, Integer> regionNameSize;
 
     public static byte getProperty(String property) { return Byte.parseByte(properties.getProperty(property)); }
     public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
     public static ArrayList<Node> getNodes() { return array; }
+    public static HashMap<String, Integer> getRegionInfo() { return regionNameSize; }
+    public static void addRegionNameSize(String name, int size){ regionNameSize.put(name, size); }
 
     static {
         try(InputStream input = new FileInputStream("resources/imdg.properties")) { properties.load(input); }
         catch (IOException ex) { ex.printStackTrace(); }
         bloomFilter = new BloomFilterMD5<>(0.001, bloomFilterElementCount);
         array = new ArrayList<>();
+        regionNameSize  = new HashMap<>();
         for (int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){
             array.add(new Node(i));
         }
@@ -113,14 +116,32 @@ public final class Util {
     }
 
     static public List<IMDGObject> getRegionDataFromNodes(String regionName){
-        List<IMDGObject> objectsFromRegion = new ArrayList<>();
+        List<IMDGObject> result = new ArrayList<>();
         Logger.log("Transfering Data from " + regionName + " Region...");
         for (Node node: Util.getNodes())
             for (IMDGObject object: node.getPartitions().get(regionName).getAllRecords())
-                if(!(objectsFromRegion.contains(object))){
-                    objectsFromRegion.add(object);
+                if(!(result.contains(object))){
+                    result.add(object);
                 }
-        Logger.log("\t-> " + regionName + " Region Send: " + objectsFromRegion.size() + " objects");
-        return objectsFromRegion;
+        Logger.log("\t-> " + regionName + " Region Send: " + result.size() + " objects");
+        return result;
+    }
+
+    static public void writeValuesIntoFilter(BloomFilterMD5<String> bloomFilter, String rName, String field){
+        for (IMDGObject object: getRegionDataFromNodes(rName))
+            bloomFilter.add(getValue(field, object));
+    }
+
+    static public ArrayList<IMDGObject> getRegionDataWithFilter(BloomFilterMD5<String> bloomFilter, String rName, String field){
+        ArrayList<IMDGObject> result = new ArrayList<>();
+        Logger.log("Transfering Data from " + rName + " Region...");
+        for (Node node: Util.getNodes())
+            for (IMDGObject object: node.getPartitions().get(rName).getAllRecords())
+                if(bloomFilter.contains(getValue(field, object)) && (!(result.contains(object)))){
+                    result.add(object);
+                }
+
+        Logger.log("\t-> " + rName + " Region Send: " + result.size() + " objects");
+        return result;
     }
 }

@@ -41,6 +41,7 @@ public class MainFrame {
         warehouse.getRegionByName(region0).printRecords(true);
         warehouse.getRegionByName(region1).printRecords(false);
 
+        Logger.logSystemInfo();
         JoinResult jr1 = warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         JoinResult jr2 = warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         JoinResult jr3 = warehouse.executeJOIN(region0, region1, new TrackJoin(), "name");

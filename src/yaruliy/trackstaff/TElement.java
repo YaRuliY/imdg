@@ -25,7 +25,7 @@ public class TElement {
             newmassizes[newmassizes.length - 1] = size;
             this.sizes = newmassizes;
         }
-        else {
+        else{
             this.sizes[getNumberIndex(node)] = this.sizes[getNumberIndex(node)] + size;
         }
     }

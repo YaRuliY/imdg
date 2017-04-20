@@ -6,23 +6,21 @@ import yaruliy.structure.Region;
 import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import java.util.ArrayList;
+
+import static yaruliy.util.Util.getRegionDataWithFilter;
 import static yaruliy.util.Util.getValue;
+import static yaruliy.util.Util.writeValuesIntoFilter;
 
 public class BloomJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
-        long bloominit = System.nanoTime();
         BloomFilterMD5<String> bloomFilter = Util.getBloomFilter();
-        leftRegion.writeValuesIntoFilter(bloomFilter, field);
-        long bloomInitTime = System.nanoTime() - bloominit;
-        Logger.log("BloomFilter init and hashed into time: " + bloomInitTime + " ns.");
-        Logger.log("Left Region send Bloom Filter {count: " + leftRegion.getAllRecords().size() + "}");
-        ArrayList<IMDGObject> rightSet = rightRegion.getRecordsWithFilter(bloomFilter, field);
-        int size = 0;
-        for (IMDGObject object: rightSet) size = size + object.calculateSize();
-        Logger.log("Right Region(filtered) send: " + rightSet.size() + " elements, total zize: " + size);
+        writeValuesIntoFilter(bloomFilter, leftRegion.getName(), field);
+        Logger.log("Left Region send BloomFilter (COE: " + leftRegion.getAllRecords().size() + ")");
 
-        long start = System.nanoTime();
+
+        ArrayList<IMDGObject> rightSet = getRegionDataWithFilter(bloomFilter, rightRegion.getName(), field);
+        Logger.log("From Right Region transfer " + rightSet.size() + " elements");
         Logger.log("Start JOIN calculating");
 
         JoinResult jr = new JoinResult(this.getClass().toGenericString());
@@ -30,9 +28,6 @@ public class BloomJoin extends JoinAlgorithm{
             rightSet.stream()
                     .filter(rightObj -> getValue(field, leftObj).equals(getValue(field, rightObj)))
                     .forEachOrdered(rightObj -> jr.addObjectsCouple(new IMDGObject[]{leftObj, rightObj}));
-
-        long time = System.nanoTime() - start;
-        Logger.log("JOIN calculating time: " + time + " ns.");
         return jr;
     }
 }
