@@ -12,12 +12,12 @@ import static yaruliy.util.Util.getValue;
 public class HashJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region leftRegion, Region rightRegion, String field) {
-        Logger.log("-----------------Transfering-Data----------------");
+        //-----------------Transfering-Data----------------");
         List<IMDGObject> leftRegionObjects = getRegionDataFromNodes(leftRegion.getName());
         List<IMDGObject> rightRegionObjects = getRegionDataFromNodes(rightRegion.getName());
-        Logger.log("-----------------End-Transfering-----------------");
+        //-----------------End-Transfering-----------------");
 
-        //Left Table Building
+        //Hash Table Building
         HashMap<String, ArrayList<IMDGObject>> leftTable = new HashMap<>();
         for (IMDGObject object: leftRegionObjects) {
             String joinField = getValue(field, object);
@@ -30,8 +30,6 @@ public class HashJoin extends JoinAlgorithm{
         }
 
         JoinResult result = new JoinResult(this.getClass().toGenericString());
-        Logger.log("Start JOIN calculating");
-
         for (String key : leftTable.keySet()){
             for (IMDGObject leftObject: leftTable.get(key)){
                 rightRegionObjects.stream()

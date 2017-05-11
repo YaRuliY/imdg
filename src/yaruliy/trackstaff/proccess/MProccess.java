@@ -17,6 +17,7 @@ public class MProccess {
 
     public void sendDataToLastNode(int[] nodes, String joinUniqueKey){
         Logger.log("Migration Starts: ");
+        final int[] migrationCount = {0};
         for (int i = 0; i < nodes.length - 1; i++){
             int ID = i;
             Util.getNodes().get(i).getPartitions().get(this.region).getAllRecords().stream()
@@ -24,12 +25,14 @@ public class MProccess {
                     .forEachOrdered(object -> {
                         Util.getNodes().get(nodes[nodes.length - 1]).addObject(this.region, object);
                         if( Util.getNodes().get(nodes[nodes.length - 1]).getPartitions().get(this.region).contains(object.getHashID())) {
-                            Logger.log("\tFrom N[" + ID + "[ to N[" + nodes[nodes.length - 1] + "] " +
+                            Logger.log("\tFrom N[" + ID + "] to N[" + nodes[nodes.length - 1] + "] " +
                                     "[" + object.getHashID() + "](" + object.getName() + ") " +
                                     "with size: " + object.calculateSize());
+                            migrationCount[0]++;
                         }
                     });
         }
+        Logger.log("Migration Count: " + migrationCount[0]);
     }
 
     public void receiveMessage(int node, TMessage message){

@@ -30,7 +30,7 @@ public final class Logger {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, true), "utf-8"))) {
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss - dd.M.yyyy");
             sdf.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
-            writer.write("########### " + sdf.format(new Date()) + " ###########");
+            writer.write("End of Testing. Time: " + sdf.format(new Date()));
         }
         catch (IOException e){ e.printStackTrace(); }
     }

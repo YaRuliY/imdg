@@ -15,14 +15,18 @@ public class Node {
         this.nodeID = id;
     }
 
-    public void addObject(String regionName, IMDGObject object){
-        if(partitions.containsKey(regionName)){
-            if (!partitions.get(regionName).getAllRecords().contains(object))
-                partitions.get(regionName).addObject(object);
+    public void addObject(String rName, IMDGObject object){
+        if(partitions.containsKey(rName)){
+            if(!partitions.get(rName).getAllRecords().contains(object))
+                partitions.get(rName).addObject(object);
         }
         else {
-            partitions.put(regionName, new Partition());
-            partitions.get(regionName).addObject(object);
+            partitions.put(rName, new Partition());
+            partitions.get(rName).addObject(object);
         }
+    }
+
+    public boolean containsObject(String rName, IMDGObject object) {
+        return partitions.containsKey(rName) && partitions.get(rName).getAllRecords().contains(object);
     }
 }

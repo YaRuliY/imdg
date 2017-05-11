@@ -80,7 +80,6 @@ public class TProccess {
                 Logger.log("Route Definition Starts:");
                 Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
                 Logger.log("Total Count from Right Table (for key " + key + "): " + rightTotal + "\n");
-                //Logger.log("Migration Starts:");
                 if(leftTotal < rightTotal){
                     System.out.println(leftRegion + " -> " + rightRegion);
                     Logger.log(leftRegion + " -> " + rightRegion);
@@ -127,6 +126,7 @@ public class TProccess {
     }
 
     private void doTransfer(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
+        final int[] transferCount = {0};
         Logger.log("Transfering: ");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
@@ -136,20 +136,18 @@ public class TProccess {
                         .filter(object -> object.getName().equals(key))
                         .forEachOrdered(object -> {
                     for (int rightRegionIndex: value.get(rightRegion).getNodes()) {
-                        Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
-                        Logger.log("\t[" + object.getHashID()
-                                + "](" + object.getName() + ") to N[" + rightRegionIndex + "]"
-                                + " from N[" + leftRegionIndex + "]");
-                        /*if(!(Util.getNodes().get(rightRegionIndex).getPartitions().get(object.getRegion()).contains(object.getHashID()))){
-                            if(rightRegionIndex != leftRegionIndex) {
-                                Logger.log("From Node " + leftRegionIndex + " to " + rightRegionIndex
-                                        + " transfer [" + object.getHashID() + "]: " + object.calculateSize());
-                            }
-                        }*/
+                        if(!(Util.getNodes().get(rightRegionIndex).containsObject(object.getRegion(), object))){
+                            Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
+                            Logger.log("\t[" + object.getHashID() + "](" + object.getName() + ") "
+                                    + "from N[" + leftRegionIndex + "]"
+                                    + "to N[" + rightRegionIndex + "] ");
+                            transferCount[0]++;
+                        }
                     }
                 });
             }
         }
+        Logger.log("Transfer Count: " + transferCount[0]);
         Logger.log("");
     }
 
