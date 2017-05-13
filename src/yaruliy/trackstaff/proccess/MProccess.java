@@ -16,7 +16,7 @@ public class MProccess {
     public MProccess(Region region){ this.region = region.getName(); }
 
     public void sendDataToLastNode(int[] nodes, String joinUniqueKey){
-        Logger.log("Migration Starts: ");
+        Logger.log("Migration Starts... ");
         final int[] migrationCount = {0};
         for (int i = 0; i < nodes.length - 1; i++){
             int ID = i;

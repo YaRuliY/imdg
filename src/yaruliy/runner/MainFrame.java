@@ -15,8 +15,8 @@ public class MainFrame {
     public static void main(String a[]){
         Logger.clearLog();
         Warehouse warehouse = new Warehouse();
-
         ObjectGenerator generator = new ObjectGenerator();
+
         generator.setElementsCountInRegion(30)
                 .setObjectDependencies(new int[]{20, 50, 20, 10}, new int[]{3,7,20,15})
                 .setJoinKeyFrequency("Jenna", 50)

@@ -30,7 +30,7 @@ public class Warehouse {
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
         String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
         long start = System.nanoTime();
-        Logger.log("###############---JOIN (" + joinName + ") Starts---###############");
+        Logger.log("###############---JOIN (" + joinName + ") Starts---################");
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
         long time = System.nanoTime() - start;
         Logger.log("JOIN (" + joinName + ") time: " + time + " ns.");

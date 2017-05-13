@@ -3,8 +3,8 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-
 import static yaruliy.util.Util.getRegionInfo;
+import static yaruliy.util.Util.getProperty;
 
 public final class Logger {
     private Logger(){}
@@ -37,12 +37,12 @@ public final class Logger {
 
     public static void logSystemInfo() {
         log("---------System-Properties---------------");
-        log("--\t\tReplication Count = 3          --");
-        log("--\t\tNode Count = 3                 --");
+        log("--\t\tReplication Count = " + getProperty("replicationCount") + "          --");
+        log("--\t\tNode Count = " + getProperty("nodeCount") + "                 --");
         log("--\t\tLandwidth = 3000000            --");
         log("--\t\tLatency = 1000                 --");
-        log("--\t\t" + "R1: " + getRegionInfo().get("Region0")
-                + "; " + "R2: " + getRegionInfo().get("Region1")
+        log("--\t\t" + "R0: " + getRegionInfo().get("Region0")
+                + "; " + "R1: " + getRegionInfo().get("Region1")
                 + ";                --");
         log("-----------------------------------------\n");
     }

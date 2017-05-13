@@ -2,7 +2,7 @@ package yaruliy.algorithm;
 import yaruliy.data.IMDGObject;
 import yaruliy.structure.JoinResult;
 import yaruliy.structure.Region;
-import yaruliy.util.Logger;
+//import yaruliy.util.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

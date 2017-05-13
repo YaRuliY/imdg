@@ -67,7 +67,7 @@ public class TProccess {
     }
 
     public void phaseTwoFour(String leftRegion, String rightRegion) {
-        Logger.log("Phase Two Starts:");
+        Logger.log("Phase Two Starts...");
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             HashMap<String, TElement> value = entry.getValue();
@@ -77,7 +77,7 @@ public class TProccess {
                 int leftTotal = value.get(leftRegion).getTotalCount();
                 int rightTotal = value.get(rightRegion).getTotalCount();
                 Logger.log("-------------------FOR-KEY-(" + key + ")--------------------");
-                Logger.log("Route Definition Starts:");
+                Logger.log("Route Definition Starts...");
                 Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
                 Logger.log("Total Count from Right Table (for key " + key + "): " + rightTotal + "\n");
                 if(leftTotal < rightTotal){
@@ -127,7 +127,7 @@ public class TProccess {
 
     private void doTransfer(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
         final int[] transferCount = {0};
-        Logger.log("Transfering: ");
+        Logger.log("Transfering... ");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {
@@ -139,7 +139,7 @@ public class TProccess {
                         if(!(Util.getNodes().get(rightRegionIndex).containsObject(object.getRegion(), object))){
                             Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
                             Logger.log("\t[" + object.getHashID() + "](" + object.getName() + ") "
-                                    + "from N[" + leftRegionIndex + "]"
+                                    + "from N[" + leftRegionIndex + "] "
                                     + "to N[" + rightRegionIndex + "] ");
                             transferCount[0]++;
                         }
