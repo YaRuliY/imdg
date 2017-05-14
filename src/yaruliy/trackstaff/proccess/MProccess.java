@@ -24,15 +24,17 @@ public class MProccess {
                     .filter(object -> object.getName().equals(joinUniqueKey))
                     .forEachOrdered(object -> {
                         Util.getNodes().get(nodes[nodes.length - 1]).addObject(this.region, object);
-                        if( Util.getNodes().get(nodes[nodes.length - 1]).getPartitions().get(this.region).contains(object.getHashID())) {
+                        if(Util.getNodes().get(nodes[nodes.length - 1]).getPartitions().get(this.region).contains(object.getHashID())){
                             Logger.log("\tFrom N[" + ID + "] to N[" + nodes[nodes.length - 1] + "] " +
-                                    "[" + object.getHashID() + "](" + object.getName() + ") " +
-                                    "with size: " + object.calculateSize());
+                                    "[" + object.getHashID() + "] " + object.getName() + " " +
+                                    "(size: " + object.calculateSize() + ")");
                             migrationCount[0]++;
+                            Util.joinSize = Util.joinSize + object.calculateSize();
                         }
                     });
         }
-        Logger.log("Migration Count: " + migrationCount[0]);
+        Logger.log("\tMigration Count: " + migrationCount[0]);
+        Logger.log("\tMigration Data Cost: " + Util.joinSize);
     }
 
     public void receiveMessage(int node, TMessage message){

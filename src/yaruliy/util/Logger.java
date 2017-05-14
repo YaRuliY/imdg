@@ -8,7 +8,8 @@ import static yaruliy.util.Util.getProperty;
 
 public final class Logger {
     private Logger(){}
-    private static String source = "resources/main.log";
+    private static String source = "logs/join_";
+    static{ source = source + new SimpleDateFormat("HH-mm-ss_dd.MM.yyyy").format(new Date()) + ".log"; }
 
     public static void log(String message, boolean append){
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, append), "utf-8"))) {
@@ -36,14 +37,15 @@ public final class Logger {
     }
 
     public static void logSystemInfo() {
-        log("---------System-Properties---------------");
-        log("--\t\tReplication Count = " + getProperty("replicationCount") + "          --");
-        log("--\t\tNode Count = " + getProperty("nodeCount") + "                 --");
-        log("--\t\tLandwidth = 3000000            --");
-        log("--\t\tLatency = 1000                 --");
-        log("--\t\t" + "R0: " + getRegionInfo().get("Region0")
+        log("");
+        log("\t\t---------System-Properties---------------");
+        log("\t\t--\t\tReplication Count = " + getProperty("replicationCount") + "          --");
+        log("\t\t--\t\tNode Count = " + getProperty("nodeCount") + "                 --");
+        log("\t\t--\t\tLandwidth = 3000000            --");
+        log("\t\t--\t\tLatency = 1000                 --");
+        log("\t\t--\t\t" + "R0: " + getRegionInfo().get("Region0")
                 + "; " + "R1: " + getRegionInfo().get("Region1")
                 + ";                --");
-        log("-----------------------------------------\n");
+        log("\t\t-----------------------------------------\n");
     }
 }

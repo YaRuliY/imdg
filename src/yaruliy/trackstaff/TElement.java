@@ -1,6 +1,5 @@
 package yaruliy.trackstaff;
 import yaruliy.trackstaff.proccess.MProccessManager;
-import yaruliy.util.Logger;
 
 public class TElement {
     private int[] nodes = null;

@@ -21,14 +21,13 @@ public class TProccess {
     }
     public static TProccess getInstance() {
         TProccess localInstance = instance;
-        if (localInstance == null) {
+        if (localInstance == null)
             synchronized (TProccess.class) {
                 localInstance = instance;
                 if (localInstance == null) {
                     instance = localInstance = new TProccess();
                 }
             }
-        }
         return localInstance;
     }
     public void printTable() {
@@ -127,7 +126,8 @@ public class TProccess {
 
     private void doTransfer(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
         final int[] transferCount = {0};
-        Logger.log("Transfering... ");
+        final int[] transferCost = {0};
+        Logger.log("\nTransfering... ");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {
@@ -142,12 +142,15 @@ public class TProccess {
                                     + "from N[" + leftRegionIndex + "] "
                                     + "to N[" + rightRegionIndex + "] ");
                             transferCount[0]++;
+                            transferCost[0] = transferCost[0] + object.calculateSize();
                         }
                     }
                 });
             }
         }
-        Logger.log("Transfer Count: " + transferCount[0]);
+        Logger.log("\tTransfer Count: " + transferCount[0]);
+        Logger.log("\tTransfer Data Cost: " + transferCost[0]);
+        Util.joinSize = Util.joinSize + transferCost[0];
         Logger.log("");
     }
 

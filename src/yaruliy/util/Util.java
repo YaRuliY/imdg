@@ -20,6 +20,7 @@ public final class Util {
     public static ArrayList<Node> getNodes() { return array; }
     public static HashMap<String, Integer> getRegionInfo() { return regionNameSize; }
     public static void addRegionNameSize(String name, int size){ regionNameSize.put(name, size); }
+    public static int joinSize = 0;
 
     static {
         try(InputStream input = new FileInputStream("resources/imdg.properties")) { properties.load(input); }
@@ -115,15 +116,18 @@ public final class Util {
         }
     }
 
-    static public List<IMDGObject> getRegionDataFromNodes(String regionName){
+    static public List<IMDGObject> getRegionDataFromNodes(String rName){
         List<IMDGObject> result = new ArrayList<>();
-        Logger.log("Transfering Data from " + regionName + " Region...");
+        Logger.log("Transfering Data from " + rName + " Region...");
+        int size = 0;
         for (Node node: Util.getNodes())
-            for (IMDGObject object: node.getPartitions().get(regionName).getAllRecords())
+            for (IMDGObject object: node.getPartitions().get(rName).getAllRecords())
                 if(!(result.contains(object))){
                     result.add(object);
+                    size = size + object.calculateSize();
                 }
-        Logger.log("\t-> " + regionName + " Send: " + result.size() + " objects");
+        Util.joinSize = Util.joinSize + size;
+        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + size);
         return result;
     }
 
@@ -135,13 +139,15 @@ public final class Util {
     static public ArrayList<IMDGObject> getRegionDataWithFilter(BloomFilterMD5<String> bloomFilter, String rName, String field){
         ArrayList<IMDGObject> result = new ArrayList<>();
         Logger.log("Transfering Data from " + rName + " Region...");
+        int size = 0;
         for (Node node: Util.getNodes())
             for (IMDGObject object: node.getPartitions().get(rName).getAllRecords())
                 if(bloomFilter.contains(getValue(field, object)) && (!(result.contains(object)))){
                     result.add(object);
+                    size = size + object.calculateSize();
                 }
-
-        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects");
+        Util.joinSize = Util.joinSize + size;
+        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + size);
         return result;
     }
 }
