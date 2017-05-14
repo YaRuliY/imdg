@@ -127,7 +127,7 @@ public final class Util {
                     size = size + object.calculateSize();
                 }
         Util.joinSize = Util.joinSize + size;
-        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + size);
+        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + formatNum(size));
         return result;
     }
 
@@ -147,7 +147,10 @@ public final class Util {
                     size = size + object.calculateSize();
                 }
         Util.joinSize = Util.joinSize + size;
-        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + size);
+        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + formatNum(size));
         return result;
     }
+
+    static public String formatNum(int num){ return "[" + String.format("%,2d", num) + "]"; }
+    static public String formatNum(long num){ return formatNum((int)num); }
 }

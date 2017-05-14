@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static yaruliy.util.Util.formatNum;
+
 public class TProccess {
     private TTable table;
     private Set<Integer> nodesForJoin;
@@ -77,8 +79,8 @@ public class TProccess {
                 int rightTotal = value.get(rightRegion).getTotalCount();
                 Logger.log("-------------------FOR-KEY-(" + key + ")--------------------");
                 Logger.log("Route Definition Starts...");
-                Logger.log("Total Count from Left Table (for key " + key + "): " + leftTotal);
-                Logger.log("Total Count from Right Table (for key " + key + "): " + rightTotal + "\n");
+                Logger.log("Total Count from Left Table (for key " + key + "): " + formatNum(leftTotal));
+                Logger.log("Total Count from Right Table (for key " + key + "): " + formatNum(rightTotal) + "\n");
                 if(leftTotal < rightTotal){
                     System.out.println(leftRegion + " -> " + rightRegion);
                     Logger.log(leftRegion + " -> " + rightRegion);
@@ -149,7 +151,7 @@ public class TProccess {
             }
         }
         Logger.log("\tTransfer Count: " + transferCount[0]);
-        Logger.log("\tTransfer Data Cost: " + transferCost[0]);
+        Logger.log("\tTransfer Data Cost: " + formatNum(transferCost[0]));
         Util.joinSize = Util.joinSize + transferCost[0];
         Logger.log("");
     }

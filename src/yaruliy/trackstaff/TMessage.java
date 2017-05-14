@@ -1,5 +1,7 @@
 package yaruliy.trackstaff;
 
+import yaruliy.util.Util;
+
 public class TMessage {
     private int nodeIndex;
     private int objectSize;
@@ -34,5 +36,9 @@ public class TMessage {
                 "\tNode[" + nodeIndex + "]" + "\n" +
                 "\tObject Size: " + objectSize + "\n" +
                 "\tJoin Key: " + joinKey + "\n";
+    }
+
+    public int calculateSize(){
+        return 32 + 32 + Util.calculateStringSize(regionName) + Util.calculateStringSize(joinKey);
     }
 }

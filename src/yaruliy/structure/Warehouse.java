@@ -7,6 +7,8 @@ import yaruliy.util.Util;
 import java.util.Collection;
 import java.util.HashMap;
 
+import static yaruliy.util.Util.formatNum;
+
 public class Warehouse {
     private HashMap<String, Region> regions;
 
@@ -34,8 +36,9 @@ public class Warehouse {
         Logger.log("###############---JOIN (" + joinName + ") Starts---################\n");
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
         long time = System.nanoTime() - start;
-        Logger.log("JOIN (" + joinName + ") time: " + time + " ns. " +
-                "Total Size: " + String.format("%,2d", Util.joinSize) + "\n");
+        Logger.log("JOIN (" + joinName + ") " +
+                "time: " + formatNum(time) + " ns. " +
+                "Total Size: " + formatNum(Util.joinSize) + "\n");
         Logger.log("###############---JOIN (" + joinName + ") Ends---##################\n\n");
         return joinResult;
     }

@@ -10,6 +10,8 @@ import yaruliy.util.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static yaruliy.util.Util.formatNum;
+
 public class MProccess {
     private String region;
     private HashMap<Integer, ArrayList<TMessage>> messages = new HashMap<>();
@@ -33,8 +35,8 @@ public class MProccess {
                         }
                     });
         }
-        Logger.log("\tMigration Count: " + migrationCount[0]);
-        Logger.log("\tMigration Data Cost: " + Util.joinSize);
+        Logger.log("\n\tMigration Count: " + migrationCount[0]);
+        Logger.log("\tMigration Data Cost: " + formatNum(Util.joinSize));
     }
 
     public void receiveMessage(int node, TMessage message){
