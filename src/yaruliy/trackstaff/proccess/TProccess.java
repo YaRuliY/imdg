@@ -68,7 +68,7 @@ public class TProccess {
     }
 
     public void phaseTwoFour(String leftRegion, String rightRegion) {
-        Logger.log("Phase Two Starts...");
+        Logger.log("\nPhase Two Starts...");
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             HashMap<String, TElement> value = entry.getValue();

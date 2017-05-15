@@ -15,7 +15,7 @@ public final class Util {
     private static final ArrayList<Node> array;
     private static final HashMap<String, Integer> regionNameSize;
 
-    public static byte getProperty(String property) { return Byte.parseByte(properties.getProperty(property)); }
+    public static int getProperty(String property) { return Integer.parseInt(properties.getProperty(property), 10); }
     public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
     public static ArrayList<Node> getNodes() { return array; }
     public static HashMap<String, Integer> getRegionInfo() { return regionNameSize; }
@@ -151,6 +151,9 @@ public final class Util {
         return result;
     }
 
-    static public String formatNum(int num){ return "[" + String.format("%,2d", num) + "]"; }
+    static public String formatNum(int num){
+        if(num == 0) return "[0]";
+        else return "[" + String.format("%,2d", num) + "]";
+    }
     static public String formatNum(long num){ return formatNum((int)num); }
 }

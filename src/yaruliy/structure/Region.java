@@ -10,7 +10,7 @@ import static yaruliy.util.Util.getValue;
 import static yaruliy.util.Util.getNodes;
 
 public class Region {
-    private short replicationCount = Util.getProperty("replicationCount");
+    private short replicationCount = (short)Util.getProperty("replicationCount");
     private long elementCount = 0;
     private String name;
     private ArrayList<Node> nodes;

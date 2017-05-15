@@ -49,15 +49,17 @@ public class MProccess {
     }
 
     public void sendProjection(){
-        //Logger.log("===============Send=projection=(" + this.region + ")===============");
-        Logger.log("Region[" + this.region +"] send projection");
+        Logger.log("Region[" + this.region +"] send Projection...");
+        int size = 0;
         for (Node node: Util.getNodes()){
             for (IMDGObject object: node.getPartitions().get(this.region).getAllRecords()) {
                 TMessage message = new TMessage(object.getName(), this.region, node.getNodeID(), object.calculateSize());
+                size = size + message.calculateSize();
                 TTransport.sendMessage(getNodeIndex(object.getName()), message, this.region);
-                //Logger.log(message.toString());
             }
         }
+        Util.joinSize = Util.joinSize + size;
+        Logger.log("\tProjection cost: " + size);
     }
 
     private int getNodeIndex(String objectName){

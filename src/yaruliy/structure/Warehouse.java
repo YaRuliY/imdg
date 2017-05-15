@@ -32,10 +32,9 @@ public class Warehouse {
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
         Util.joinSize = 0;
         String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
-        long start = System.nanoTime();
         Logger.log("###############---JOIN (" + joinName + ") Starts---################\n");
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
-        long time = System.nanoTime() - start;
+        long time = Util.joinSize / Util.getProperty("landwidth") + Util.getProperty("latency");
         Logger.log("JOIN (" + joinName + ") " +
                 "time: " + formatNum(time) + " ns. " +
                 "Total Size: " + formatNum(Util.joinSize) + "\n");
