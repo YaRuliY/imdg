@@ -1,5 +1,7 @@
 package yaruliy.data.build;
 import yaruliy.data.IMDGObject;
+import yaruliy.util.Util;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -36,17 +38,17 @@ public class ObjectGenerator {
             throw new IllegalArgumentException("Can not be more than 100 percent!");
 
         for (int i = 0; i < persentArray.length; i++)
-            if(!(rConfig.objectSizeDistributionLaw.containsKey(persentArray[i]))){
-                rConfig.objectSizeDistributionLaw.put(persentArray[i], new ArrayList<>());
+            if(rConfig.objectSizeDistributionLaw.containsKey(persentArray[i])){
                 rConfig.objectSizeDistributionLaw.get(persentArray[i]).add(depCountArray[i]);
             }
             else {
+                rConfig.objectSizeDistributionLaw.put(persentArray[i], new ArrayList<>());
                 rConfig.objectSizeDistributionLaw.get(persentArray[i]).add(depCountArray[i]);
             }
         return this;
     }
 
-    public ArrayList<IMDGObject> generateObjectArray(){
+    public ArrayList<IMDGObject> generateObjectArray(String rName){
         ArrayList<IMDGObject> objects = new ArrayList<>(rConfig.regionElementsCount);
 
         Set<String> nameKeys = rConfig.joinKeyDistributionLaw.keySet();
@@ -89,6 +91,7 @@ public class ObjectGenerator {
             objects.add(new IMDGObject(name, secondName.toString(), dependencyCount));
         }
 
+        Util.addConfig(rName, this.rConfig);
         return objects;
     }
 
@@ -96,13 +99,5 @@ public class ObjectGenerator {
         rConfig.regionElementsCount = 10;
         rConfig.joinKeyDistributionLaw = new HashMap<>();
         rConfig.objectSizeDistributionLaw = new HashMap<>();
-    }
-
-    class RConfig{
-        public int regionElementsCount = 0;
-        public HashMap<String, Integer> joinKeyDistributionLaw = new HashMap<>();
-        public HashMap<Integer, ArrayList<Integer>> objectSizeDistributionLaw = new HashMap<>();
-        String[] names = {"Jonh", "Sam", "Dean", "Tom", "Piter", "Natan", "Jenna", "Sophia", "Jack", "Kelly", "Robert"};
-        String alpfa = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
 }

@@ -1,6 +1,7 @@
 package yaruliy.util;
 import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.data.IMDGObject;
+import yaruliy.data.build.RConfig;
 import yaruliy.structure.Node;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,6 +15,7 @@ public final class Util {
     private static final int bloomFilterElementCount = 50000;
     private static final ArrayList<Node> array;
     private static final HashMap<String, Integer> regionNameSize;
+    private static HashMap<String, RConfig> configScreens;
 
     public static int getProperty(String property) { return Integer.parseInt(properties.getProperty(property), 10); }
     public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
@@ -28,9 +30,8 @@ public final class Util {
         bloomFilter = new BloomFilterMD5<>(0.001, bloomFilterElementCount);
         array = new ArrayList<>();
         regionNameSize  = new HashMap<>();
-        for (int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){
-            array.add(new Node(i));
-        }
+        configScreens = new HashMap<>();
+        for(int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){ array.add(new Node(i)); }
     }
 
     static public int calculateStringSize(String s){
@@ -155,5 +156,8 @@ public final class Util {
         if(num == 0) return "[0]";
         else return "[" + String.format("%,2d", num) + "]";
     }
+
     static public String formatNum(long num){ return formatNum((int)num); }
+    static public void addConfig(String rName, RConfig rConfig){ configScreens.put(rName, rConfig); }
+    static public HashMap<String, RConfig> getConfigScreens(){ return configScreens; }
 }

@@ -24,7 +24,7 @@ public class MainFrame {
                 .setJoinKeyFrequency("Sam", 15)
                 .setJoinKeyFrequency("Kevin", 15);
 
-        ArrayList<IMDGObject> first = generator.generateObjectArray();
+        ArrayList<IMDGObject> first = generator.generateObjectArray(region0);
 
         generator.reInit();
         generator.setObjectDependencies(new int[]{70, 10, 20}, new int[]{9,7,5})
@@ -33,7 +33,7 @@ public class MainFrame {
                 .setJoinKeyFrequency("Sam", 15)
                 .setJoinKeyFrequency("Kevin", 10);
 
-        ArrayList<IMDGObject> second = generator.generateObjectArray();
+        ArrayList<IMDGObject> second = generator.generateObjectArray(region1);
 
         warehouse.addCollection(first, region0);
         warehouse.addCollection(second, region1);

@@ -9,7 +9,11 @@ import static yaruliy.util.Util.getProperty;
 public final class Logger {
     private Logger(){}
     private static String source = "logs/join_";
-    static{ source = source + new SimpleDateFormat("HH-mm-ss_dd.MM.yyyy").format(new Date()) + ".log"; }
+    static{
+        String folder = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+        String name = new SimpleDateFormat("HH-mm-ss").format(new Date());
+        source = folder + name + ".log";
+    }
 
     public static void log(String message, boolean append){
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source, append), "utf-8"))) {
@@ -46,6 +50,9 @@ public final class Logger {
         log("\t\t--\t\t" + "R0: " + getRegionInfo().get("Region0")
                 + "; " + "R1: " + getRegionInfo().get("Region1")
                 + ";                --");
+
+        log("\t\t--\t\tJoinKeyFrequency:");
+        log("\t\t--\t\t\t\t");
         log("\t\t-----------------------------------------\n");
     }
 }
