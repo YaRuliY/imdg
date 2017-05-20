@@ -14,14 +14,14 @@ public final class Util {
     private static final BloomFilterMD5<String> bloomFilter;
     private static final int bloomFilterElementCount = 50000;
     private static final ArrayList<Node> array;
-    private static final HashMap<String, Integer> regionNameSize;
+    //private static final HashMap<String, Integer> regionNameSize;
     private static HashMap<String, RConfig> configScreens;
 
     public static int getProperty(String property) { return Integer.parseInt(properties.getProperty(property), 10); }
     public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
     public static ArrayList<Node> getNodes() { return array; }
-    public static HashMap<String, Integer> getRegionInfo() { return regionNameSize; }
-    public static void addRegionNameSize(String name, int size){ regionNameSize.put(name, size); }
+    //public static HashMap<String, Integer> getRegionInfo() { return regionNameSize; }
+    //public static void addRegionNameSize(String name, int size){ regionNameSize.put(name, size); }
     public static int joinSize = 0;
 
     static {
@@ -29,7 +29,7 @@ public final class Util {
         catch (IOException ex) { ex.printStackTrace(); }
         bloomFilter = new BloomFilterMD5<>(0.001, bloomFilterElementCount);
         array = new ArrayList<>();
-        regionNameSize  = new HashMap<>();
+        //regionNameSize  = new HashMap<>();
         configScreens = new HashMap<>();
         for(int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){ array.add(new Node(i)); }
     }
@@ -158,6 +158,8 @@ public final class Util {
     }
 
     static public String formatNum(long num){ return formatNum((int)num); }
-    static public void addConfig(String rName, RConfig rConfig){ configScreens.put(rName, rConfig); }
     static public HashMap<String, RConfig> getConfigScreens(){ return configScreens; }
+    static public void addConfig(String rName, RConfig rConfig){
+        configScreens.put(rName, new RConfig(rConfig.joinKeyDistributionLaw, rConfig.objectSizeDistributionLaw, rConfig.regionElementsCount));
+    }
 }

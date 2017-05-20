@@ -25,7 +25,7 @@ public class Warehouse {
     public Region getRegionByName(String name){ return regions.get(name); }
 
     public void addCollection(Collection<IMDGObject> collection, String regionName){
-        Util.addRegionNameSize(regionName, collection.size());
+        //Util.addRegionNameSize(regionName, collection.size());
         regions.get(regionName).addCollection(collection);
     }
 

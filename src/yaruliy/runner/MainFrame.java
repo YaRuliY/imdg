@@ -17,21 +17,17 @@ public class MainFrame {
         Warehouse warehouse = new Warehouse();
         ObjectGenerator generator = new ObjectGenerator();
 
-        generator.setElementsCountInRegion(30)
-                .setObjectDependencies(new int[]{20, 50, 20, 10}, new int[]{3,7,20,15})
+        generator.setElementsCountInRegion(10)
+                .setObjectDependencies(new int[]{100}, new int[]{30})
                 .setJoinKeyFrequency("Jenna", 50)
-                .setJoinKeyFrequency("Tom", 20)
-                .setJoinKeyFrequency("Sam", 15)
-                .setJoinKeyFrequency("Kevin", 15);
+                .setJoinKeyFrequency("Tom", 50);
 
         ArrayList<IMDGObject> first = generator.generateObjectArray(region0);
 
         generator.reInit();
-        generator.setObjectDependencies(new int[]{70, 10, 20}, new int[]{9,7,5})
-                .setJoinKeyFrequency("Jack", 35)
-                .setJoinKeyFrequency("Kate", 40)
-                .setJoinKeyFrequency("Sam", 15)
-                .setJoinKeyFrequency("Kevin", 10);
+        generator.setObjectDependencies(new int[]{100}, new int[]{30})
+                .setJoinKeyFrequency("Jenna", 50)
+                .setJoinKeyFrequency("Tom", 50);
 
         ArrayList<IMDGObject> second = generator.generateObjectArray(region1);
 
