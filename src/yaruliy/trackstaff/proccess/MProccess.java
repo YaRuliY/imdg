@@ -5,7 +5,7 @@ import yaruliy.structure.Node;
 import yaruliy.structure.Region;
 import yaruliy.trackstaff.TMessage;
 import yaruliy.trackstaff.TTransport;
-import yaruliy.util.Logger;
+//import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class MProccess {
     public MProccess(Region region){ this.region = region.getName(); }
 
     public void sendDataToLastNode(int[] nodes, String joinUniqueKey){
-        Logger.log("Migration Starts... ");
+        //Logger.log("Migration Starts... ");
         final int[] migrationCount = {0};
         for (int i = 0; i < nodes.length - 1; i++){
             int ID = i;
@@ -27,16 +27,17 @@ public class MProccess {
                     .forEachOrdered(object -> {
                         Util.getNodes().get(nodes[nodes.length - 1]).addObject(this.region, object);
                         if(Util.getNodes().get(nodes[nodes.length - 1]).getPartitions().get(this.region).contains(object.getHashID())){
-                            Logger.log("\tFrom N[" + ID + "] to N[" + nodes[nodes.length - 1] + "] " +
-                                    "[" + object.getHashID() + "] " + object.getName() + " " +
-                                    "(size: " + object.calculateSize() + ")");
+                            //Logger.log("\tFrom N[" + ID + "] to N[" + nodes[nodes.length - 1] + "] " +
+                                    /*"[" + object.getHashID() + "] " + object.getName() + " " +
+                                    "(size: " + object.calculateSize() + ")");*/
                             migrationCount[0]++;
                             Util.joinSize = Util.joinSize + object.calculateSize();
                         }
                     });
         }
-        Logger.log("\n\tMigration Count: " + migrationCount[0]);
-        Logger.log("\tMigration Data Cost: " + formatNum(Util.joinSize));
+        //Logger.log("\n\tMigration Count: " + migrationCount[0]);
+        //Logger.log("\tMigration Data Cost: " + formatNum(Util.joinSize));
+        Util.trackJoinTransferCount = Util.trackJoinTransferCount + migrationCount[0];
     }
 
     public void receiveMessage(int node, TMessage message){
@@ -49,7 +50,7 @@ public class MProccess {
     }
 
     public void sendProjection(){
-        Logger.log("Region[" + this.region +"] send Projection...");
+        //Logger.log("Region[" + this.region +"] send Projection...");
         int size = 0;
         for (Node node: Util.getNodes()){
             for (IMDGObject object: node.getPartitions().get(this.region).getAllRecords()) {
@@ -59,7 +60,7 @@ public class MProccess {
             }
         }
         Util.joinSize = Util.joinSize + size;
-        Logger.log("\tProjection cost: " + size);
+        //Logger.log("\tProjection cost: " + size);
     }
 
     private int getNodeIndex(String objectName){

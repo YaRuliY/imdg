@@ -12,6 +12,7 @@ import static yaruliy.util.Util.getValue;
 public class TrackJoin extends JoinAlgorithm{
     @Override
     public JoinResult executeJOIN(Region left, Region right, String field) {
+        Util.trackJoinTransferCount = 0;
         printNodesContent();
         MProccessManager.getProccessByTableName(left.getName()).sendProjection();
         MProccessManager.getProccessByTableName(right.getName()).sendProjection();
@@ -45,6 +46,7 @@ public class TrackJoin extends JoinAlgorithm{
                         .filter(objectR -> getValue(field, objectL).equals(getValue(field, objectR)))
                         .forEachOrdered(objectR -> jr.addObjectsCouple(new IMDGObject[]{objectL, objectR}));
         }*/
+        Util.getStatistics().addTransferCount(Util.trackJoinTransferCount);
         return jr;
     }
 }

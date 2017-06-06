@@ -3,35 +3,40 @@ import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.data.IMDGObject;
 import yaruliy.data.build.RConfig;
 import yaruliy.structure.Node;
+import yaruliy.test.Statistics;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public final class Util {
     private static final java.util.Properties properties = new java.util.Properties();
     private static final BloomFilterMD5<String> bloomFilter;
     private static final int bloomFilterElementCount = 50000;
-    private static final ArrayList<Node> array;
-    //private static final HashMap<String, Integer> regionNameSize;
+    private static ArrayList<Node> array;
     private static HashMap<String, RConfig> configScreens;
+    private static Statistics statistics;
+    private static String source;
 
     public static int getProperty(String property) { return Integer.parseInt(properties.getProperty(property), 10); }
     public static BloomFilterMD5<String> getBloomFilter() { return bloomFilter; }
     public static ArrayList<Node> getNodes() { return array; }
-    //public static HashMap<String, Integer> getRegionInfo() { return regionNameSize; }
-    //public static void addRegionNameSize(String name, int size){ regionNameSize.put(name, size); }
     public static int joinSize = 0;
+    public static int trackJoinTransferCount = 0;
 
     static {
         try(InputStream input = new FileInputStream("resources/imdg.properties")) { properties.load(input); }
         catch (IOException ex) { ex.printStackTrace(); }
         bloomFilter = new BloomFilterMD5<>(0.001, bloomFilterElementCount);
         array = new ArrayList<>();
-        //regionNameSize  = new HashMap<>();
         configScreens = new HashMap<>();
-        for(int i = 0; i < Byte.parseByte(properties.getProperty("nodeCount")); i++){ array.add(new Node(i)); }
+        for(int i = 0; i < getProperty("nodeCount"); i++){ array.add(new Node(i)); }
+        statistics = new Statistics(getProperty("iterationCount"));
+        createFolderForLog();
     }
 
     static public int calculateStringSize(String s){
@@ -71,42 +76,6 @@ public final class Util {
         }
     }
 
-    /*static public int findNodeWithMaxElemCount(String firstRegion, String secondRegion){
-        int firstSize = 0;
-        int secondSize = 0;
-        int nodeIndex = 0;
-        for (Node node: Util.getNodes()) {
-            if(node.getPartitions().containsKey(firstRegion)){
-                if(node.getPartitions().get(firstRegion).getPartitionSize() > firstSize){
-                    firstSize = node.getPartitions().get(firstRegion).getPartitionSize();
-                    nodeIndex = node.getNodeID();
-                }
-                if(node.getPartitions().get(firstRegion).getPartitionSize() == firstSize){
-                    if(node.getPartitions().get(secondRegion).getPartitionSize() > secondSize){
-                        secondSize = node.getPartitions().get(secondRegion).getPartitionSize();
-                        firstSize = node.getPartitions().get(firstRegion).getPartitionSize();
-                        nodeIndex = node.getNodeID();
-                    }
-                }
-            }
-        }
-        return nodeIndex;
-    }*/
-
-    /*
-    static public void sendSignalToAll(int nodeIndex, String regionName){
-        while (array.get(nodeIndex).getPartitions().get(regionName).getAllRecords().size() < 10){
-            for (Node node: array) {
-                for (IMDGObject object: node.getPartitions().get(regionName).getAllRecords()){
-                    if(!array.get(nodeIndex).getPartitions().get(regionName).getAllRecords().contains(object)){
-                        array.get(nodeIndex).addObject(regionName, object);
-                        System.out.println("SENDED by a signal: " + object.getHashID());
-                    }
-                }
-            }
-        }
-    }*/
-
     static public void transferDataToNode(int nodeSender, int nodeReceiver){
         for (String regionKey: array.get(nodeSender).getPartitions().keySet()) {
             for (IMDGObject object: array.get(nodeSender).getPartitions().get(regionKey).getAllRecords()) {
@@ -119,7 +88,7 @@ public final class Util {
 
     static public List<IMDGObject> getRegionDataFromNodes(String rName){
         List<IMDGObject> result = new ArrayList<>();
-        Logger.log("Transfering Data from " + rName + " Region...");
+        //Logger.log("Transfering Data from " + rName + " Region...");
         int size = 0;
         for (Node node: Util.getNodes())
             for (IMDGObject object: node.getPartitions().get(rName).getAllRecords())
@@ -128,7 +97,7 @@ public final class Util {
                     size = size + object.calculateSize();
                 }
         Util.joinSize = Util.joinSize + size;
-        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + formatNum(size));
+        //Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + formatNum(size));
         return result;
     }
 
@@ -139,7 +108,7 @@ public final class Util {
 
     static public ArrayList<IMDGObject> getRegionDataWithFilter(BloomFilterMD5<String> bloomFilter, String rName, String field){
         ArrayList<IMDGObject> result = new ArrayList<>();
-        Logger.log("Transfering Data from " + rName + " Region...");
+        //Logger.log("Transfering Data from " + rName + " Region...");
         int size = 0;
         for (Node node: Util.getNodes())
             for (IMDGObject object: node.getPartitions().get(rName).getAllRecords())
@@ -148,7 +117,7 @@ public final class Util {
                     size = size + object.calculateSize();
                 }
         Util.joinSize = Util.joinSize + size;
-        Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + formatNum(size));
+        //Logger.log("\t-> " + rName + " Send: " + result.size() + " objects. Transfered Data Size: " + formatNum(size));
         return result;
     }
 
@@ -157,9 +126,26 @@ public final class Util {
         else return "[" + String.format("%,2d", num) + "]";
     }
 
-    static public String formatNum(long num){ return formatNum((int)num); }
-    static public HashMap<String, RConfig> getConfigScreens(){ return configScreens; }
     static public void addConfig(String rName, RConfig rConfig){
         configScreens.put(rName, new RConfig(rConfig.joinKeyDistributionLaw, rConfig.objectSizeDistributionLaw, rConfig.regionElementsCount));
     }
+
+    static public void clearNodes(){
+        for (Node nd: array)
+            nd.clear();
+    }
+
+    static public void createFolderForLog(){
+        String folder = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+        String name = new SimpleDateFormat("HH-mm-ss").format(new Date());
+        source = "logs/" + folder + "/" + name + "/";
+        if(!(new File("logs/" + folder + "/").exists())){ new File("logs/" + folder + "/").mkdir(); }
+        if(!(new File(source).exists())){ new File(source).mkdir(); }
+    }
+
+    static public String getSource(){ return source; }
+    static public Statistics getStatistics(){ return statistics; }
+    static public void reInitStatistics(){ statistics = new Statistics(getProperty("iterationCount"));}
+    static public String formatNum(long num){ return formatNum((int)num); }
+    static public HashMap<String, RConfig> getConfigScreens(){ return configScreens; }
 }

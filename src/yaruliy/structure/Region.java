@@ -1,12 +1,9 @@
 package yaruliy.structure;
-import yaruliy.bloom.BloomFilterMD5;
 import yaruliy.bloom.MurMurHash;
 import yaruliy.data.IMDGObject;
 import yaruliy.trackstaff.proccess.MProccessManager;
-import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import java.util.*;
-import static yaruliy.util.Util.getValue;
 import static yaruliy.util.Util.getNodes;
 
 public class Region {

@@ -29,4 +29,8 @@ public class Node {
     public boolean containsObject(String rName, IMDGObject object) {
         return partitions.containsKey(rName) && partitions.get(rName).getAllRecords().contains(object);
     }
+
+    public void clear() {
+        this.partitions = new HashMap<>();
+    }
 }

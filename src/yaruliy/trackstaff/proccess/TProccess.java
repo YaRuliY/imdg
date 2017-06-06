@@ -1,6 +1,6 @@
 package yaruliy.trackstaff.proccess;
 import yaruliy.structure.Node;
-import yaruliy.util.Logger;
+//import yaruliy.util.Logger;
 import yaruliy.util.Util;
 import yaruliy.trackstaff.TElement;
 import yaruliy.trackstaff.TMessage;
@@ -68,7 +68,7 @@ public class TProccess {
     }
 
     public void phaseTwoFour(String leftRegion, String rightRegion) {
-        Logger.log("\nPhase Two Starts...");
+        //Logger.log("\nPhase Two Starts...");
         for(Map.Entry<String, HashMap<String, TElement>> entry : this.table.getHash().entrySet()) {
             String key = entry.getKey();
             HashMap<String, TElement> value = entry.getValue();
@@ -77,13 +77,13 @@ public class TProccess {
                 System.out.printf("\t\t%-8s: ", key);
                 int leftTotal = value.get(leftRegion).getTotalCount();
                 int rightTotal = value.get(rightRegion).getTotalCount();
-                Logger.log("-------------------FOR-KEY-(" + key + ")--------------------");
-                Logger.log("Route Definition Starts...");
-                Logger.log("Total Count from Left Table (for key " + key + "): " + formatNum(leftTotal));
-                Logger.log("Total Count from Right Table (for key " + key + "): " + formatNum(rightTotal) + "\n");
+                //Logger.log("-------------------FOR-KEY-(" + key + ")--------------------");
+                //Logger.log("Route Definition Starts...");
+                //Logger.log("Total Count from Left Table (for key " + key + "): " + formatNum(leftTotal));
+                //Logger.log("Total Count from Right Table (for key " + key + "): " + formatNum(rightTotal) + "\n");
                 if(leftTotal < rightTotal){
                     System.out.println(leftRegion + " -> " + rightRegion);
-                    Logger.log(leftRegion + " -> " + rightRegion);
+                    //Logger.log(leftRegion + " -> " + rightRegion);
 
                     int beforeMigrationCount = 0;
                     for (int i : value.get(leftRegion).getSizes())
@@ -102,7 +102,7 @@ public class TProccess {
                     doTransfer(leftRegion, rightRegion, key, value);
                 }
                 else {
-                    Logger.log(leftRegion + " <- " + rightRegion);
+                    //Logger.log(leftRegion + " <- " + rightRegion);
                     System.out.println(leftRegion + " <- " + rightRegion);
 
                     int beforeMigrationCount = 0;
@@ -129,7 +129,7 @@ public class TProccess {
     private void doTransfer(String leftRegion, String rightRegion, String key, HashMap<String, TElement> value){
         final int[] transferCount = {0};
         final int[] transferCost = {0};
-        Logger.log("\nTransfering... ");
+        //Logger.log("\nTransfering... ");
         for (int leftRegionIndex: value.get(leftRegion).getNodes()) {
             Node nodeForLeft = Util.getNodes().get(leftRegionIndex);
             for (String regKey : nodeForLeft.getPartitions().keySet()) {
@@ -140,9 +140,9 @@ public class TProccess {
                     for (int rightRegionIndex: value.get(rightRegion).getNodes()) {
                         if(!(Util.getNodes().get(rightRegionIndex).containsObject(object.getRegion(), object))){
                             Util.getNodes().get(rightRegionIndex).addObject(object.getRegion(), object);
-                            Logger.log("\t[" + object.getHashID() + "](" + object.getName() + ") "
-                                    + "from N[" + leftRegionIndex + "] "
-                                    + "to N[" + rightRegionIndex + "] ");
+                            //Logger.log("\t[" + object.getHashID() + "](" + object.getName() + ") "
+                                   /* + "from N[" + leftRegionIndex + "] "
+                                    + "to N[" + rightRegionIndex + "] ");*/
                             transferCount[0]++;
                             transferCost[0] = transferCost[0] + object.calculateSize();
                         }
@@ -150,10 +150,11 @@ public class TProccess {
                 });
             }
         }
-        Logger.log("\tTransfer Count: " + transferCount[0]);
-        Logger.log("\tTransfer Data Cost: " + formatNum(transferCost[0]));
+        //Logger.log("\tTransfer Count: " + transferCount[0]);
+        //Logger.log("\tTransfer Data Cost: " + formatNum(transferCost[0]));
         Util.joinSize = Util.joinSize + transferCost[0];
-        Logger.log("");
+        Util.trackJoinTransferCount = Util.trackJoinTransferCount + transferCount[0];
+        //Logger.log("");
     }
 
     public Set<Integer> getNodesForJoin(){ return this.nodesForJoin; }

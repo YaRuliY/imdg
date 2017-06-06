@@ -1,7 +1,6 @@
 package yaruliy.structure;
 import yaruliy.algorithm.JoinAlgorithm;
 import yaruliy.data.IMDGObject;
-import yaruliy.util.Logger;
 import yaruliy.util.Util;
 
 import java.util.Collection;
@@ -30,15 +29,20 @@ public class Warehouse {
     }
 
     public JoinResult executeJOIN(String left, String right, JoinAlgorithm algorithm, String field){
+        long begin = System.nanoTime();
         Util.joinSize = 0;
-        String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
-        Logger.log("###############---JOIN (" + joinName + ") Starts---################\n");
+        //String joinName = algorithm.getClass().toString().substring(algorithm.getClass().toString().lastIndexOf('.') + 1);
+        //Logger.log("###############---JOIN (" + joinName + ") Starts---################\n");
         JoinResult joinResult = algorithm.executeJOIN(getRegionByName(left), getRegionByName(right), field);
-        long time = Util.joinSize / Util.getProperty("landwidth") + Util.getProperty("latency");
-        Logger.log("JOIN (" + joinName + ") " +
-                "time: " + formatNum(time) + " ns. " +
+        long time = Util.joinSize / Util.getProperty("bandwidth") + Util.getProperty("latency");
+        /*Logger.log("JOIN (" + joinName + ") " +
+                "time(formula): " + formatNum(time) + " ns. " +
                 "Total Size: " + formatNum(Util.joinSize) + "\n");
-        Logger.log("###############---JOIN (" + joinName + ") Ends---##################\n\n");
+        Logger.log("###############---JOIN (" + joinName + ") Ends---##################\n\n");*/
+        Util.getStatistics().addTransferVolume(Util.joinSize);
+        Util.getStatistics().addExecutionTime(time);
+        long end = System.nanoTime() - begin;
+        Util.getStatistics().addRealTime(end);
         return joinResult;
     }
 }

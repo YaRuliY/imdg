@@ -18,6 +18,7 @@ public class BloomJoin extends JoinAlgorithm{
         writeValuesIntoFilter(bloomFilter, leftRegion.getName(), field);
         ArrayList<IMDGObject> rightSet = getRegionDataWithFilter(bloomFilter, rightRegion.getName(), field);
 
+        Util.getStatistics().addTransferCount(rightSet.size() + leftRegion.getAllRecords().size());
         JoinResult jr = new JoinResult(this.getClass().toGenericString());
         for (IMDGObject leftObj: leftRegion.getAllRecords())
             rightSet.stream()

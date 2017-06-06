@@ -2,6 +2,7 @@ package yaruliy.algorithm;
 import yaruliy.data.IMDGObject;
 import yaruliy.structure.JoinResult;
 import yaruliy.structure.Region;
+import yaruliy.util.Util;
 //import yaruliy.util.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public class HashJoin extends JoinAlgorithm{
         List<IMDGObject> leftRegionObjects = getRegionDataFromNodes(leftRegion.getName());
         List<IMDGObject> rightRegionObjects = getRegionDataFromNodes(rightRegion.getName());
         //-----------------End-Transfering-----------------");
+        Util.getStatistics().addTransferCount(leftRegionObjects.size() + rightRegionObjects.size());
 
         //Hash Table Building
         HashMap<String, ArrayList<IMDGObject>> leftTable = new HashMap<>();
