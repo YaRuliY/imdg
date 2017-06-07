@@ -1,6 +1,6 @@
 package yaruliy.data.build;
 import yaruliy.data.IMDGObject;
-import yaruliy.distribution.Erlang;
+import yaruliy.distribution.Distributor;
 import yaruliy.util.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +62,7 @@ public class ObjectGenerator {
 
     public ArrayList<IMDGObject> generateObjectArray(String rName){
         final int depWeight = 645;
+        Distributor distributor = new Distributor();
         if(isGaussian){
             preparedNames = new String[rConfig.regionElementsCount];
             ArrayList<IMDGObject> objects = new ArrayList<>(rConfig.regionElementsCount);
@@ -71,7 +72,7 @@ public class ObjectGenerator {
                     secondName.append(rConfig.alpfa.charAt(random.nextInt((rConfig.alpfa.length() - 1))));
 
                 String name = preparedNames[i];
-                int size = getGaussian();
+                int size = (int) distributor.nextGaussian();
                 int dependencyCount = size / depWeight;
 
                 if (name == null) name = rConfig.names[random.nextInt((rConfig.names.length))];
@@ -90,11 +91,8 @@ public class ObjectGenerator {
                     secondName.append(rConfig.alpfa.charAt(random.nextInt((rConfig.alpfa.length() - 1))));
 
                 String name = preparedNames[i];
-                Erlang erlang = new Erlang();
-                int size = (int)erlang.nextErlang(645);
-                //System.out.println("size: " + size);
+                int size = (int) distributor.nextErlang(645);
                 int dependencyCount = size / depWeight;
-                //System.out.println("depCount: " + dependencyCount);
 
                 if (name == null) name = rConfig.names[random.nextInt((rConfig.names.length))];
                 objects.add(new IMDGObject(name, secondName.toString(), dependencyCount, size));
@@ -153,12 +151,5 @@ public class ObjectGenerator {
         rConfig.regionElementsCount = 10;
         rConfig.joinKeyDistributionLaw = new HashMap<>();
         rConfig.objectSizeDistributionLaw = new HashMap<>();
-    }
-
-    private int getGaussian(){
-        Random r = new Random();
-        int gaussian = (int) Math.round(r.nextGaussian() * Util.getProperty("dispersion") + Util.getProperty("mathExpectation"));
-        if (gaussian < 0) gaussian = getGaussian();
-        return gaussian;
     }
 }

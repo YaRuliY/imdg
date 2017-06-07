@@ -45,7 +45,6 @@ public class Tester {
         warehouse.getRegionByName(region1).printRecords(false);
 
         Logger.logSystemInfo();
-
         /*warehouse.executeJOIN(region0, region1, new HashJoin(), "name");
         warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
         warehouse.executeJOIN(region0, region1, new TrackJoin(), "name");*/
@@ -58,6 +57,9 @@ public class Tester {
         Util.getStatistics().changeCurrentJoin("HashJoin");
         Util.getStatistics().writeCSV();
         Util.reInitStatistics();
+        Util.clearNodes();
+        warehouse.addCollection(first, region0);
+        warehouse.addCollection(second, region1);
 
         for (int i = 0; i < iterationCount; i++){
             warehouse.executeJOIN(region0, region1, new BloomJoin(), "name");
