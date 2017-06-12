@@ -6,11 +6,11 @@ import java.io.IOException;
 public final class DependencyInjector {
     private DependencyInjector(){}
 
-    static ObjectDependency getDependency(int nestingLevel) {
-        ObjectDependency objectDependency = new ObjectDependency(9999, nestingLevel, "Father Dependency");
-        ObjectDependency original = objectDependency;
+    static IMDGObject getDependency(int nestingLevel) {
+        IMDGObject objectDependency = new IMDGObject(9999, nestingLevel, "Father Dependency");
+        IMDGObject original = objectDependency;
         for (int i = 0; i < nestingLevel; i++) {
-            objectDependency = objectDependency.setBaseObjectDependency(new ObjectDependency(i, nestingLevel, getDependencyValue()));
+            objectDependency = objectDependency.setBaseObjectDependency(new IMDGObject(i, nestingLevel, getDependencyValue()));
         }
         return original;
     }

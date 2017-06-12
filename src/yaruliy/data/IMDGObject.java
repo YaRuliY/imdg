@@ -6,7 +6,7 @@ public class IMDGObject implements Comparable<IMDGObject>{
     private String hashID;
     private String name;
     private String serName;
-    private ObjectDependency objectDependency;
+    private IMDGObject objectDependency;
     private int depCount;
     private int realSize = 0;
 
@@ -22,6 +22,10 @@ public class IMDGObject implements Comparable<IMDGObject>{
         return /*(64 + 32 + Util.calculateStringSize(hashID) + Util.calculateStringSize(name)
                 + Util.calculateStringSize(serName) + objectDependency.getSize()) / 1024;*/
         this.getRealSize()/* * 1024*/;
+    }
+
+    public IMDGObject setBaseObjectDependency(IMDGObject object){
+        return this;
     }
 
     @Override

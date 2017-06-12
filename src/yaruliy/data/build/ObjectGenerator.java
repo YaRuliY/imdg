@@ -91,7 +91,7 @@ public class ObjectGenerator {
                     secondName.append(rConfig.alpfa.charAt(random.nextInt((rConfig.alpfa.length() - 1))));
 
                 String name = preparedNames[i];
-                int size = (int) distributor.nextErlang(645);
+                int size = (int) distributor.nextErlang();
                 int dependencyCount = size / depWeight;
 
                 if (name == null) name = rConfig.names[random.nextInt((rConfig.names.length))];

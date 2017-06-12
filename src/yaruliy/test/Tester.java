@@ -20,7 +20,7 @@ public class Tester {
         Warehouse warehouse = new Warehouse();
         ObjectGenerator generator = new ObjectGenerator();
 
-        generator.setElementsCountInRegion(10)
+        generator.setElementsCountInRegion(1000)
                 /*.setGaussianDistribution()*/
                 .setErlangDistribution()
                 /*.setObjectDependencies(new int[]{100}, new int[]{1})*/
@@ -30,7 +30,8 @@ public class Tester {
         ArrayList<IMDGObject> first = generator.generateObjectArray(region0);
 
         generator.reInit();
-        generator/*.setGaussianDistribution()*/
+        generator.setElementsCountInRegion(1000)
+                /*.setGaussianDistribution()*/
                 .setErlangDistribution()
                 /*.setObjectDependencies(new int[]{100}, new int[]{30})*/
                 .setJoinKeyFrequency("Jenna", 50)
